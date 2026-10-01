@@ -1,0 +1,1 @@
+ALTER TABLE "PracticeSession" ADD COLUMN "config" JSONB NOT NULL DEFAULT '{}';

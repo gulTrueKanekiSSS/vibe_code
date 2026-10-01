@@ -1,0 +1,20 @@
+[
+  {
+    "id": "xor-1",
+    "topicId": "xor",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Чему равно 1 XOR 1?",
+    "options": [],
+    "answer": "0",
+    "solution": "XOR равен 1, когда входы различаются. Здесь оба входа равны 1, поэтому 1 XOR 1 = 0.",
+    "hints": [
+      "XOR для двух входов выдаёт 1, если входы различны. Это удобная проверка нечётности числа единиц.",
+      "$A\\oplus B=(A\\land\\neg B)\\lor(\\neg A\\land B)$",
+      "1 XOR 1 = 0, а 1 XOR 0 = 1."
+    ],
+    "tags": [
+      "Exclusive OR"
+    ]
+  }
+]

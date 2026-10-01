@@ -1,0 +1,93 @@
+[
+  {
+    "id": "calculation",
+    "title": "Вычисления",
+    "subjects": ["analysis", "geometry"]
+  },
+  {
+    "id": "domain-range",
+    "title": "Область определения и значения",
+    "subjects": ["analysis"]
+  },
+  { "id": "inverse", "title": "Обратная функция", "subjects": ["analysis"] },
+  { "id": "induction", "title": "Индукция", "subjects": ["analysis"] },
+  {
+    "id": "parameter",
+    "title": "Задача с параметром",
+    "subjects": ["analysis", "geometry"]
+  },
+  { "id": "matrix", "title": "Матричная задача", "subjects": ["geometry"] },
+  {
+    "id": "proof",
+    "title": "Доказательство / рассуждение",
+    "subjects": ["analysis", "geometry", "discrete"]
+  },
+  {
+    "id": "counterexample",
+    "title": "Контрпример",
+    "subjects": ["analysis", "geometry", "discrete"]
+  },
+  {
+    "id": "error-analysis",
+    "title": "Найти ошибку",
+    "subjects": [
+      "analysis",
+      "geometry",
+      "discrete",
+      "architecture",
+      "programming"
+    ]
+  },
+  {
+    "id": "truth-table",
+    "title": "Таблица истинности",
+    "subjects": ["discrete", "architecture"]
+  },
+  {
+    "id": "normal-form",
+    "title": "Нормальные формы",
+    "subjects": ["discrete"]
+  },
+  { "id": "quantifier", "title": "Кванторы", "subjects": ["discrete"] },
+  { "id": "set-problem", "title": "Множества", "subjects": ["discrete"] },
+  {
+    "id": "circuit-design",
+    "title": "Проектирование схемы",
+    "subjects": ["architecture"]
+  },
+  {
+    "id": "universal-gates",
+    "title": "NAND / NOR",
+    "subjects": ["architecture"]
+  },
+  {
+    "id": "quartus-workflow",
+    "title": "Quartus и плата",
+    "subjects": ["architecture"]
+  },
+  {
+    "id": "memory-tracing",
+    "title": "Трассировка памяти",
+    "subjects": ["programming"]
+  },
+  {
+    "id": "pointer-problem",
+    "title": "Указатели",
+    "subjects": ["programming"]
+  },
+  {
+    "id": "recursion-trace",
+    "title": "Трассировка рекурсии",
+    "subjects": ["programming"]
+  },
+  {
+    "id": "aggregate-data",
+    "title": "Struct / union / enum",
+    "subjects": ["programming"]
+  },
+  {
+    "id": "undefined-behavior",
+    "title": "Неопределённое поведение",
+    "subjects": ["programming"]
+  }
+]

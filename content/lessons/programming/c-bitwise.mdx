@@ -1,0 +1,41 @@
+---
+{
+  "id": "c-bitwise",
+  "title": "Битовые операторы C",
+  "english": "Bitwise operators in C",
+  "subject": "programming",
+  "module": "Основы C",
+  "order": 2,
+  "difficulty": "EASY",
+  "estimatedMinutes": 6,
+  "prerequisites": [],
+  "keywords": [
+    "Битовые операторы C",
+    "Bitwise operators in C"
+  ],
+  "quizAnswer": "8"
+}
+---
+
+## Что это?
+
+Для битовых масок удобно использовать unsigned. Выражение flags & mask проверяет выбранные биты, flags | mask устанавливает их.
+
+## Английские термины
+
+Bitwise operators in C — Битовые операторы C
+
+## Разберём на примере
+
+```c
+unsigned x = 5u; // 0101
+unsigned y = x | 2u; // 0111, то есть 7
+```
+
+## Частая ошибка
+
+Сдвиг на отрицательное число или на ширину типа и больше недопустим.
+
+## Проверь понимание
+
+Чему равно 1u << 3?

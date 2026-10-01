@@ -1,0 +1,41 @@
+---
+{
+  "id": "files",
+  "title": "Работа с файлами",
+  "english": "File basics",
+  "subject": "programming",
+  "module": "Основы C",
+  "order": 11,
+  "difficulty": "EASY",
+  "estimatedMinutes": 6,
+  "prerequisites": [],
+  "keywords": [
+    "Работа с файлами",
+    "File basics"
+  ],
+  "quizAnswer": "r"
+}
+---
+
+## Что это?
+
+fopen открывает поток и возвращает FILE*. Проверяй NULL и закрывай успешно открытый поток через fclose.
+
+## Английские термины
+
+File basics — Работа с файлами
+
+## Разберём на примере
+
+```c
+FILE *f = fopen("data.txt", "r");
+if (f != NULL) fclose(f);
+```
+
+## Частая ошибка
+
+Режим w обрезает существующий файл. Для чтения используй r.
+
+## Проверь понимание
+
+Какой режим fopen открывает текстовый файл для чтения? Введи одну букву.

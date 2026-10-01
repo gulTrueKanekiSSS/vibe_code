@@ -1,0 +1,20 @@
+[
+  {
+    "id": "logical-operators-1",
+    "topicId": "logical-operators",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "P=1, Q=0. Чему равно P AND NOT Q?",
+    "options": [],
+    "answer": "1",
+    "solution": "При Q=0 имеем NOT Q=1. Тогда P AND NOT Q = 1 AND 1 = 1.",
+    "hints": [
+      "Связки AND, OR и NOT строят сложные высказывания из простых. Скобки показывают порядок операций.",
+      "Сначала выполни NOT Q.",
+      "После отрицания Q сравни два входа операции AND."
+    ],
+    "tags": [
+      "Logical operators"
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+---
+{
+  "id": "function-pointers",
+  "title": "Указатели на функции",
+  "english": "Function pointers",
+  "subject": "programming",
+  "module": "Память и указатели",
+  "order": 10,
+  "difficulty": "EASY",
+  "estimatedMinutes": 6,
+  "prerequisites": [],
+  "keywords": [
+    "Указатели на функции",
+    "Function pointers"
+  ],
+  "quizAnswer": "16"
+}
+---
+
+## Что это?
+
+Указатель на функцию позволяет выбрать вызываемую функцию во время работы программы. Его тип должен соответствовать сигнатуре функции.
+
+## Английские термины
+
+Function pointers — Указатели на функции
+
+## Разберём на примере
+
+```c
+int square(int x) { return x*x; }
+int (*f)(int) = square;
+// f(3) равно 9
+```
+
+## Частая ошибка
+
+int (*f)(int) — указатель на функцию; int *f(int) — функция, возвращающая указатель.
+
+## Проверь понимание
+
+Функция square(x) возвращает x*x. Чему равно square(4)?

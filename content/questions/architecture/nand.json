@@ -1,0 +1,66 @@
+[
+  {
+    "id": "nand-1",
+    "topicId": "nand",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Чему равно NAND(1,1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "1 AND 1 = 1; NAND инвертирует результат, поэтому NAND(1,1)=0.",
+    "hints": [
+      "Сначала вычисли AND двух входов.",
+      "$\\operatorname{NAND}(A,B)=\\neg(A\\land B)$.",
+      "При двух единицах AND даёт 1; теперь инвертируй."
+    ],
+    "tags": ["NAND gate"]
+  },
+  {
+    "id": "nand-2",
+    "topicId": "nand",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какая схема из одного NAND реализует NOT A?",
+    "options": ["NAND(A,A)", "NAND(A,0)", "NAND(A,1) AND A"],
+    "answer": "NAND(A,A)",
+    "solution": "NAND(A,A)=¬(A∧A)=¬A по идемпотентности AND.",
+    "hints": [
+      "Оба входа NAND можно соединить вместе.",
+      "A∧A=A.",
+      "Подставь одинаковое A на оба входа."
+    ],
+    "tags": ["inverter"]
+  },
+  {
+    "id": "nand-3",
+    "topicId": "nand",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Пусть X=NAND(A,A), Y=NAND(B,B), Z=NAND(X,Y). Чему равно Z при A=0 и B=1?",
+    "options": [],
+    "answer": "1",
+    "solution": "X=¬0=1, Y=¬1=0, поэтому Z=¬(1∧0)=1. Схема реализует A OR B.",
+    "hints": [
+      "Вычисляй сигнал каждого промежуточного узла отдельно.",
+      "X=NOT A, Y=NOT B.",
+      "После X=1 и Y=0 примени NAND."
+    ],
+    "tags": ["de-morgan"]
+  },
+  {
+    "id": "nand-4",
+    "topicId": "nand",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Какое выражение из NAND эквивалентно A AND B? Обозначим N=NAND(A,B).",
+    "options": ["NAND(N,N)", "NAND(A,A)", "NAND(A,N)"],
+    "answer": "NAND(N,N)",
+    "solution": "Первый вентиль даёт N=¬(A∧B). Если подать N на оба входа второго NAND, получим ¬(N∧N)=¬N=A∧B. Так двойное отрицание восстанавливает AND.",
+    "hints": [
+      "Сначала получи отрицание AND.",
+      "NAND(X,X)=NOT X.",
+      "Инвертируй промежуточный сигнал N."
+    ],
+    "tags": ["functional-completeness"]
+  }
+]

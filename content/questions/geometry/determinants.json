@@ -1,0 +1,66 @@
+[
+  {
+    "id": "determinants-1",
+    "topicId": "determinants",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Найди определитель матрицы со строками (3,1) и (2,4).",
+    "options": [],
+    "answer": "10",
+    "solution": "Для матрицы со строками (3,1) и (2,4): det = 3·4 − 1·2 = 10.",
+    "hints": [
+      "Для матрицы 2×2 вычти произведение побочной диагонали из произведения главной.",
+      "$\\det\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}=ad-bc$",
+      "Здесь главная диагональ даёт 3·4, а побочная — 1·2."
+    ],
+    "tags": ["Determinant"]
+  },
+  {
+    "id": "determinants-2",
+    "topicId": "determinants",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Для A со строками (1,t) и (2,4) найди значение t, при котором A необратима.",
+    "options": [],
+    "answer": "2",
+    "solution": "A необратима тогда и только тогда, когда det A=0. Здесь det A=4−2t, поэтому t=2.",
+    "hints": [
+      "Необратимость связана с нулевым определителем.",
+      "Запиши det A=1·4−t·2.",
+      "Реши уравнение 4−2t=0."
+    ],
+    "tags": ["invertibility"]
+  },
+  {
+    "id": "determinants-3",
+    "topicId": "determinants",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Матрица A со строками (0,2) и (3,0) задаёт преобразование плоскости. Какова площадь образа единичного квадрата?",
+    "options": [],
+    "answer": "6",
+    "solution": "det A=0·0−2·3=−6. Площадь образа единичного квадрата равна |det A|=6, а минус говорит только о смене ориентации.",
+    "hints": [
+      "Площадь определяется модулем определителя.",
+      "Определитель здесь отрицателен из-за побочной диагонали.",
+      "Возьми модуль числа 0−2·3."
+    ],
+    "tags": ["oriented-area"]
+  },
+  {
+    "id": "determinants-4",
+    "topicId": "determinants",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Если det A=−2 для квадратной матрицы 2×2, чему равен det(A²)?",
+    "options": ["−4", "4", "2", "0"],
+    "answer": "4",
+    "solution": "Свойство det(AB)=det A·det B даёт det(A²)=(det A)²=(−2)²=4.",
+    "hints": [
+      "Используй свойство определителя произведения.",
+      "A² означает A·A.",
+      "Перемножь −2 и −2."
+    ],
+    "tags": ["determinant-product"]
+  }
+]

@@ -1,0 +1,42 @@
+---
+{
+  "id": "structs",
+  "title": "Структуры",
+  "english": "Structs",
+  "subject": "programming",
+  "module": "Память и указатели",
+  "order": 8,
+  "difficulty": "EASY",
+  "estimatedMinutes": 6,
+  "prerequisites": [],
+  "keywords": [
+    "Структуры",
+    "Structs"
+  ],
+  "quizAnswer": "7"
+}
+---
+
+## Что это?
+
+struct объединяет именованные поля разных типов. Через объект обращаются точкой, через указатель — стрелкой.
+
+## Английские термины
+
+Structs — Структуры
+
+## Разберём на примере
+
+```c
+struct Point { int x; int y; };
+struct Point p = {2,3};
+// p.y равно 3
+```
+
+## Частая ошибка
+
+Размер структуры может включать padding — промежутки для выравнивания.
+
+## Проверь понимание
+
+struct P {int x; int y;}; struct P p={7,9}; Чему равно p.x?

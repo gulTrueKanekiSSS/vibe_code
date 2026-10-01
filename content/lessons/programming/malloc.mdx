@@ -1,0 +1,44 @@
+---
+{
+  "id": "malloc",
+  "title": "Динамическая память",
+  "english": "Dynamic memory",
+  "subject": "programming",
+  "module": "Память и указатели",
+  "order": 9,
+  "difficulty": "EASY",
+  "estimatedMinutes": 6,
+  "prerequisites": [],
+  "keywords": [
+    "Динамическая память",
+    "Dynamic memory"
+  ],
+  "quizAnswer": "12"
+}
+---
+
+## Что это?
+
+malloc выделяет запрошенное число байт или возвращает NULL. Проверяй результат; после использования вызови free ровно один раз.
+
+## Английские термины
+
+Dynamic memory — Динамическая память
+
+## Разберём на примере
+
+```c
+int *p = malloc(3 * sizeof *p);
+if (p != NULL) {
+  p[0] = 7;
+  free(p);
+}
+```
+
+## Частая ошибка
+
+malloc не инициализирует память. После free обращаться к ней нельзя.
+
+## Проверь понимание
+
+Если sizeof(int)=4, сколько байт нужно для 3 int?

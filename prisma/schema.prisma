@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+model User {
+  id String @id @default(cuid())
+  telegramId String @unique
+  firstName String
+  lastName String?
+  username String?
+  photoUrl String?
+  createdAt DateTime @default(now())
+  settings UserSettings?
+  authSessions AuthSession[]
+  sessions PracticeSession[]
+  progress TopicProgress[]
+}
+model UserSettings {
+  userId String @id
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  showUsername Boolean @default(false)
+  showPhoto Boolean @default(false)
+  leaderboard Boolean @default(false)
+}
+model AuthSession {
+  tokenHash String @id
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  @@index([expiresAt])
+}
+model AuthChallenge {
+  stateHash String @id
+  verifier String
+  expiresAt DateTime
+}
+model Subject {
+  id String @id
+  title String
+  english String
+  description String
+  icon String
+  color String
+  order Int
+  modules Module[]
+}
+model Module {
+  id String @id
+  title String
+  order Int
+  subjectId String
+  subject Subject @relation(fields: [subjectId], references: [id])
+  topics Topic[]
+}
+model Topic {
+  id String @id
+  title String
+  english String
+  moduleId String
+  module Module @relation(fields: [moduleId], references: [id])
+  order Int
+  difficulty String
+  estimatedMinutes Int
+  prerequisites String[]
+  keywords String[]
+  content Json
+  formulas Formula[]
+  questions Question[]
+  progress TopicProgress[]
+}
+model Formula {
+  id String @id
+  topicId String
+  topic Topic @relation(fields: [topicId], references: [id])
+  title String
+  latex String
+  meaning String
+  variables String
+  whenToUse String
+  mistake String
+  example String
+}
+model Question {
+  id String @id
+  topicId String
+  topic Topic @relation(fields: [topicId], references: [id])
+  version Int @default(1)
+  type String
+  difficulty String
+  prompt String
+  options Json
+  answer Json
+  solution String
+  hints String[]
+  feedback Json @default("{}")
+  tags String[]
+  items PracticeItem[]
+}
+model PracticeSession {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mode String
+  config Json @default("{}")
+  dailyKey String? @unique
+  startKey String? @unique
+  createdAt DateTime @default(now())
+  finishedAt DateTime?
+  items PracticeItem[]
+  @@index([userId, createdAt])
+}
+model PracticeItem {
+  id String @id @default(cuid())
+  sessionId String
+  session PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  questionId String
+  question Question @relation(fields: [questionId], references: [id])
+  position Int
+  hintLevel Int @default(0)
+  attempts Int @default(0)
+  completedAt DateTime?
+  correct Boolean @default(false)
+  xp Int @default(0)
+  submissions PracticeAttempt[]
+  @@unique([sessionId, questionId])
+  @@index([questionId, completedAt])
+}
+model PracticeAttempt {
+  id String @id @default(cuid())
+  itemId String
+  item PracticeItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  submissionKey String @unique
+  answer Json
+  correct Boolean
+  createdAt DateTime @default(now())
+}
+model TopicProgress {
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topicId String
+  topic Topic @relation(fields: [topicId], references: [id])
+  startedAt DateTime @default(now())
+  readAt DateTime?
+  @@id([userId, topicId])
+}

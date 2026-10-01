@@ -1,0 +1,52 @@
+[
+  {
+    "id": "architecture",
+    "title": "Архитектура компьютера",
+    "english": "Computer Architecture",
+    "description": "Булева логика, схемы и практическая работа с FPGA.",
+    "icon": "cpu",
+    "color": "blue",
+    "modules": ["Представление данных", "Логические схемы", "FPGA и Quartus"]
+  },
+  {
+    "id": "geometry",
+    "title": "Линейная алгебра и геометрия",
+    "english": "Analytical Geometry and Linear Algebra",
+    "description": "Векторы, пространства и язык преобразований.",
+    "icon": "vectors",
+    "color": "violet",
+    "modules": ["Векторы", "Матрицы и пространство"]
+  },
+  {
+    "id": "analysis",
+    "title": "Математический анализ",
+    "english": "Mathematical Analysis",
+    "description": "Комплексные числа, функции и математическая индукция.",
+    "icon": "function",
+    "color": "orange",
+    "modules": [
+      "Действительные числа",
+      "Границы и полнота",
+      "Комплексные числа",
+      "Функции и доказательства"
+    ]
+  },
+  {
+    "id": "programming",
+    "title": "Введение в программирование",
+    "english": "Introduction to Programming",
+    "description": "Научись мыслить кодом. Основной язык — C.",
+    "icon": "code",
+    "color": "green",
+    "modules": ["Основы C", "Память и указатели", "Рекурсия и составные данные"]
+  },
+  {
+    "id": "discrete",
+    "title": "Логика и дискретная математика",
+    "english": "Logic and Discrete Mathematics",
+    "description": "От высказываний к убедительным доказательствам.",
+    "icon": "logic",
+    "color": "pink",
+    "modules": ["Язык математики", "Методы доказательств", "Булевы функции"]
+  }
+]
