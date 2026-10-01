@@ -43,6 +43,115 @@ const test = base.extend<{ learnerId: string }>({
 test.use({ trace: "off" });
 test.afterAll(async () => db.$disconnect());
 
+test("select all filters support partial selection, keyboard clearing and saved configuration", async ({
+  page,
+  learnerId,
+}) => {
+  await page.goto("/practice/custom?subject=geometry");
+  const builder = page.locator(".practice-builder");
+  const topics = builder.locator(".practice-builder-topics input:enabled");
+  const allTopics = builder.getByRole("checkbox", {
+    name: "Выбрать все темы",
+    exact: true,
+  });
+  await expect(allTopics).not.toBeChecked();
+  await topics.first().check();
+  await expect(allTopics).toBeChecked({ indeterminate: true });
+  await allTopics.check();
+  expect(await topics.count()).toBeGreaterThan(1);
+  for (const topic of await topics.all()) await expect(topic).toBeChecked();
+  await topics.last().uncheck();
+  await expect(allTopics).toBeChecked({ indeterminate: true });
+  await allTopics.focus();
+  await page.keyboard.press("Space");
+  await expect(allTopics).toBeChecked();
+  await page.keyboard.press("Space");
+  for (const topic of await topics.all()) await expect(topic).not.toBeChecked();
+  await allTopics.check();
+
+  const allLevels = builder.getByRole("checkbox", {
+    name: "Выбрать все сложности",
+    exact: true,
+  });
+  await allLevels.uncheck();
+  await expect(
+    builder.getByRole("button", { name: "Начать выбранную практику" }),
+  ).toBeDisabled();
+  await builder.getByLabel("Средний", { exact: true }).check();
+  await expect(allLevels).toBeChecked({ indeterminate: true });
+  await allLevels.check();
+
+  const allTypes = builder.getByRole("checkbox", {
+    name: "Выбрать все типы заданий",
+    exact: true,
+  });
+  await allTypes.uncheck();
+  await expect(
+    builder.getByRole("button", { name: "Начать выбранную практику" }),
+  ).toBeDisabled();
+  await allTypes.check();
+  const allPatterns = builder.getByRole("checkbox", {
+    name: "Выбрать все категории",
+    exact: true,
+  });
+  await allPatterns.check();
+  await allPatterns.uncheck();
+  await allPatterns.check();
+
+  const expectedTopics = await db.topic.findMany({
+    where: { module: { subjectId: "geometry" }, questions: { some: {} } },
+    select: { id: true },
+  });
+  const sessionId = await expectSession(
+    page,
+    () =>
+      builder
+        .getByRole("button", {
+          name: "Начать выбранную практику",
+        })
+        .click(),
+    learnerId,
+    "custom",
+  );
+  const saved = await db.practiceSession.findUniqueOrThrow({
+    where: { id: sessionId },
+    include: {
+      items: {
+        include: {
+          question: { include: { topic: { include: { module: true } } } },
+        },
+      },
+    },
+  });
+  const config = saved.config as {
+    topicIds: string[];
+    difficulties: string[];
+    questionTypes: string[];
+    patternIds: string[];
+  };
+  expect(new Set(config.topicIds)).toEqual(
+    new Set(expectedTopics.map((t) => t.id)),
+  );
+  expect(config.difficulties).toHaveLength(4);
+  expect(config.patternIds.length).toBeGreaterThan(0);
+  expect(saved.items).toHaveLength(5);
+  for (const item of saved.items) {
+    expect(config.topicIds).toContain(item.question.topicId);
+    expect(config.questionTypes).toContain(item.question.type);
+    expect(
+      item.question.tags.some((tag) => config.patternIds.includes(tag)),
+    ).toBe(true);
+    expect(item.question.topic.module.subjectId).toBe("geometry");
+  }
+  await page.goto(`/practice/custom?edit=${sessionId}`);
+  await expect(
+    page.getByRole("checkbox", { name: "Выбрать все темы", exact: true }),
+  ).toBeChecked();
+  await builder.getByRole("combobox").selectOption("programming");
+  await expect(allTopics).not.toBeChecked();
+  await expect(allPatterns).not.toBeChecked();
+});
+
 async function expectSession(
   page: Page,
   click: () => Promise<unknown>,
@@ -162,7 +271,7 @@ test("university custom route filters task patterns, persists questions, and ren
   await builder.getByLabel("Базовый",{exact:true}).uncheck();
   await builder.getByLabel("Средний",{exact:true}).uncheck();
   const types=builder.getByRole("group",{name:"Типы заданий",exact:true});
-  const checked=types.locator('input:checked');
+  const checked=types.locator('input:not([aria-label])');
   for(const checkbox of await checked.all()) await checkbox.uncheck();
   await types.getByLabel("Вывод программы",{exact:true}).check();
   await builder.getByLabel("Трассировка памяти",{exact:true}).check();
@@ -415,6 +524,13 @@ test("empty topics and empty weak recommendations explain why practice cannot st
     expect(response.status()).toBe(400);
     expect((await response.json()).error).toContain("нет заданий");
     await page.goto("/practice");
+    const builder = page.locator(".practice-builder");
+    const emptyChoice = builder.getByLabel("Empty practice test", { exact: false });
+    await expect(emptyChoice).toBeDisabled();
+    await builder
+      .getByRole("checkbox", { name: "Выбрать все темы", exact: true })
+      .check();
+    await expect(emptyChoice).not.toBeChecked();
     const weak = page
       .locator(".practice-mode")
       .filter({ has: page.getByRole("heading", { name: "Слабые темы" }) });

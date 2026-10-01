@@ -6,6 +6,8 @@ import { ArrowRight, LoaderCircle } from "lucide-react";
 import type { StoredPracticeConfig } from "@/lib/practice-service";
 import patterns from "../../content/practice-patterns.json";
 import { curriculumLabel } from "@/lib/curriculum";
+import { FilterSelectAll } from "./filter-select-all";
+import { setFilterSelection } from "@/lib/filter-selection";
 
 const levels = [
   ["EASY", "Базовый"],
@@ -117,6 +119,9 @@ export function PracticeBuilder({
   const selectedTopics = visibleTopics.filter(
     (topic) => !topicIds.length || topicIds.includes(topic.id),
   );
+  const selectableTopicIds = visibleTopics
+    .filter((topic) => topic.questions.length > 0)
+    .map((topic) => topic.id);
   const visibleTypes = [
     ...new Set(
       selectedTopics.flatMap((topic) =>
@@ -304,6 +309,21 @@ export function PracticeBuilder({
       </div>
       <fieldset className="practice-builder-fieldset" disabled={busy}>
         <legend>Сложность</legend>
+        <FilterSelectAll
+          label="Выбрать все сложности"
+          description="Все четыре уровня сложности."
+          selected={difficulties}
+          available={levels.map(([value]) => value)}
+          onChange={(checked) =>
+            setDifficulties((current) =>
+              setFilterSelection(
+                current,
+                levels.map(([value]) => value),
+                checked,
+              ),
+            )
+          }
+        />
         <div className="practice-builder-options">
           {levels.map(([value, title]) => (
             <label key={value}>
@@ -311,10 +331,8 @@ export function PracticeBuilder({
                 type="checkbox"
                 checked={difficulties.includes(value)}
                 onChange={(event) =>
-                  setDifficulties(
-                    event.target.checked
-                      ? [...difficulties, value]
-                      : difficulties.filter((item) => item !== value),
+                  setDifficulties((current) =>
+                    setFilterSelection(current, [value], event.target.checked),
                   )
                 }
               />
@@ -330,17 +348,36 @@ export function PracticeBuilder({
         <small className="muted">
           Список прокручивается; можно выбрать несколько тем.
         </small>
+        <FilterSelectAll
+          label="Выбрать все темы"
+          description="Все темы с заданиями в текущем списке, включая темы ниже в области прокрутки."
+          selected={topicIds}
+          available={selectableTopicIds}
+          limit={100}
+          onChange={(checked) =>
+            setTopicIds((current) =>
+              setFilterSelection(current, selectableTopicIds, checked, 100),
+            )
+          }
+        />
         <div className="practice-builder-topics">
           {visibleTopics.map((topic) => (
             <label key={topic.id}>
               <input
                 type="checkbox"
                 checked={topicIds.includes(topic.id)}
+                disabled={
+                  !topic.questions.length ||
+                  (!topicIds.includes(topic.id) && topicIds.length >= 100)
+                }
                 onChange={(event) =>
-                  setTopicIds(
-                    event.target.checked
-                      ? [...topicIds, topic.id]
-                      : topicIds.filter((id) => id !== topic.id),
+                  setTopicIds((current) =>
+                    setFilterSelection(
+                      current,
+                      [topic.id],
+                      event.target.checked,
+                      100,
+                    ),
                   )
                 }
               />
@@ -357,17 +394,40 @@ export function PracticeBuilder({
           Содержание заданий{" "}
           <span className="muted">(не выбрано — все категории)</span>
         </legend>
+        <FilterSelectAll
+          label="Выбрать все категории"
+          description="Все категории, доступные для выбранных тем. Пустой выбор снимает ограничение по категориям."
+          selected={patternIds}
+          available={visiblePatterns.map((pattern) => pattern.id)}
+          limit={30}
+          onChange={(checked) =>
+            setPatternIds((current) =>
+              setFilterSelection(
+                current,
+                visiblePatterns.map((pattern) => pattern.id),
+                checked,
+                30,
+              ),
+            )
+          }
+        />
         <div className="practice-builder-options">
           {visiblePatterns.map((pattern) => (
             <label key={pattern.id}>
               <input
                 type="checkbox"
                 checked={patternIds.includes(pattern.id)}
+                disabled={
+                  !patternIds.includes(pattern.id) && patternIds.length >= 30
+                }
                 onChange={(event) =>
-                  setPatternIds(
-                    event.target.checked
-                      ? [...patternIds, pattern.id]
-                      : patternIds.filter((id) => id !== pattern.id),
+                  setPatternIds((current) =>
+                    setFilterSelection(
+                      current,
+                      [pattern.id],
+                      event.target.checked,
+                      30,
+                    ),
                   )
                 }
               />
@@ -387,6 +447,17 @@ export function PracticeBuilder({
       </fieldset>
       <fieldset className="practice-builder-fieldset" disabled={busy}>
         <legend>Типы заданий</legend>
+        <FilterSelectAll
+          label="Выбрать все типы заданий"
+          description="Все типы заданий, доступные для выбранных тем."
+          selected={questionTypes}
+          available={visibleTypes}
+          onChange={(checked) =>
+            setQuestionTypes((current) =>
+              setFilterSelection(current, visibleTypes, checked),
+            )
+          }
+        />
         <div className="practice-builder-options">
           {visibleTypes.map((type) => (
             <label key={type}>
@@ -394,10 +465,8 @@ export function PracticeBuilder({
                 type="checkbox"
                 checked={questionTypes.includes(type)}
                 onChange={(event) =>
-                  setQuestionTypes(
-                    event.target.checked
-                      ? [...questionTypes, type]
-                      : questionTypes.filter((item) => item !== type),
+                  setQuestionTypes((current) =>
+                    setFilterSelection(current, [type], event.target.checked),
                   )
                 }
               />
