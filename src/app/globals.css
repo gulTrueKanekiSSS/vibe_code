@@ -1360,14 +1360,343 @@ blockquote {
   padding: 10px 12px;
 }
 .practice-builder {
-  padding: 28px;
   margin-bottom: 32px;
 }
-.practice-builder h2 {
+.builder-heading :is(h1, h2) {
   margin: 6px 0 0;
+  font-size: 28px;
 }
-.practice-builder > .muted {
-  margin: 14px 0 20px;
+.builder-heading {
+  max-width: 720px;
+  margin-bottom: 22px;
+}
+.builder-heading p {
+  margin-top: 10px;
+}
+.builder-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.builder-presets button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-weight: 600;
+}
+.builder-presets button[aria-pressed="true"],
+.builder-modules button[aria-pressed="true"] {
+  color: var(--purple);
+  background: var(--purple-bg);
+  border-color: var(--purple);
+}
+.builder-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.builder-main,
+.builder-summary {
+  padding: 24px;
+  min-width: 0;
+}
+.practice-builder-grid.builder-fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.builder-help {
+  font-size: 11px;
+  margin: 12px 0 22px;
+}
+.builder-count strong {
+  background: var(--purple-bg);
+  color: var(--purple);
+  border-radius: 8px;
+  padding: 3px 12px;
+}
+.practice-builder .builder-count input {
+  accent-color: var(--purple);
+  padding: 0;
+  border: 0;
+  height: 24px;
+  background: transparent;
+  cursor: pointer;
+}
+.builder-ticks {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+}
+.builder-topic-actions {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.builder-topic-actions .button {
+  padding: 8px 12px;
+  font-size: 11px;
+}
+.builder-topic-browser {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.builder-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--surface-2);
+  padding: 10px;
+  max-height: 390px;
+  overflow: auto;
+}
+.builder-modules button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 12px 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.builder-modules button > span:first-of-type {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+.builder-modules svg,
+.builder-tags svg {
+  flex-shrink: 0;
+}
+.builder-modules small,
+.practice-builder-topics small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.builder-module-count {
+  font-size: 10px;
+  white-space: nowrap;
+}
+.builder-topic-panel {
+  padding: 12px;
+  min-width: 0;
+  border-left: 1px solid var(--line);
+}
+.builder-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+.builder-search input {
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+.builder-topic-panel > div > small {
+  display: block;
+  font-size: 10px;
+  margin: 6px 0 10px;
+}
+.builder-selected {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 6px;
+}
+.builder-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.builder-tags button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+  color: var(--purple);
+  background: var(--purple-bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 5px 8px;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+.builder-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.builder-summary :is(h2, h3) {
+  font-size: 16px;
+}
+.builder-summary > .spread > svg {
+  color: var(--purple);
+  flex-shrink: 0;
+}
+.builder-summary dl {
+  margin: 0;
+  display: grid;
+  gap: 13px;
+  font-size: 12px;
+}
+.builder-summary dl > div {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.builder-summary dt {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.builder-summary dd {
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.builder-summary-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 125px;
+  overflow: auto;
+}
+.builder-summary-topics span {
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+.builder-availability {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  color: var(--muted);
+  font-size: 12px;
+}
+.builder-availability strong {
+  font-size: 28px;
+  color: var(--purple);
+}
+.builder-summary p,
+.builder-summary small {
+  font-size: 11px;
+  margin: 0;
+}
+.builder-summary .button {
+  width: 100%;
+  white-space: normal;
+}
+.builder-advanced {
+  margin-top: 22px;
+  padding: 0 24px;
+}
+.builder-advanced summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  padding: 20px 0;
+  font-weight: 600;
+}
+.builder-advanced summary::-webkit-details-marker {
+  display: none;
+}
+.builder-advanced summary > span {
+  flex: 1;
+}
+.builder-advanced summary small {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 11px;
+  margin-top: 3px;
+}
+.builder-advanced summary > svg {
+  color: var(--purple);
+  flex-shrink: 0;
+}
+.builder-advanced[open] summary > svg:last-child {
+  transform: rotate(180deg);
+}
+.builder-advanced-content {
+  padding-bottom: 24px;
+  border-top: 1px solid var(--line);
+}
+.practice-builder :is(button, input, select, summary):focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+}
+.practice-builder label:has(input:disabled) {
+  color: var(--muted);
+  cursor: default;
+}
+.practice-builder label:has(input:checked) {
+  border-color: var(--purple);
+}
+@media (max-width: 1100px) {
+  .builder-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .practice-builder-grid.builder-fields {
+    grid-template-columns: 1fr;
+  }
+  .builder-main,
+  .builder-summary {
+    padding: 18px;
+  }
+  .builder-topic-browser {
+    grid-template-columns: 1fr;
+  }
+  .builder-modules {
+    max-height: 170px;
+  }
+  .builder-topic-panel {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .builder-presets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .builder-presets button {
+    padding: 10px;
+    justify-content: center;
+    font-size: 12px;
+  }
+  .builder-advanced {
+    padding: 0 18px;
+  }
 }
 .practice-builder-grid {
   display: grid;
@@ -1376,6 +1705,7 @@ blockquote {
 }
 .practice-builder-field,
 .practice-builder-fieldset {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 9px;
@@ -1418,8 +1748,25 @@ blockquote {
   cursor: pointer;
 }
 .practice-builder-topics {
-  max-height: 220px;
+  max-height: 260px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 5px;
   overflow: auto;
+}
+.practice-builder-topics label {
+  border: 0;
+  border-radius: 7px;
+  padding: 10px 6px;
+  font-size: 12px;
+  align-items: flex-start;
+}
+.practice-builder-topics input {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.practice-builder-topics label:has(input:checked) {
+  background: var(--purple-bg);
 }
 .practice-builder input[type="checkbox"] {
   accent-color: var(--purple);
@@ -1429,13 +1776,6 @@ blockquote {
 }
 .practice-builder-preferences {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.practice-builder > .practice-builder-options {
-  margin: 0 0 20px;
-}
-.practice-builder > .practice-builder-options .button {
-  font-size: 11px;
-  padding: 9px 12px;
 }
 @media (max-width: 640px) {
   .practice-builder-grid {

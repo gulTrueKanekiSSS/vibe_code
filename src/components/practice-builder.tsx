@@ -1,13 +1,33 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, LoaderCircle } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Check,
+  ChevronDown,
+  LoaderCircle,
+  Search,
+  SlidersHorizontal,
+  Sparkles,
+  X,
+} from "lucide-react";
 import type { StoredPracticeConfig } from "@/lib/practice-service";
+import type { Difficulty } from "@/lib/learning";
 import patterns from "../../content/practice-patterns.json";
 import { curriculumLabel } from "@/lib/curriculum";
 import { FilterSelectAll } from "./filter-select-all";
 import { setFilterSelection } from "@/lib/filter-selection";
+import {
+  matchingQuestionCount,
+  selectionForSubject,
+  suggestBuilderTopics,
+  practicePresets,
+  practiceGoals,
+  type BuilderTopic,
+  type PracticeGoal,
+} from "@/lib/practice-builder";
 
 const levels = [
   ["EASY", "Базовый"],
@@ -15,13 +35,6 @@ const levels = [
   ["HARD", "Сложный"],
   ["CHALLENGE", "Вызов"],
 ] as const;
-type Difficulty = (typeof levels)[number][0];
-type Topic = {
-  id: string;
-  title: string;
-  subjectId: string;
-  questions: { difficulty: string; type: string; tags: string[] }[];
-};
 const typeNames: Record<string, string> = {
   NUMERIC: "Вычисления",
   SHORT_TEXT: "Краткий ответ",
@@ -33,36 +46,6 @@ const typeNames: Record<string, string> = {
   FIX_CODE: "Исправление кода",
   CONCEPTUAL: "Понимание концепции",
 };
-const presets = [
-  {
-    title: "Разминка",
-    difficulties: ["EASY"],
-    count: 5,
-    hintsAllowed: true,
-    feedbackMode: "immediate",
-  },
-  {
-    title: "Обычная",
-    difficulties: ["EASY", "MEDIUM"],
-    count: 10,
-    hintsAllowed: true,
-    feedbackMode: "immediate",
-  },
-  {
-    title: "К семинару",
-    difficulties: ["MEDIUM", "HARD"],
-    count: 10,
-    hintsAllowed: true,
-    feedbackMode: "immediate",
-  },
-  {
-    title: "К экзамену",
-    difficulties: ["HARD", "CHALLENGE"],
-    count: 15,
-    hintsAllowed: false,
-    feedbackMode: "end",
-  },
-] as const;
 
 export function PracticeBuilder({
   subjects,
@@ -70,14 +53,18 @@ export function PracticeBuilder({
   initialSubjectId = "",
   initialTopicId = "",
   initialConfig = null,
+  headingLevel = 2,
 }: {
   subjects: { id: string; title: string }[];
-  topics: Topic[];
+  topics: BuilderTopic[];
   initialSubjectId?: string;
   initialTopicId?: string;
   initialConfig?: StoredPracticeConfig | null;
+  headingLevel?: 1 | 2;
 }) {
   const router = useRouter();
+  const Heading = headingLevel === 1 ? "h1" : "h2";
+  const SummaryHeading = headingLevel === 1 ? "h2" : "h3";
   const [subjectId, setSubjectId] = useState(
     initialConfig?.subjectId ?? initialSubjectId,
   );
@@ -94,13 +81,7 @@ export function PracticeBuilder({
   const [questionTypes, setQuestionTypes] = useState<string[]>(
     initialConfig?.questionTypes?.length
       ? initialConfig.questionTypes
-      : [
-          ...new Set(
-            topics.flatMap((topic) =>
-              topic.questions.map((question) => question.type),
-            ),
-          ),
-        ],
+      : [...new Set(topics.flatMap((t) => t.questions.map((q) => q.type)))],
   );
   const [hintsAllowed, setHintsAllowed] = useState(
     initialConfig?.hintsAllowed ?? true,
@@ -108,49 +89,120 @@ export function PracticeBuilder({
   const [feedbackMode, setFeedbackMode] = useState<"immediate" | "end">(
     initialConfig?.feedbackMode ?? "immediate",
   );
+  const [goal, setGoal] = useState<PracticeGoal>(
+    initialConfig?.feedbackMode === "end" ? "check" : "reinforce",
+  );
+  const [moduleId, setModuleId] = useState(
+    topics.find((t) => t.id === (initialConfig?.topicIds[0] ?? initialTopicId))
+      ?.moduleId ?? "",
+  );
+  const [search, setSearch] = useState("");
+  const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const inFlight = useRef(false);
   const operation = useRef<{ scope: string; key: string } | null>(null);
-  const visibleTopics = useMemo(
-    () => topics.filter((topic) => !subjectId || topic.subjectId === subjectId),
-    [topics, subjectId],
+  const visibleTopics = topics.filter(
+    (t) => !subjectId || t.subjectId === subjectId,
   );
   const selectedTopics = visibleTopics.filter(
-    (topic) => !topicIds.length || topicIds.includes(topic.id),
+    (t) => !topicIds.length || topicIds.includes(t.id),
   );
-  const selectableTopicIds = visibleTopics
-    .filter((topic) => topic.questions.length > 0)
-    .map((topic) => topic.id);
+  const chosenTopics = visibleTopics.filter((t) => topicIds.includes(t.id));
+  const modules = [
+    ...new Map(
+      visibleTopics.map((t) => [
+        t.moduleId,
+        { id: t.moduleId, title: t.moduleTitle, subjectId: t.subjectId },
+      ]),
+    ).values(),
+  ];
+  const activeModule = modules.find((m) => m.id === moduleId) ?? modules[0];
+  const listedTopics = visibleTopics.filter(
+    (t) =>
+      t.moduleId === activeModule?.id &&
+      t.title
+        .toLocaleLowerCase("ru")
+        .includes(search.trim().toLocaleLowerCase("ru")),
+  );
+  const filters = { difficulties, questionTypes, patternIds };
+  const selectableTopicIds = listedTopics
+    .filter((t) => matchingQuestionCount(t, filters) > 0)
+    .map((t) => t.id);
   const visibleTypes = [
-    ...new Set(
-      selectedTopics.flatMap((topic) =>
-        topic.questions.map((question) => question.type),
-      ),
-    ),
+    ...new Set(selectedTopics.flatMap((t) => t.questions.map((q) => q.type))),
   ];
   const visiblePatterns = patterns.filter(
-    (pattern) =>
-      (!subjectId || pattern.subjects.includes(subjectId)) &&
-      selectedTopics.some((topic) =>
-        topic.questions.some((q) => q.tags.includes(pattern.id)),
+    (p) =>
+      (!subjectId || p.subjects.includes(subjectId)) &&
+      selectedTopics.some((t) =>
+        t.questions.some((q) => q.tags.includes(p.id)),
       ),
   );
-  const available = visibleTopics
-    .filter((topic) => !topicIds.length || topicIds.includes(topic.id))
-    .reduce(
-      (sum, topic) =>
-        sum +
-        topic.questions.filter(
-          (question) =>
-            difficulties.includes(question.difficulty as Difficulty) &&
-            questionTypes.includes(question.type) &&
-            (!patternIds.length ||
-              patternIds.some((id) => question.tags.includes(id))),
-        ).length,
-      0,
-    );
+  const available = selectedTopics.reduce(
+    (sum, t) => sum + matchingQuestionCount(t, filters),
+    0,
+  );
+  const suggestion = suggestBuilderTopics(visibleTopics, filters, count);
+  const activePreset = practicePresets.find(
+    (p) =>
+      p.count === count &&
+      p.hintsAllowed === hintsAllowed &&
+      p.feedbackMode === feedbackMode &&
+      p.difficulties.length === difficulties.length &&
+      p.difficulties.every((d) => difficulties.includes(d)),
+  );
+  const goalTitle = practiceGoals.find((g) => g.id === goal)!.title;
+  const subjectTitle =
+    subjects.find((s) => s.id === subjectId)?.title ?? "Все предметы";
+  const invalid =
+    !available ||
+    available < count ||
+    !difficulties.length ||
+    !questionTypes.some((t) => visibleTypes.includes(t));
 
+  function changeTopics(next: string[]) {
+    setTopicIds(next);
+    setNotice("");
+    const scope = visibleTopics.filter(
+      (t) => !next.length || next.includes(t.id),
+    );
+    setPatternIds((current) =>
+      current.filter((id) =>
+        scope.some((t) => t.questions.some((q) => q.tags.includes(id))),
+      ),
+    );
+  }
+  function changeSubject(next: string) {
+    const selection = selectionForSubject(topics, next, {
+      topicIds,
+      patternIds,
+      questionTypes,
+    });
+    setSubjectId(next);
+    setTopicIds(selection.topicIds);
+    setPatternIds(selection.patternIds);
+    setQuestionTypes(selection.questionTypes);
+    setModuleId("");
+    setSearch("");
+    setNotice("");
+    setError("");
+  }
+  function applyPreset(preset: (typeof practicePresets)[number]) {
+    setDifficulties([...preset.difficulties]);
+    setCount(preset.count);
+    setHintsAllowed(preset.hintsAllowed);
+    setFeedbackMode(preset.feedbackMode);
+    setGoal(preset.goal);
+  }
+  function applyGoal(next: PracticeGoal) {
+    const settings = practiceGoals.find((g) => g.id === next)!;
+    if (next === "seminar") applyPreset(practicePresets[2]);
+    if (next === "exam") applyPreset(practicePresets[3]);
+    setGoal(next);
+    setHintsAllowed(settings.hintsAllowed);
+    setFeedbackMode(settings.feedbackMode);
+  }
   async function start() {
     if (
       inFlight.current ||
@@ -206,370 +258,550 @@ export function PracticeBuilder({
   return (
     <section
       id="custom-practice"
-      className="card practice-builder"
+      className="practice-builder"
       aria-labelledby="practice-builder-title"
     >
-      <div className="spread">
-        <div>
-          <span className="eyebrow">СВОЙ МАРШРУТ</span>
-          <h2 id="practice-builder-title">Собрать практику</h2>
-        </div>
-        <span className="pill">До 20 заданий</span>
-      </div>
-      <p className="muted">
-        Выбери предмет, темы, уровень и тип заданий. Подборка сохранится как
-        обычная сессия: её можно продолжить после обновления страницы.
-      </p>
-      <div
-        className="practice-builder-options"
-        aria-label="Готовые настройки практики"
-      >
-        {presets.map((preset) => (
+      <header className="builder-heading">
+        <span className="eyebrow">СВОЙ МАРШРУТ</span>
+        <Heading id="practice-builder-title">Собрать практику</Heading>
+        <p className="muted">
+          Выбери темы и настройки. Сессия сохранится — продолжить можно даже
+          после обновления страницы.
+        </p>
+      </header>
+      <div className="builder-presets" aria-label="Готовые настройки практики">
+        {practicePresets.map((preset) => (
           <button
-            key={preset.title}
             type="button"
-            className="button secondary"
+            key={preset.title}
             disabled={busy}
-            onClick={() => {
-              setDifficulties([...preset.difficulties]);
-              setCount(preset.count);
-              setHintsAllowed(preset.hintsAllowed);
-              setFeedbackMode(preset.feedbackMode);
-            }}
+            aria-pressed={activePreset === preset}
+            onClick={() => applyPreset(preset)}
           >
+            {activePreset === preset ? (
+              <Check size={16} />
+            ) : (
+              <Sparkles size={16} />
+            )}{" "}
             {preset.title}
           </button>
         ))}
       </div>
-      <div className="practice-builder-grid">
-        <label className="practice-builder-field">
-          Предмет
-          <select
-            value={subjectId}
-            disabled={busy}
-            onChange={(event) => {
-              setSubjectId(event.target.value);
-              setTopicIds([]);
-              setPatternIds([]);
-              setQuestionTypes([
-                ...new Set(
-                  topics
-                    .filter(
-                      (topic) =>
-                        !event.target.value ||
-                        topic.subjectId === event.target.value,
+      <div className="builder-layout">
+        <div className="card builder-main">
+          <div className="practice-builder-grid builder-fields">
+            <label className="practice-builder-field">
+              Предмет
+              <select
+                value={subjectId}
+                disabled={busy}
+                onChange={(e) => changeSubject(e.target.value)}
+              >
+                <option value="">Все предметы</option>
+                {subjects.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="practice-builder-field">
+              Цель практики
+              <select
+                value={goal}
+                disabled={busy}
+                onChange={(e) => applyGoal(e.target.value as PracticeGoal)}
+              >
+                {practiceGoals.map((g) => (
+                  <option key={g.id} value={g.id}>
+                    {g.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <p className="muted builder-help">
+            Цель задаёт подсказки и обратную связь; подготовка к семинару или
+            экзамену также задаёт сложность и количество. Все настройки можно
+            изменить.
+          </p>
+          <label className="practice-builder-field builder-count">
+            <span className="spread">
+              <span>Количество заданий</span>
+              <strong>{count}</strong>
+            </span>
+            <input
+              type="range"
+              min={1}
+              max={20}
+              step={1}
+              value={count}
+              disabled={busy}
+              aria-label="Количество заданий"
+              onChange={(e) => setCount(Number(e.target.value))}
+            />
+            <span className="builder-ticks" aria-hidden="true">
+              <span>1</span>
+              <span>5</span>
+              <span>10</span>
+              <span>15</span>
+              <span>20</span>
+            </span>
+          </label>
+          <fieldset className="practice-builder-fieldset" disabled={busy}>
+            <legend>Темы</legend>
+            <div className="spread builder-topic-actions">
+              <span className="muted">Выбрано тем: {chosenTopics.length}</span>
+              <button
+                type="button"
+                className="button secondary"
+                disabled={!suggestion.length}
+                onClick={() => {
+                  changeTopics(suggestion);
+                  setNotice(
+                    `Автоподбор заменил выбор: ${suggestion.length} тем.`,
+                  );
+                }}
+              >
+                <Sparkles size={15} />
+                Автоподбор тем
+              </button>
+            </div>
+            <small className="muted">
+              Автоподбор заменяет выбор темами из программы курса с подходящими
+              заданиями. Пустой выбор — все темы предмета.
+            </small>
+            <div className="builder-topic-browser">
+              <nav className="builder-modules" aria-label="Разделы тем">
+                {modules.map((m) => {
+                  const group = visibleTopics.filter(
+                    (t) => t.moduleId === m.id,
+                  );
+                  return (
+                    <button
+                      type="button"
+                      key={m.id}
+                      aria-pressed={activeModule?.id === m.id}
+                      onClick={() => {
+                        setModuleId(m.id);
+                        setSearch("");
+                      }}
+                    >
+                      <BookOpen size={16} />
+                      <span>
+                        {m.title}
+                        {!subjectId && (
+                          <small>
+                            {subjects.find((s) => s.id === m.subjectId)?.title}
+                          </small>
+                        )}
+                      </span>
+                      <span className="builder-module-count">
+                        {group.filter((t) => topicIds.includes(t.id)).length}/
+                        {group.length}
+                      </span>
+                    </button>
+                  );
+                })}
+              </nav>
+              <div className="builder-topic-panel">
+                <label className="builder-search">
+                  <Search size={17} />
+                  <input
+                    type="search"
+                    aria-label="Поиск тем в разделе"
+                    placeholder="Найти тему в разделе"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                </label>
+                <FilterSelectAll
+                  label="Выбрать все темы"
+                  description="Все доступные темы активного раздела по текущему поиску, включая темы ниже в списке."
+                  selected={topicIds}
+                  available={selectableTopicIds}
+                  limit={100}
+                  onChange={(checked) =>
+                    changeTopics(
+                      setFilterSelection(
+                        topicIds,
+                        selectableTopicIds,
+                        checked,
+                        100,
+                      ),
                     )
-                    .flatMap((topic) =>
-                      topic.questions.map((question) => question.type),
-                    ),
-                ),
-              ]);
-            }}
-          >
-            <option value="">Все предметы</option>
-            {subjects.map((subject) => (
-              <option key={subject.id} value={subject.id}>
-                {subject.title}
-              </option>
+                  }
+                />
+                <div className="practice-builder-topics">
+                  {listedTopics.map((topic) => {
+                    const matches = matchingQuestionCount(topic, filters);
+                    const selected = topicIds.includes(topic.id);
+                    return (
+                      <label key={topic.id}>
+                        <input
+                          type="checkbox"
+                          checked={selected}
+                          disabled={
+                            !selected && (!matches || topicIds.length >= 100)
+                          }
+                          onChange={(e) =>
+                            changeTopics(
+                              setFilterSelection(
+                                topicIds,
+                                [topic.id],
+                                e.target.checked,
+                                100,
+                              ),
+                            )
+                          }
+                        />
+                        <span>
+                          {topic.title}
+                          <small>
+                            {matches
+                              ? `${matches} заданий · ${curriculumLabel(topic.id)}`
+                              : "Нет заданий по текущим фильтрам"}
+                          </small>
+                        </span>
+                      </label>
+                    );
+                  })}
+                  {!listedTopics.length && (
+                    <p className="muted">
+                      Темы не найдены. Измени поиск или выбери другой раздел.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+            {!!chosenTopics.length && (
+              <div className="builder-selected">
+                <div className="builder-tags">
+                  {chosenTopics.map((t) => (
+                    <button
+                      type="button"
+                      key={t.id}
+                      aria-label={`Убрать тему: ${t.title}`}
+                      onClick={() =>
+                        changeTopics(topicIds.filter((id) => id !== t.id))
+                      }
+                    >
+                      {t.title}
+                      <X size={13} />
+                    </button>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  className="text-link"
+                  onClick={() => {
+                    setTopicIds([]);
+                    setNotice("");
+                  }}
+                >
+                  Очистить все
+                </button>
+              </div>
+            )}
+            {notice && (
+              <p className="muted" aria-live="polite">
+                {notice}
+              </p>
+            )}
+          </fieldset>
+        </div>
+        <aside
+          className="card builder-summary"
+          aria-labelledby="builder-summary-title"
+        >
+          <div className="spread">
+            <SummaryHeading id="builder-summary-title">
+              Параметры сессии
+            </SummaryHeading>
+            <SlidersHorizontal size={18} />
+          </div>
+          <dl>
+            <div>
+              <dt>Режим</dt>
+              <dd>{activePreset?.title ?? "Свои настройки"}</dd>
+            </div>
+            <div>
+              <dt>Предмет</dt>
+              <dd>{subjectTitle}</dd>
+            </div>
+            <div>
+              <dt>Цель</dt>
+              <dd>{goalTitle}</dd>
+            </div>
+            <div>
+              <dt>Заданий в сессии</dt>
+              <dd>{count}</dd>
+            </div>
+            <div>
+              <dt>Темы</dt>
+              <dd>
+                {chosenTopics.length
+                  ? `Выбрано: ${chosenTopics.length}`
+                  : `Все темы предмета: ${selectedTopics.length}`}
+              </dd>
+            </div>
+          </dl>
+          <div className="builder-summary-topics">
+            {selectedTopics.map((t) => (
+              <span key={t.id}>{t.title}</span>
             ))}
-          </select>
-        </label>
-        <label className="practice-builder-field">
-          Количество заданий
-          <input
-            type="number"
-            min={1}
-            max={20}
-            value={count}
-            disabled={busy}
-            onChange={(event) =>
-              setCount(
-                Math.max(1, Math.min(20, Number(event.target.value) || 1)),
-              )
-            }
-          />
-        </label>
-      </div>
-      <div
-        className="practice-builder-options"
-        aria-label="Быстрый выбор количества"
-      >
-        {[5, 10, 15, 20].map((value) => (
-          <button
-            key={value}
-            className="button secondary"
-            type="button"
-            disabled={busy}
-            aria-pressed={count === value}
-            onClick={() => setCount(value)}
-          >
-            {value} заданий
-          </button>
-        ))}
-      </div>
-      <fieldset className="practice-builder-fieldset" disabled={busy}>
-        <legend>Сложность</legend>
-        <FilterSelectAll
-          label="Выбрать все сложности"
-          description="Все четыре уровня сложности."
-          selected={difficulties}
-          available={levels.map(([value]) => value)}
-          onChange={(checked) =>
-            setDifficulties((current) =>
-              setFilterSelection(
-                current,
-                levels.map(([value]) => value),
-                checked,
-              ),
-            )
-          }
-        />
-        <div className="practice-builder-options">
-          {levels.map(([value, title]) => (
-            <label key={value}>
-              <input
-                type="checkbox"
-                checked={difficulties.includes(value)}
-                onChange={(event) =>
-                  setDifficulties((current) =>
-                    setFilterSelection(current, [value], event.target.checked),
-                  )
-                }
-              />
-              {title}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <fieldset className="practice-builder-fieldset" disabled={busy}>
-        <legend>
-          Темы <span className="muted">(не выбрано — все темы предмета)</span>
-        </legend>
-        <small className="muted">
-          Список прокручивается; можно выбрать несколько тем.
-        </small>
-        <FilterSelectAll
-          label="Выбрать все темы"
-          description="Все темы с заданиями в текущем списке, включая темы ниже в области прокрутки."
-          selected={topicIds}
-          available={selectableTopicIds}
-          limit={100}
-          onChange={(checked) =>
-            setTopicIds((current) =>
-              setFilterSelection(current, selectableTopicIds, checked, 100),
-            )
-          }
-        />
-        <div className="practice-builder-topics">
-          {visibleTopics.map((topic) => (
-            <label key={topic.id}>
-              <input
-                type="checkbox"
-                checked={topicIds.includes(topic.id)}
-                disabled={
-                  !topic.questions.length ||
-                  (!topicIds.includes(topic.id) && topicIds.length >= 100)
-                }
-                onChange={(event) =>
-                  setTopicIds((current) =>
-                    setFilterSelection(
-                      current,
-                      [topic.id],
-                      event.target.checked,
-                      100,
-                    ),
-                  )
-                }
-              />
-              {topic.title}{" "}
-              <span className="muted">
-                · {topic.questions.length} · {curriculumLabel(topic.id)}
-              </span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <fieldset className="practice-builder-fieldset" disabled={busy}>
-        <legend>
-          Содержание заданий{" "}
-          <span className="muted">(не выбрано — все категории)</span>
-        </legend>
-        <FilterSelectAll
-          label="Выбрать все категории"
-          description="Все категории, доступные для выбранных тем. Пустой выбор снимает ограничение по категориям."
-          selected={patternIds}
-          available={visiblePatterns.map((pattern) => pattern.id)}
-          limit={30}
-          onChange={(checked) =>
-            setPatternIds((current) =>
-              setFilterSelection(
-                current,
-                visiblePatterns.map((pattern) => pattern.id),
-                checked,
-                30,
-              ),
-            )
-          }
-        />
-        <div className="practice-builder-options">
-          {visiblePatterns.map((pattern) => (
-            <label key={pattern.id}>
-              <input
-                type="checkbox"
-                checked={patternIds.includes(pattern.id)}
-                disabled={
-                  !patternIds.includes(pattern.id) && patternIds.length >= 30
-                }
-                onChange={(event) =>
-                  setPatternIds((current) =>
-                    setFilterSelection(
-                      current,
-                      [pattern.id],
-                      event.target.checked,
-                      30,
-                    ),
-                  )
-                }
-              />
-              {pattern.title}
-            </label>
-          ))}
-        </div>
-        {patternIds.length > 0 && (
+          </div>
+          <div className="builder-availability">
+            <strong>{available}</strong>
+            <span>доступных заданий</span>
+          </div>
+          <p role="status" className="muted">
+            {!available
+              ? "По выбранным условиям заданий пока нет. Измени темы, тип или сложность."
+              : available < count
+                ? `Доступно только ${available} заданий из выбранных ${count}. Уменьши количество или расширь фильтры.`
+                : `Доступно ${available} заданий; в сессию войдёт ${count}.`}
+          </p>
+          {available > 0 && available < count && (
+            <button
+              type="button"
+              className="button secondary"
+              disabled={busy}
+              onClick={() => setCount(available)}
+            >
+              Использовать доступные ({available})
+            </button>
+          )}
+          {available < count && !difficulties.includes("MEDIUM") && (
+            <button
+              type="button"
+              className="button secondary"
+              disabled={busy}
+              onClick={() => setDifficulties([...difficulties, "MEDIUM"])}
+            >
+              Добавить средний уровень
+            </button>
+          )}
           <button
             type="button"
-            className="text-link"
-            onClick={() => setPatternIds([])}
+            className="button builder-start"
+            disabled={busy || invalid}
+            aria-busy={busy}
+            onClick={start}
           >
-            Все категории
+            {busy ? (
+              <LoaderCircle size={17} className="spin" />
+            ) : (
+              <ArrowRight size={17} />
+            )}{" "}
+            {busy ? "Создаём сессию…" : "Начать практику"}
           </button>
-        )}
-      </fieldset>
-      <fieldset className="practice-builder-fieldset" disabled={busy}>
-        <legend>Типы заданий</legend>
-        <FilterSelectAll
-          label="Выбрать все типы заданий"
-          description="Все типы заданий, доступные для выбранных тем."
-          selected={questionTypes}
-          available={visibleTypes}
-          onChange={(checked) =>
-            setQuestionTypes((current) =>
-              setFilterSelection(current, visibleTypes, checked),
-            )
-          }
-        />
-        <div className="practice-builder-options">
-          {visibleTypes.map((type) => (
-            <label key={type}>
-              <input
-                type="checkbox"
-                checked={questionTypes.includes(type)}
-                onChange={(event) =>
-                  setQuestionTypes((current) =>
-                    setFilterSelection(current, [type], event.target.checked),
-                  )
-                }
-              />
-              {typeNames[type] ?? type}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <div className="practice-builder-grid practice-builder-preferences">
-        <fieldset className="practice-builder-fieldset" disabled={busy}>
-          <legend>Подсказки</legend>
-          <div className="practice-builder-options">
-            <label>
-              <input
-                type="radio"
-                name="builder-hints"
-                checked={hintsAllowed}
-                onChange={() => setHintsAllowed(true)}
-              />
-              Разрешены
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="builder-hints"
-                checked={!hintsAllowed}
-                onChange={() => setHintsAllowed(false)}
-              />
-              Отключены
-            </label>
-          </div>
-        </fieldset>
-        <fieldset className="practice-builder-fieldset" disabled={busy}>
-          <legend>Обратная связь</legend>
-          <div className="practice-builder-options">
-            <label>
-              <input
-                type="radio"
-                name="builder-feedback"
-                checked={feedbackMode === "immediate"}
-                onChange={() => setFeedbackMode("immediate")}
-              />
-              После каждого ответа
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="builder-feedback"
-                checked={feedbackMode === "end"}
-                onChange={() => setFeedbackMode("end")}
-              />
-              В конце сессии
-            </label>
-          </div>
-        </fieldset>
+          <small className="muted">
+            Прогресс сохраняется после каждого ответа.
+          </small>
+          {error && (
+            <p role="alert" className="error-text">
+              {error}
+            </p>
+          )}
+        </aside>
       </div>
-      <p role="status" className="muted">
-        {!available
-          ? "По выбранным условиям заданий пока нет. Измени темы, тип или сложность."
-          : available < count
-            ? `Доступно только ${available} заданий из выбранных ${count}. Уменьши количество или расширь фильтры.`
-            : `Доступно ${available} заданий; в сессию войдёт ${count}.`}
-      </p>
-      {available > 0 && available < count && (
-        <button
-          type="button"
-          className="button secondary"
-          onClick={() => setCount(available)}
-        >
-          Использовать доступные ({available})
-        </button>
-      )}
-      {available < count && !difficulties.includes("MEDIUM") && (
-        <button
-          type="button"
-          className="button secondary"
-          disabled={busy}
-          onClick={() => setDifficulties([...difficulties, "MEDIUM"])}
-        >
-          Добавить средний уровень
-        </button>
-      )}
-      <button
-        type="button"
-        className="button"
-        disabled={
-          busy ||
-          !available ||
-          available < count ||
-          !difficulties.length ||
-          !questionTypes.length
-        }
-        aria-busy={busy}
-        onClick={start}
-      >
-        {busy && <LoaderCircle size={16} className="spin" />}
-        Начать выбранную практику <ArrowRight size={17} />
-      </button>
-      {error && (
-        <p role="alert" className="error-text">
-          {error}
-        </p>
-      )}
+      <details className="card builder-advanced">
+        <summary>
+          <SlidersHorizontal size={18} />
+          <span>
+            Расширенные настройки
+            <small>Сложность, типы заданий, подсказки и обратная связь</small>
+          </span>
+          <ChevronDown size={18} />
+        </summary>
+        <div className="builder-advanced-content">
+          <fieldset className="practice-builder-fieldset" disabled={busy}>
+            <legend>Сложность</legend>
+            <FilterSelectAll
+              label="Выбрать все сложности"
+              description="Все четыре уровня сложности."
+              selected={difficulties}
+              available={levels.map(([value]) => value)}
+              onChange={(checked) =>
+                setDifficulties((current) =>
+                  setFilterSelection(
+                    current,
+                    levels.map(([value]) => value),
+                    checked,
+                  ),
+                )
+              }
+            />
+            <div className="practice-builder-options">
+              {levels.map(([value, title]) => (
+                <label key={value}>
+                  <input
+                    type="checkbox"
+                    checked={difficulties.includes(value)}
+                    onChange={(event) =>
+                      setDifficulties((current) =>
+                        setFilterSelection(
+                          current,
+                          [value],
+                          event.target.checked,
+                        ),
+                      )
+                    }
+                  />
+                  {title}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset className="practice-builder-fieldset" disabled={busy}>
+            <legend>
+              Содержание заданий{" "}
+              <span className="muted">(не выбрано — все категории)</span>
+            </legend>
+            <FilterSelectAll
+              label="Выбрать все категории"
+              description="Все категории, доступные для выбранных тем. Пустой выбор снимает ограничение по категориям."
+              selected={patternIds}
+              available={visiblePatterns.map((pattern) => pattern.id)}
+              limit={30}
+              onChange={(checked) =>
+                setPatternIds((current) =>
+                  setFilterSelection(
+                    current,
+                    visiblePatterns.map((pattern) => pattern.id),
+                    checked,
+                    30,
+                  ),
+                )
+              }
+            />
+            <div className="practice-builder-options">
+              {visiblePatterns.map((pattern) => (
+                <label key={pattern.id}>
+                  <input
+                    type="checkbox"
+                    checked={patternIds.includes(pattern.id)}
+                    disabled={
+                      !patternIds.includes(pattern.id) &&
+                      patternIds.length >= 30
+                    }
+                    onChange={(event) =>
+                      setPatternIds((current) =>
+                        setFilterSelection(
+                          current,
+                          [pattern.id],
+                          event.target.checked,
+                          30,
+                        ),
+                      )
+                    }
+                  />
+                  {pattern.title}
+                </label>
+              ))}
+            </div>
+            {patternIds.length > 0 && (
+              <button
+                type="button"
+                className="text-link"
+                onClick={() => setPatternIds([])}
+              >
+                Все категории
+              </button>
+            )}
+          </fieldset>
+          <fieldset className="practice-builder-fieldset" disabled={busy}>
+            <legend>Типы заданий</legend>
+            <FilterSelectAll
+              label="Выбрать все типы заданий"
+              description="Все типы заданий, доступные для выбранных тем."
+              selected={questionTypes}
+              available={visibleTypes}
+              onChange={(checked) =>
+                setQuestionTypes((current) =>
+                  setFilterSelection(current, visibleTypes, checked),
+                )
+              }
+            />
+            <div className="practice-builder-options">
+              {Object.keys(typeNames).map((type) => (
+                <label key={type}>
+                  <input
+                    type="checkbox"
+                    checked={
+                      visibleTypes.includes(type) &&
+                      questionTypes.includes(type)
+                    }
+                    disabled={!visibleTypes.includes(type)}
+                    onChange={(event) =>
+                      setQuestionTypes((current) =>
+                        setFilterSelection(
+                          current,
+                          [type],
+                          event.target.checked,
+                        ),
+                      )
+                    }
+                  />
+                  {typeNames[type] ?? type}
+                  {!visibleTypes.includes(type) && (
+                    <small> — нет в выбранных темах</small>
+                  )}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <div className="practice-builder-grid practice-builder-preferences">
+            <fieldset className="practice-builder-fieldset" disabled={busy}>
+              <legend>Подсказки</legend>
+              <div className="practice-builder-options">
+                <label>
+                  <input
+                    type="radio"
+                    name="builder-hints"
+                    checked={hintsAllowed}
+                    onChange={() => setHintsAllowed(true)}
+                  />
+                  Разрешены
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="builder-hints"
+                    checked={!hintsAllowed}
+                    onChange={() => setHintsAllowed(false)}
+                  />
+                  Отключены
+                </label>
+              </div>
+            </fieldset>
+            <fieldset className="practice-builder-fieldset" disabled={busy}>
+              <legend>Обратная связь</legend>
+              <div className="practice-builder-options">
+                <label>
+                  <input
+                    type="radio"
+                    name="builder-feedback"
+                    checked={feedbackMode === "immediate"}
+                    onChange={() => setFeedbackMode("immediate")}
+                  />
+                  После каждого ответа
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="builder-feedback"
+                    checked={feedbackMode === "end"}
+                    onChange={() => setFeedbackMode("end")}
+                  />
+                  В конце сессии
+                </label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </details>
     </section>
   );
 }

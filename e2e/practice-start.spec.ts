@@ -69,13 +69,14 @@ test("select all filters support partial selection, keyboard clearing and saved 
   for (const topic of await topics.all()) await expect(topic).not.toBeChecked();
   await allTopics.check();
 
+  await builder.locator("summary").click();
   const allLevels = builder.getByRole("checkbox", {
     name: "Выбрать все сложности",
     exact: true,
   });
   await allLevels.uncheck();
   await expect(
-    builder.getByRole("button", { name: "Начать выбранную практику" }),
+    builder.getByRole("button", { name: "Начать практику" }),
   ).toBeDisabled();
   await builder.getByLabel("Средний", { exact: true }).check();
   await expect(allLevels).toBeChecked({ indeterminate: true });
@@ -87,7 +88,7 @@ test("select all filters support partial selection, keyboard clearing and saved 
   });
   await allTypes.uncheck();
   await expect(
-    builder.getByRole("button", { name: "Начать выбранную практику" }),
+    builder.getByRole("button", { name: "Начать практику" }),
   ).toBeDisabled();
   await allTypes.check();
   const allPatterns = builder.getByRole("checkbox", {
@@ -99,7 +100,10 @@ test("select all filters support partial selection, keyboard clearing and saved 
   await allPatterns.check();
 
   const expectedTopics = await db.topic.findMany({
-    where: { module: { subjectId: "geometry" }, questions: { some: {} } },
+    where: {
+      module: { subjectId: "geometry", title: "Векторы" },
+      questions: { some: {} },
+    },
     select: { id: true },
   });
   const sessionId = await expectSession(
@@ -107,7 +111,7 @@ test("select all filters support partial selection, keyboard clearing and saved 
     () =>
       builder
         .getByRole("button", {
-          name: "Начать выбранную практику",
+          name: "Начать практику",
         })
         .click(),
     learnerId,
@@ -144,10 +148,13 @@ test("select all filters support partial selection, keyboard clearing and saved 
     expect(item.question.topic.module.subjectId).toBe("geometry");
   }
   await page.goto(`/practice/custom?edit=${sessionId}`);
+  await builder.locator("summary").click();
   await expect(
     page.getByRole("checkbox", { name: "Выбрать все темы", exact: true }),
   ).toBeChecked();
-  await builder.getByRole("combobox").selectOption("programming");
+  await builder
+    .getByRole("combobox", { name: /^Предмет/ })
+    .selectOption("programming");
   await expect(allTopics).not.toBeChecked();
   await expect(allPatterns).not.toBeChecked();
 });
@@ -263,48 +270,121 @@ test("Practice quick start opens questions", async ({ page, learnerId }) => {
   );
 });
 
-test("university custom route filters task patterns, persists questions, and renders on mobile", async ({ page, learnerId }) => {
+test("university custom route filters task patterns, persists questions, and renders on mobile", async ({
+  page,
+  learnerId,
+}) => {
   await page.goto("/practice/custom?subject=programming");
   const builder = page.locator(".practice-builder");
-  await builder.getByLabel("Арифметика указателей", {exact:false}).check();
-  await builder.getByLabel("Рекурсия: база, возврат и статическое состояние", {exact:false}).check();
-  await builder.getByLabel("Базовый",{exact:true}).uncheck();
-  await builder.getByLabel("Средний",{exact:true}).uncheck();
-  const types=builder.getByRole("group",{name:"Типы заданий",exact:true});
-  const checked=types.locator('input:not([aria-label])');
-  for(const checkbox of await checked.all()) await checkbox.uncheck();
-  await types.getByLabel("Вывод программы",{exact:true}).check();
-  await builder.getByLabel("Трассировка памяти",{exact:true}).check();
-  await builder.getByLabel("Количество заданий",{exact:true}).fill("2");
+  await builder
+    .getByRole("navigation", { name: "Разделы тем" })
+    .getByRole("button", { name: /Память и указатели/ })
+    .click();
+  await builder.getByLabel("Арифметика указателей", { exact: false }).check();
+  await builder
+    .getByRole("navigation", { name: "Разделы тем" })
+    .getByRole("button", { name: /Рекурсия и составные данные/ })
+    .click();
+  await builder
+    .getByLabel("Рекурсия: база, возврат и статическое состояние", {
+      exact: false,
+    })
+    .check();
+  await builder.locator("summary").click();
+  await builder.getByLabel("Базовый", { exact: true }).uncheck();
+  await builder.getByLabel("Средний", { exact: true }).uncheck();
+  const types = builder.getByRole("group", {
+    name: "Типы заданий",
+    exact: true,
+  });
+  const checked = types.locator("input:not([aria-label]):enabled");
+  for (const checkbox of await checked.all()) await checkbox.uncheck();
+  await types.getByLabel("Вывод программы", { exact: true }).check();
+  await builder.getByLabel("Трассировка памяти", { exact: true }).check();
+  await builder.getByRole("slider", { name: "Количество заданий" }).focus();
+  await page.keyboard.press("Home");
+  await page.keyboard.press("ArrowRight");
   await expect(builder.getByRole("status")).toContainText("в сессию войдёт 2");
-  await page.screenshot({path:"test-results/university-builder.png",fullPage:true});
-  await page.setViewportSize({width:390,height:844});
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
-  await page.screenshot({path:"test-results/university-builder-mobile.png",fullPage:true});
-  const id=await expectSession(page,()=>builder.getByRole("button",{name:"Начать выбранную практику"}).click(),learnerId,"custom");
-  const session=await db.practiceSession.findUniqueOrThrow({where:{id},include:{items:{include:{question:true}}}});
+  await page.screenshot({
+    path: "test-results/university-builder.png",
+    fullPage: true,
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/university-builder-mobile.png",
+    fullPage: true,
+  });
+  const id = await expectSession(
+    page,
+    () => builder.getByRole("button", { name: "Начать практику" }).click(),
+    learnerId,
+    "custom",
+  );
+  const session = await db.practiceSession.findUniqueOrThrow({
+    where: { id },
+    include: { items: { include: { question: true } } },
+  });
   expect(session.items).toHaveLength(2);
-  expect(new Set(session.items.map((item)=>item.question.topicId)).size).toBe(2);
-  expect(session.items.every((item)=>item.question.tags.includes("memory-tracing")&&item.question.type==="OUTPUT")).toBe(true);
-  await page.getByLabel("Твой ответ",{exact:true}).fill("-999");
-  await page.getByRole("button",{name:"Проверить ответ",exact:true}).click();
+  expect(new Set(session.items.map((item) => item.question.topicId)).size).toBe(
+    2,
+  );
+  expect(
+    session.items.every(
+      (item) =>
+        item.question.tags.includes("memory-tracing") &&
+        item.question.type === "OUTPUT",
+    ),
+  ).toBe(true);
+  await page.getByLabel("Твой ответ", { exact: true }).fill("-999");
+  await page
+    .getByRole("button", { name: "Проверить ответ", exact: true })
+    .click();
   await expect(page.locator(".feedback .prose")).toBeVisible();
-  await page.screenshot({path:"test-results/university-question-mobile.png",fullPage:true});
+  await page.screenshot({
+    path: "test-results/university-question-mobile.png",
+    fullPage: true,
+  });
 });
 
-test("university theory, formulas and code blocks render without math errors", async ({ page, learnerId }) => {
+test("university theory, formulas and code blocks render without math errors", async ({
+  page,
+  learnerId,
+}) => {
   expect(learnerId).toBeTruthy();
-  for(const topic of ["complex-numbers","matrix-operations","normal-forms","aggregate-types","pointer-arithmetic"]){
+  for (const topic of [
+    "complex-numbers",
+    "matrix-operations",
+    "normal-forms",
+    "aggregate-types",
+    "pointer-arithmetic",
+  ]) {
     await page.goto(`/topics/${topic}`);
     await expect(page.locator(".lesson-content")).toBeVisible();
     await expect(page.locator(".katex-error")).toHaveCount(0);
-    if(topic==="aggregate-types") await expect(page.locator("pre code").first()).toBeVisible();
-    if(topic==="matrix-operations") await page.screenshot({path:"test-results/university-theory.png",fullPage:true});
+    if (topic === "aggregate-types")
+      await expect(page.locator("pre code").first()).toBeVisible();
+    if (topic === "matrix-operations")
+      await page.screenshot({
+        path: "test-results/university-theory.png",
+        fullPage: true,
+      });
   }
-  await page.setViewportSize({width:390,height:844});
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/topics/pointer-arithmetic");
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
-  await page.screenshot({path:"test-results/university-theory-mobile.png",fullPage:true});
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "test-results/university-theory-mobile.png",
+    fullPage: true,
+  });
 });
 
 test("custom builder filters difficulty and topics, starts a resumable session, and explains empty filters", async ({
@@ -313,8 +393,11 @@ test("custom builder filters difficulty and topics, starts a resumable session, 
 }) => {
   await page.goto("/practice");
   const builder = page.locator(".practice-builder");
-  await builder.getByLabel("Предмет").selectOption("geometry");
+  await builder
+    .getByRole("combobox", { name: /^Предмет/ })
+    .selectOption("geometry");
   await builder.getByLabel("Проекция вектора").check();
+  await builder.locator("summary").click();
   await builder.getByLabel("Базовый").uncheck();
   await builder.getByLabel("Средний").uncheck();
   await builder.getByLabel("Сложный").uncheck();
@@ -324,7 +407,7 @@ test("custom builder filters difficulty and topics, starts a resumable session, 
   await builder.getByLabel("Вызов").uncheck();
   await expect(builder.getByRole("status")).toContainText("заданий пока нет");
   await expect(
-    builder.getByRole("button", { name: "Начать выбранную практику" }),
+    builder.getByRole("button", { name: "Начать практику" }),
   ).toBeDisabled();
   await builder.getByLabel("Сложный").check();
   await builder
@@ -332,10 +415,7 @@ test("custom builder filters difficulty and topics, starts a resumable session, 
     .click();
   const sessionId = await expectSession(
     page,
-    () =>
-      builder
-        .getByRole("button", { name: "Начать выбранную практику" })
-        .click(),
+    () => builder.getByRole("button", { name: "Начать практику" }).click(),
     learnerId,
     "custom",
     "projection",
@@ -354,7 +434,10 @@ test("custom delayed feedback, mistake review and practice again preserve settin
 }) => {
   await page.goto("/practice?topic=projection#custom-practice");
   const builder = page.locator(".practice-builder");
-  await expect(builder.getByLabel("Проекция вектора")).toBeChecked();
+  await expect(
+    builder.getByRole("checkbox", { name: /Проекция вектора/ }),
+  ).toBeChecked();
+  await builder.locator("summary").click();
   await builder.getByLabel("Базовый").uncheck();
   await builder.getByLabel("Средний").uncheck();
   await builder.getByLabel("Вызов").uncheck();
@@ -365,10 +448,7 @@ test("custom delayed feedback, mistake review and practice again preserve settin
   await builder.getByRole("radio", { name: "В конце сессии" }).check();
   const first = await expectSession(
     page,
-    () =>
-      builder
-        .getByRole("button", { name: "Начать выбранную практику" })
-        .click(),
+    () => builder.getByRole("button", { name: "Начать практику" }).click(),
     learnerId,
     "custom",
     "projection",
@@ -525,7 +605,12 @@ test("empty topics and empty weak recommendations explain why practice cannot st
     expect((await response.json()).error).toContain("нет заданий");
     await page.goto("/practice");
     const builder = page.locator(".practice-builder");
-    const emptyChoice = builder.getByLabel("Empty practice test", { exact: false });
+    await builder
+      .getByRole("combobox", { name: /^Предмет/ })
+      .selectOption("geometry");
+    const emptyChoice = builder.getByLabel("Empty practice test", {
+      exact: false,
+    });
     await expect(emptyChoice).toBeDisabled();
     await builder
       .getByRole("checkbox", { name: "Выбрать все темы", exact: true })

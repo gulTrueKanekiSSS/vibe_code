@@ -1,5 +1,4 @@
 import { requireUser } from "@/lib/auth";
-import { PageHeading } from "@/components/ui";
 import { PracticeSetup, type PracticeQuery } from "@/components/practice-setup";
 
 export default async function CustomPractice({
@@ -9,12 +8,10 @@ export default async function CustomPractice({
 }) {
   const user = await requireUser();
   return (
-    <>
-      <PageHeading
-        title="Собрать практику"
-        description="Выбери темы, сложность и содержание заданий."
-      />
-      <PracticeSetup userId={user.id} query={await searchParams} />
-    </>
+    <PracticeSetup
+      userId={user.id}
+      query={await searchParams}
+      headingLevel={1}
+    />
   );
 }

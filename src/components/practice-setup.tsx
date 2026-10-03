@@ -11,9 +11,11 @@ export type PracticeQuery = {
 export async function PracticeSetup({
   userId,
   query,
+  headingLevel = 2,
 }: {
   userId: string;
   query: PracticeQuery;
+  headingLevel?: 1 | 2;
 }) {
   const [subjects, topics, editSession] = await Promise.all([
     db.subject.findMany({
@@ -24,10 +26,15 @@ export async function PracticeSetup({
       select: {
         id: true,
         title: true,
-        module: { select: { subjectId: true } },
+        module: { select: { id: true, title: true, subjectId: true } },
         questions: { select: { difficulty: true, type: true, tags: true } },
       },
-      orderBy: [{ module: { order: "asc" } }, { order: "asc" }],
+      orderBy: [
+        { module: { subject: { order: "asc" } } },
+        { module: { order: "asc" } },
+        { order: "asc" },
+        { id: "asc" },
+      ],
     }),
     query.edit
       ? db.practiceSession.findFirst({
@@ -52,6 +59,7 @@ export async function PracticeSetup({
   }
   return (
     <PracticeBuilder
+      headingLevel={headingLevel}
       initialConfig={initialConfig}
       initialSubjectId={
         topics.find((topic) => topic.id === query.topic)?.module.subjectId ??
@@ -67,6 +75,8 @@ export async function PracticeSetup({
         id: topic.id,
         title: topic.title,
         subjectId: topic.module.subjectId,
+        moduleId: topic.module.id,
+        moduleTitle: topic.module.title,
         questions: topic.questions,
       }))}
     />
