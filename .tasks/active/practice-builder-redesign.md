@@ -107,7 +107,7 @@ Merged into task branch: `git merge origin/main` reported already up to date.
 Conflicts: none
 Checks rerun after sync: unit tests, lint, build and actual-component browser harness passed.
 ## Result
-Commits: feature commit prepared after QA/review; see branch history.
-PR: draft PR into main; link recorded after creation.
+Commits: 831483d — feat(practice): replace builder with grouped session configuration.
+PR: https://github.com/gulTrueKanekiSSS/vibe_code/pull/2 (draft, into main; not merged).
 Known limitations: reference PNG unavailable; real database/API/session completion/resume verification blocked by unavailable PostgreSQL.
 Follow-up: start existing local DB, rerun integration/E2E/application verification, then move task to .tasks/done and mark PR ready. Human owns merge.
