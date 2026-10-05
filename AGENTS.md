@@ -99,6 +99,8 @@ agents/REVIEWER.md
 
 ## 3. Sources of truth
 
+Before a broad repository scan, read `PROJECT_RECAP.md` if it exists. Use it to choose the relevant files, then verify current Git state and those files. The recap is a navigation cache, not a replacement for the sources of truth below.
+
 Before substantial work inspect:
 
 ```text
@@ -465,3 +467,20 @@ A non-trivial task is done only when:
 Prefer stopping and reporting uncertainty over making destructive assumptions.
 
 Especially stop before deleting migrations, rewriting authentication, changing shared schema while another task may also change it, removing another developer's code, force-pushing, altering deployment/secrets strategy, or making a product decision with multiple materially different UX outcomes.
+
+## 20. Persistent project recap
+
+After every completed logical batch of changes, update the separate `PROJECT_RECAP.md` before handing work back to the human. Also record unfinished work and the exact next step when stopping with a blocker. A chat summary alone is not sufficient.
+
+Keep the recap compact and useful for the next session:
+
+- date, task/branch and last verified base commit;
+- what changed and the relevant file paths;
+- important decisions and constraints;
+- checks actually run, their results, and checks not run;
+- remaining limitations/blockers and the exact next step;
+- links to detailed task/content reports instead of copying their full history.
+
+Before scanning the whole project, start with this recap, inspect Git status/recent changes, and read only the relevant source files. Broaden inspection when the recap is missing, stale, inconsistent or insufficient. Mandatory source/role instructions and verification still apply; previous successful checks are not evidence that the current tree passes.
+
+Update only relevant recap sections, preserve other contributors' valid entries, and keep detailed history in task-specific reports. Do not turn the recap into a shared task counter or task queue. Never include secrets, credentials, private user data or environment-file contents.
