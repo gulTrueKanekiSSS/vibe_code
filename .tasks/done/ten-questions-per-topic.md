@@ -1,6 +1,6 @@
 # Minimum ten practice questions in every existing topic
 
-Status: READY_FOR_PR
+Status: COMPLETE — PR ready for human review, not merged
 Branch: dmitrij/content/ten-questions-per-topic
 Owner: dmitrij / TECH_LEAD
 
@@ -34,7 +34,7 @@ New topics, UI redesign, authentication, practice architecture/scoring, AI, sche
 - [x] New records loaded via seed and selectable in ten-question sessions for every topic without duplicates; order persists on reload/retry.
 - [x] Content/unit/integration checks, typecheck, lint, build and relevant browser check pass.
 - [x] Independent QA/review completed; progress and recap updated; main synchronized.
-- [ ] Commit/push and PR ready; no merge.
+- [x] Commit/push and PR ready; no merge.
 
 ## Technical Plan / Ownership
 
@@ -108,7 +108,9 @@ Checks rerun after final sync: all final checks above; final formatting repeated
 
 ## Result
 
-Commits: 2e21172 (content), 4189218 (tests); publication/report commit pending
-PR: pending; body prepared in .tasks/pr/ten-questions-per-topic.md; gh unavailable, attempt using existing GitHub authentication without credential output
+Commits: 2e21172 (content), 4189218 (tests), 8c2e49f (QA/review reports); closure commit in branch history
+Pushed branch: origin/dmitrij/content/ten-questions-per-topic
+PR: https://github.com/gulTrueKanekiSSS/vibe_code/pull/4 — open into main, not merged
+Publication: existing GitHub authentication used via API without credential output; no new auth tooling/settings installed
 Known limitations: no deployment authorized; seed applies to local configured DB only
-Follow-up: scoped commit/push/PR only; human merge; no further content expansion within this task
+Follow-up: human PR review/merge, then existing deployment seed workflow if needed; no further content expansion within this task

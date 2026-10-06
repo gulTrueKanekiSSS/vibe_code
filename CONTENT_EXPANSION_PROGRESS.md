@@ -134,11 +134,11 @@ Work interrupted during agent turns; saved files inspected before continuation. 
 
 ## Exact next task / limitations
 
-Content implementation and QA complete. Finish task publication: inspect/stage only scoped files, commit, push this task branch and create a PR into main; **do not merge**. Human reviews/merges. On any separately deployed environment, use its existing content-release/seed workflow after merge; local seed does not publish code or update remote databases.
+Content implementation, independent QA/review and publication complete. Commits `2e21172` (content), `4189218` (tests), `8c2e49f` (reports) published in the task branch; [PR #4](https://github.com/gulTrueKanekiSSS/vibe_code/pull/4) is open into main, **not merged**. Exact next task: human reviews/merges; on any separately deployed environment, use its existing content-release/seed workflow after merge. Local seed does not publish code or update remote databases. No more autonomous implementation is pending.
 
 The minimum applies to total questions per topic, not ten per difficulty/type/category combination; narrow filters can legitimately offer fewer. No new expansion should begin without a user task. The master roadmap's 15–25+ depth per topic remains future work (47 topics are at ten).
 
-Detailed engineering task: `.tasks/active/ten-questions-per-topic.md` (moves to done when publication gates complete).
+Detailed engineering task: `.tasks/done/ten-questions-per-topic.md`; PR body: `.tasks/pr/ten-questions-per-topic.md`.
 
 ## Historical expansion — 2026-09-30
 

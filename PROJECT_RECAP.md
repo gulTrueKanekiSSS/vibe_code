@@ -43,8 +43,9 @@
 - App/auth/session/XP/curriculum/lessons/schema/migrations не менялись. Future/supplementary классификация сохранена. На каждую отдельную сложность/категорию десять вопросов не обещаются.
 - Dev-сервер для просмотра: `http://localhost:3000`. Полный unrelated E2E и реальный Telegram login не проверялись; no deployment/remote DB updates.
 - Сгенерированные build-правки `next-env.d.ts` исключены; чужая `.idea/` не тронута/не staged.
-- Детальные счётчики и validation: [CONTENT_EXPANSION_PROGRESS.md](CONTENT_EXPANSION_PROGRESS.md). Задача: `.tasks/active/ten-questions-per-topic.md` до публикации.
-- Следующий шаг: scoped commit + push, PR в main для review человека. Не выполнять merge и не начинать новое расширение автоматически.
+- Детальные счётчики и validation: [CONTENT_EXPANSION_PROGRESS.md](CONTENT_EXPANSION_PROGRESS.md). Закрытая задача: `.tasks/done/ten-questions-per-topic.md`; описание PR: `.tasks/pr/ten-questions-per-topic.md`.
+- Коммиты `2e21172`, `4189218`, `8c2e49f` опубликованы; [PR #4](https://github.com/gulTrueKanekiSSS/vibe_code/pull/4) открыт в main и **не слит**. GitHub API использован с existing Git auth без вывода credentials, настройка авторизации не менялась.
+- Следующий шаг: review/merge человеком и при необходимости seed по обычному workflow отдельно развёрнутого окружения. Не выполнять merge и не начинать новое расширение автоматически.
 
 ## Историческая документация
 
