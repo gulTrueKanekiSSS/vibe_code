@@ -13,33 +13,162 @@
       "Не путай OR и AND: AND требует две единицы.",
       "Здесь вход A уже равен 1."
     ],
-    "tags": [
-      "Boolean logic"
-    ]
+    "tags": ["Boolean logic"]
   },
   {
-    "id": "boolean-2", "topicId": "boolean", "type": "MULTIPLE_CHOICE", "difficulty": "MEDIUM",
+    "id": "boolean-2",
+    "topicId": "boolean",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
     "prompt": "Упрости (A AND B) OR (A AND NOT B) для любого B.",
-    "options": ["A", "B", "NOT A", "A AND B"], "answer": "A",
+    "options": ["A", "B", "NOT A", "A AND B"],
+    "answer": "A",
     "solution": "Вынеси A: A AND (B OR NOT B)=A AND 1=A. Переменная B не влияет на результат.",
-    "hints": ["В обеих частях есть общий множитель A.", "Применяй дистрибутивность и B OR NOT B=1.", "A AND 1=A."],
+    "hints": [
+      "В обеих частях есть общий множитель A.",
+      "Применяй дистрибутивность и B OR NOT B=1.",
+      "A AND 1=A."
+    ],
     "tags": ["simplification"]
   },
   {
-    "id": "boolean-3", "topicId": "boolean", "type": "MULTIPLE_CHOICE", "difficulty": "HARD",
+    "id": "boolean-3",
+    "topicId": "boolean",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
     "prompt": "Студент заменил NOT(A OR B) на (NOT A) OR (NOT B). При каких входах сразу видно ошибку?",
-    "options": ["A=1, B=0", "A=1, B=1", "A=0, B=0"], "answer": "A=1, B=0",
+    "options": ["A=1, B=0", "A=1, B=1", "A=0, B=0"],
+    "answer": "A=1, B=0",
     "solution": "При (1,0) слева NOT(1 OR 0)=0, справа (NOT 1) OR (NOT 0)=0 OR 1=1. Верный закон де Моргана: NOT(A OR B)=(NOT A) AND (NOT B).",
-    "hints": ["Нужен контрпример: значения сторон должны различаться.", "Попробуй входы с одной единицей.", "При (1,0) левая часть 0, правая 1."],
+    "hints": [
+      "Нужен контрпример: значения сторон должны различаться.",
+      "Попробуй входы с одной единицей.",
+      "При (1,0) левая часть 0, правая 1."
+    ],
     "tags": ["error-analysis", "de-morgan"]
   },
   {
-    "id": "boolean-4", "topicId": "boolean", "type": "MULTIPLE_CHOICE", "difficulty": "CHALLENGE",
+    "id": "boolean-4",
+    "topicId": "boolean",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
     "prompt": "Какое выражение эквивалентно A XOR B без символа XOR?",
-    "options": ["(A AND NOT B) OR (NOT A AND B)", "A OR B", "(A AND B) OR (NOT A AND NOT B)"],
+    "options": [
+      "(A AND NOT B) OR (NOT A AND B)",
+      "A OR B",
+      "(A AND B) OR (NOT A AND NOT B)"
+    ],
     "answer": "(A AND NOT B) OR (NOT A AND B)",
     "solution": "XOR истинен ровно когда входы различны. Первая часть охватывает (1,0), вторая — (0,1); остальные строки дают 0.",
-    "hints": ["XOR должен быть 1 только в двух строках: (1,0) и (0,1).", "Запиши отдельный AND для каждой нужной строки.", "Соедини два случая операцией OR."],
+    "hints": [
+      "XOR должен быть 1 только в двух строках: (1,0) и (0,1).",
+      "Запиши отдельный AND для каждой нужной строки.",
+      "Соедини два случая операцией OR."
+    ],
     "tags": ["truth-table", "circuit-design"]
+  },
+  {
+    "id": "boolean-min10-01",
+    "topicId": "boolean",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Упрости (A OR B) AND (A OR NOT B).",
+    "options": ["A", "B", "A OR B"],
+    "answer": "A",
+    "solution": "Распределение даёт A OR (B AND NOT B). Последнее AND всегда 0, поэтому результат A. Это двойственная форма закона склеивания.",
+    "hints": [
+      "Найди общий член в двух скобках.",
+      "Примени дистрибутивность OR относительно AND.",
+      "Упрости противоположные литералы B и NOT B."
+    ],
+    "tags": ["truth-table"]
+  },
+  {
+    "id": "boolean-min10-02",
+    "topicId": "boolean",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Сколько наборов трёх битов A,B,C делают A OR (B AND C) истинным?",
+    "options": [],
+    "answer": "5",
+    "solution": "При A=1 подходят все четыре пары BC. При A=0 подходит только B=C=1. Эти случаи не пересекаются, поэтому всего 4+1=5.",
+    "hints": [
+      "Раздели наборы по значению A.",
+      "При A=1 остальные биты свободны.",
+      "При A=0 проанализируй конъюнкцию."
+    ],
+    "tags": ["truth-table"]
+  },
+  {
+    "id": "boolean-min10-03",
+    "topicId": "boolean",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Для F=(A AND B) OR (NOT A AND C) чему равна функция после фиксации A=0?",
+    "options": ["B", "NOT C", "C"],
+    "answer": "C",
+    "solution": "Первое произведение обнуляется из-за A=0. Во втором NOT A=1, поэтому оно равно C. Это выбор ветви мультиплексора, а не требование B=C.",
+    "hints": [
+      "Подставь A в обе ветви.",
+      "Упрости 0 AND B и 1 AND C.",
+      "Сложи результаты через OR."
+    ],
+    "tags": ["truth-table"]
+  },
+  {
+    "id": "boolean-min10-04",
+    "topicId": "boolean",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Верно ли тождество A OR (B AND C)=(A OR B) AND C?",
+    "options": [
+      "Да, это дистрибутивность",
+      "Нет: A=1,C=0 даёт разные стороны при любом B",
+      "Нет: обе стороны всегда противоположны"
+    ],
+    "answer": "Нет: A=1,C=0 даёт разные стороны при любом B",
+    "solution": "При A=1 левая часть равна 1 независимо от B,C. При C=0 правая равна 0 независимо от A,B. Верная дистрибутивность требует двух скобок: (A OR B) AND (A OR C).",
+    "hints": [
+      "Ищи один набор, на котором стороны различаются.",
+      "Слева единица A поглощает всё остальное.",
+      "Справа ноль C обнуляет весь AND."
+    ],
+    "tags": ["truth-table"]
+  },
+  {
+    "id": "boolean-min10-05",
+    "topicId": "boolean",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Известно, что F(0,B)=B и F(1,B)=NOT B для обоих значений B. Какая функция определена этими условиями?",
+    "options": ["A OR B", "A AND B", "A XOR B"],
+    "answer": "A XOR B",
+    "solution": "Две фиксации A покрывают все четыре входа. Таблица F в порядке 00,01,10,11 равна 0,1,1,0, что соответствует XOR. Никаких дополнительных строк для проверки не остаётся.",
+    "hints": [
+      "Восстанови полную таблицу из двух ограничений.",
+      "Сохраняй порядок AB=00,01,10,11.",
+      "Сравни условие различия входов."
+    ],
+    "tags": ["truth-table"]
+  },
+  {
+    "id": "boolean-min10-06",
+    "topicId": "boolean",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Почему тождество AB OR (NOT A)C OR BC = AB OR (NOT A)C верно? Здесь запись AB означает AND.",
+    "options": [
+      "BC всегда равно 0",
+      "При B=C=1 хотя бы один из первых двух членов уже равен 1",
+      "Первые два члена всегда равны"
+    ],
+    "answer": "При B=C=1 хотя бы один из первых двух членов уже равен 1",
+    "solution": "Единственный случай, когда BC может добавить единицу, — B=C=1. Тогда первые два члена превращаются в A и NOT A, их OR уже 1. При BC=0 добавочный член вообще не влияет. Это закон консенсуса.",
+    "hints": [
+      "Выясни, когда удаляемый член ненулевой.",
+      "Подставь B=C=1 в оставшиеся члены.",
+      "Используй A OR NOT A=1."
+    ],
+    "tags": ["truth-table"]
   }
 ]
