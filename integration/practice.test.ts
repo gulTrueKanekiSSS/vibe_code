@@ -2,6 +2,7 @@ import { test, after } from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { db } from "../src/lib/db";
+import { loadContent } from "../src/lib/content-source";
 import {
   startPractice,
   submitPractice,
@@ -12,6 +13,7 @@ import {
 import { automaticTopicIds } from "../src/lib/curriculum";
 import { getLeaderboard, getProgress } from "../src/lib/progress";
 const created: string[] = [];
+const createdTopics: string[] = [];
 async function user() {
   const u = await db.user.create({
     data: {
@@ -34,6 +36,8 @@ async function item(userId: string, mode = "topic") {
 }
 after(async () => {
   await db.user.deleteMany({ where: { id: { in: created } } });
+  await db.question.deleteMany({where:{topicId:{in:createdTopics}}});
+  await db.topic.deleteMany({ where: { id: { in: createdTopics } } });
   await db.$disconnect();
 });
 test("semantic filters persist with multi-topic difficulty filters and survive repeat", async () => {
@@ -71,7 +75,9 @@ test("automatic practice respects curriculum while explicit supplementary practi
     assert.ok(items.every((item)=>automaticTopicIds.includes(item.question.topicId)));
   }
   const manual=await startPractice(u.id,"topic","malloc",undefined,randomUUID());
-  assert.equal(await db.practiceItem.count({where:{sessionId:manual}}),1);
+  const manualItems = await db.practiceItem.findMany({where:{sessionId:manual},include:{question:true}});
+  assert.equal(manualItems.length,10);
+  assert.ok(manualItems.every(item=>item.question.topicId==="malloc"));
 });
 test("custom selection exhausts unseen questions before solved ones across levels", () => {
   const questions = [
@@ -245,9 +251,21 @@ test("custom session filters subjects, topics and difficulty, persists selection
 });
 test("custom practice does not create a session when the selected difficulty has no questions", async () => {
   const u = await user();
+  // An isolated EASY-only bank protects the absent-difficulty case as content grows.
+  const source = await db.topic.findUniqueOrThrow({where:{id:"real-axioms"}});
+  const topicId = `test-empty-${randomUUID()}`;
+  await db.topic.create({data:{
+    id:topicId,title:"Empty integration fixture",english:"Empty",moduleId:source.moduleId,
+    order:999,difficulty:"EASY",estimatedMinutes:1,prerequisites:[],keywords:[],content:{},
+  }});
+  createdTopics.push(topicId);
+  const {questions} = await loadContent();
+  const question = questions.find(q=>q.topicId==="real-axioms" && q.difficulty==="EASY");
+  assert.ok(question);
+  await db.question.create({data:{...question,id:topicId+"-easy",topicId,feedback:question.feedback??{}}});
   await assert.rejects(
     startPractice(u.id, "custom", undefined, "analysis", randomUUID(), {
-      topicIds: ["real-axioms"],
+      topicIds: [topicId],
       difficulties: ["CHALLENGE"],
       count: 5,
     }),
@@ -303,7 +321,7 @@ test("custom type filtering, delayed feedback, disabled hints and repeat preserv
   assert.notEqual(repeated, id);
   const copy = await db.practiceSession.findUniqueOrThrow({
     where: { id: repeated },
-    include: { items: true },
+    include: { items: {include:{question:true}} },
   });
   assert.deepEqual(
     copy.config,
@@ -315,12 +333,16 @@ test("custom type filtering, delayed feedback, disabled hints and repeat preserv
             .overallBefore,
         },
   );
-  assert.equal(copy.items[0].questionId, session.items[0].questionId);
+  // A larger bank must prefer an unseen question when repeating the same settings.
+  assert.notEqual(copy.items[0].questionId, session.items[0].questionId);
+  assert.equal(copy.items[0].question.topicId,"projection");
+  assert.equal(copy.items[0].question.type,"STEPS");
+  assert.equal(copy.items[0].question.difficulty,"HARD");
   const repeatedAnswer = await submitPractice(
     u.id,
     copy.items[0].id,
     randomUUID(),
-    ["6", "2", "3"],
+    copy.items[0].question.answer!,
   );
   assert.equal(repeatedAnswer.xp, null);
   assert.equal(
@@ -329,7 +351,7 @@ test("custom type filtering, delayed feedback, disabled hints and repeat preserv
         where: { id: copy.items[0].id },
       })
     ).xp,
-    0,
+    30,
   );
 });
 test("custom selection prefers unseen questions over recently attempted ones", async () => {

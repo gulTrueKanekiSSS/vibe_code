@@ -43,6 +43,23 @@ const test = base.extend<{ learnerId: string }>({
 test.use({ trace: "off" });
 test.afterAll(async () => db.$disconnect());
 
+for (const topic of ["binary","lines","lower-bound","malloc","functions"]) {
+  test(`expanded topic ${topic} opens ten questions and survives refresh`,async ({page,learnerId})=>{
+    await page.goto(`/practice?topic=${topic}#custom-practice`);
+    const builder=page.locator(".practice-builder");
+    await builder.getByLabel("Количество заданий",{exact:true}).fill("10");
+    await expect(builder.getByRole("status")).toContainText("в сессию войдёт 10");
+    const id=await expectSession(page,()=>builder.getByRole("button",{name:"Начать выбранную практику"}).click(),learnerId,"custom",topic);
+    const saved=await db.practiceItem.findMany({where:{sessionId:id},orderBy:{position:"asc"}});
+    expect(saved).toHaveLength(10);
+    expect(new Set(saved.map(item=>item.questionId)).size).toBe(10);
+    await page.reload({waitUntil:"domcontentloaded"});
+    await expect(page.locator(".question-card > .prose")).toBeVisible();
+    expect(await db.practiceSession.count({where:{userId:learnerId}})).toBe(1);
+    expect((await db.practiceItem.findMany({where:{sessionId:id},orderBy:{position:"asc"}})).map(item=>item.id)).toEqual(saved.map(item=>item.id));
+  });
+}
+
 test("select all filters support partial selection, keyboard clearing and saved configuration", async ({
   page,
   learnerId,
@@ -318,8 +335,9 @@ test("custom builder filters difficulty and topics, starts a resumable session, 
   await builder.getByLabel("Базовый").uncheck();
   await builder.getByLabel("Средний").uncheck();
   await builder.getByLabel("Сложный").uncheck();
+  const challengeCount = await db.question.count({where:{topicId:"projection",difficulty:"CHALLENGE"}});
   await expect(builder.getByRole("status")).toContainText(
-    "Доступно только 1 заданий",
+    `Доступно только ${challengeCount} заданий`,
   );
   await builder.getByLabel("Вызов").uncheck();
   await expect(builder.getByRole("status")).toContainText("заданий пока нет");
@@ -327,8 +345,9 @@ test("custom builder filters difficulty and topics, starts a resumable session, 
     builder.getByRole("button", { name: "Начать выбранную практику" }),
   ).toBeDisabled();
   await builder.getByLabel("Сложный").check();
+  const hardCount = await db.question.count({where:{topicId:"projection",difficulty:"HARD"}});
   await builder
-    .getByRole("button", { name: "Использовать доступные (1)" })
+    .getByRole("button", { name: `Использовать доступные (${hardCount})` })
     .click();
   const sessionId = await expectSession(
     page,
@@ -344,8 +363,8 @@ test("custom builder filters difficulty and topics, starts a resumable session, 
     where: { id: sessionId },
     include: { items: { include: { question: true } } },
   });
-  expect(saved.items).toHaveLength(1);
-  expect(saved.items[0].question.difficulty).toBe("HARD");
+  expect(saved.items).toHaveLength(hardCount);
+  expect(saved.items.every(item=>item.question.difficulty==="HARD")).toBe(true);
 });
 
 test("custom delayed feedback, mistake review and practice again preserve settings", async ({
@@ -358,9 +377,7 @@ test("custom delayed feedback, mistake review and practice again preserve settin
   await builder.getByLabel("Базовый").uncheck();
   await builder.getByLabel("Средний").uncheck();
   await builder.getByLabel("Вызов").uncheck();
-  await builder
-    .getByRole("button", { name: "Использовать доступные (1)" })
-    .click();
+  await builder.getByLabel("Количество заданий", {exact:true}).fill("1");
   await builder.getByRole("radio", { name: "Отключены" }).check();
   await builder.getByRole("radio", { name: "В конце сессии" }).check();
   const first = await expectSession(
