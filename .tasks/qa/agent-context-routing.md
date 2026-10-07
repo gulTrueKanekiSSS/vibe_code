@@ -81,3 +81,8 @@ Skills location/progressive disclosure confirmed using official documentation an
 https://learn.chatgpt.com/docs/build-skills. Automatic discovery in a fresh session was not benchmarked;
 root includes a direct-path fallback. No measured token/latency benchmark, only file-size and routing evidence.
 Unrelated `.idea/`, env, generated directories and application code remain untouched.
+
+## Publication handoff
+
+Implementation `abca807` committed/pushed; PR #6 open into main, merged=false (API confirmed).
+Closure task/recap documentation is a separate logical batch; instruction checks repeated before its commit.

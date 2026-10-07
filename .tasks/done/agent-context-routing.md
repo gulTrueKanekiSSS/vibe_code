@@ -1,6 +1,6 @@
 # Token-efficient agent instruction routing
 
-Status: READY_FOR_PR
+Status: DONE
 Branch: dmitrij/chore/agent-context-routing
 Owner: dmitrij / Codex
 
@@ -31,7 +31,7 @@ Preserve unrelated untracked .idea/.
 - [x] Compact recap retains useful paths, decisions, report links and exact next step.
 - [x] Repo-local workflow skill is supported, narrowly scoped and validated.
 - [x] Documentation QA and independent review pass; no application paths changed.
-- [ ] Latest main integrated, changes committed/pushed, PR prepared without merging.
+- [x] Latest main integrated, changes committed/pushed, PR prepared without merging.
 
 ## Repository Findings
 
@@ -74,5 +74,7 @@ Initial/final base 353fa03. Final fetch/merge on 2026-10-07: Already up to date;
 
 ## Result
 
-Commit/push/PR pending. Exact next step: inspect final staged diff, commit/push this task branch, create PR into main without merging, then close the task and update recap.
+Implementation commit `abca807` pushed to origin/dmitrij/chore/agent-context-routing.
+PR: https://github.com/gulTrueKanekiSSS/vibe_code/pull/6 — open, merged=false, confirmed via API. Task closure and recap are recorded in a separate documentation commit on the same branch.
+Exact next step: human review and optional human merge of PR #6; no further implementation planned and no automatic merge/deployment.
 Known limitations: no measured token benchmark or fresh-session skill-discovery benchmark; direct-path fallback provided. No application/runtime behavior changed or claimed tested.

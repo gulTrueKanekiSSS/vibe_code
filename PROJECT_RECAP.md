@@ -35,12 +35,12 @@ Tracked-файлы — основной scope; новые релевантные
 - Банк: 5 предметов / 64 темы / 742 вопроса; все темы >=10, старые ID/объекты сохранены. [Счётчики и validation](CONTENT_EXPANSION_PROGRESS.md), [задача](.tasks/done/ten-questions-per-topic.md). PR #4 слит в `7f2ce7e`. README содержит старые счётчики; для expansion сверять progress и текущий content report.
 - Прежние app-проверки находятся в связанных QA/task отчётах; они не означают, что текущий worktree прошёл новые проверки. История рекапа — Git / PR #3 (`6a92406`), не копировать её сюда.
 
-## Текущая незавершённая работа / exact next step
+## Последняя задача / handoff и exact next step
 
-- Инструкции: root сокращён до 99 строк, роли подключаются условно; один skill `git-task-workflow` с отдельными start/finalize references. [Активная задача](.tasks/active/agent-context-routing.md).
+- Инструкции: root сокращён до 99 строк, роли подключаются условно; один skill `git-task-workflow` с отдельными start/finalize references. [Закрытая задача](.tasks/done/agent-context-routing.md).
 - Сделано после прерывания: проверены Git/diff и процессы; зависших операций изменения не обнаружено. Готовые изменения сохранены, skill дописан.
 - Проверки: структурная/path/scope validation, byte-identical Next.js block, skill validator и diff check PASS; независимые QA PASS / Reviewer APPROVE. [Отчёт и структура](.tasks/qa/agent-context-routing.md). App tests/lint/typecheck/build/DB commands для docs-only diff не запускались.
-- Main синхронизирован: `353fa03`, Already up to date. Следующий шаг: commit/push и PR без merge; после handoff закрыть task и обновить ссылки. Токены/latency не benchmarked; skill имеет direct-path fallback.
+- Main синхронизирован: `353fa03`, Already up to date. Коммит `abca807` опубликован; [PR #6](https://github.com/gulTrueKanekiSSS/vibe_code/pull/6) открыт, не слит. Следующий шаг: review/merge человеком; незавершённой реализации нет. Токены/latency не benchmarked; skill имеет direct-path fallback.
 
 ## Ограничения
 
