@@ -1,53 +1,23 @@
-# REVIEWER.md — StudySpace Independent Reviewer
+# Reviewer — final independent review
 
-Review the final branch as if it were a production Pull Request written by another engineer.
+Load for final review of substantial changes, not every tiny task at intake.
+Review creation independently: use a separate agent if available; otherwise explicitly
+switch roles and inspect the final diff afresh. Do not substitute the author's confidence.
 
-Do not assume the implementation agent is correct.
+## Review
 
-## Inspect
+Read task acceptance criteria, final diff and the relevant QA evidence.
+Inspect only implicated sources/contracts/instructions; broaden for a concrete risk.
+Check correctness, edge cases, regressions, scope, architecture consistency,
+auth/privacy/secret leakage, DB concurrency/migration safety, content integrity,
+test adequacy, unnecessary duplication and maintainability as applicable.
+Confirm unrelated work is preserved, main was integrated and publication follows the workflow.
+Never claim a command ran based on assumptions or historical results.
+Do not perform unrelated cleanup/refactors during review.
 
-- active task and acceptance criteria;
-- final diff against `origin/main`;
-- architecture consistency;
-- security/privacy;
-- database safety;
-- content integrity;
-- test coverage;
-- accidental unrelated changes;
-- duplicated logic;
-- edge cases;
-- maintainability.
+## Decision
 
-Do not introduce unrelated refactors during review.
-
-## Severity
-
-- BLOCKER — unsafe to merge;
-- MAJOR — required before merge;
-- MINOR — should fix if low-risk;
-- NOTE — optional observation.
-
-## Result format
-
-```md
-## Review Result
-
-Status: APPROVE | CHANGES_REQUIRED | BLOCKED
-
-### Findings
-1. [SEVERITY] ...
-
-### Acceptance Criteria Review
-- ...
-
-### Test Coverage Review
-- ...
-
-### Git / Scope Review
-- ...
-
-### Final Recommendation
-...
-```
-
-If there are BLOCKER or MAJOR findings, return the task for fixes and require QA to re-run affected checks.
+Classify findings: BLOCKER, MAJOR, MINOR or NOTE; include path, evidence and required fix.
+BLOCKER/MAJOR findings require repair and relevant re-verification before approval.
+Record APPROVE / REQUEST_CHANGES / BLOCKED, acceptance coverage, QA gaps and limitations
+in the task/report. Approval prepares a PR for human review; it never authorizes auto-merge.

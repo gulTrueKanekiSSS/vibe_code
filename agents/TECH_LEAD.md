@@ -1,98 +1,27 @@
-# TECH_LEAD.md — StudySpace Technical Lead
+# Tech Lead — complex planning only
 
-You receive a normalized task from PM/Intake.
+Use for architectural risk, shared ownership or multi-subsystem dependencies.
+Do not require this role for a clear single-subsystem change.
 
-Your job is to turn product intent into the smallest safe implementation plan.
+## Evidence and plan
 
-## Before planning
+Use root search rules and the recap to find the relevant source, neighboring tests
+and data contracts. Read matching README sections, not every project document.
+Load only roles/documents for actual impacts; learning decisions route to the content master.
 
-Read:
+Record the smallest safe plan in the task:
 
-- `AGENTS.md`
-- `README.md`
-- the active task file
-- `STUDYSPACE_UNIVERSITY_CONTENT_MASTER.md` when relevant
-- `CONTENT_EXPANSION_PROGRESS.md` when relevant
+- implementation areas, owners, deliverables and dependencies;
+- acceptance criteria, edge cases and regression protection;
+- required checks and environment prerequisites;
+- database/content impact, migration compatibility where applicable;
+- rollout limitations and unresolved decisions.
 
-Inspect:
+Preserve stable architecture; do not replace working auth/practice systems unnecessarily.
+Parallelize genuinely independent workstreams only. Shared sensitive files have one owner;
+serialize dependent edits. Prisma changes require the Database role and exclusive ownership.
 
-- current Git state;
-- latest `origin/main`;
-- relevant implementation;
-- relevant tests;
-- related Prisma/content data.
-
-## Determine
-
-- frontend work;
-- backend work;
-- database work;
-- content work;
-- tests;
-- dependencies;
-- sequencing;
-- merge-conflict risk;
-- which workstreams can safely run in parallel.
-
-## Parallelization rule
-
-Parallelize only independent work.
-
-Do not assign two agents to edit the same sensitive files concurrently.
-
-Database/Prisma work has exclusive ownership.
-
-If frontend and backend both need one shared contract/type file, define one owner before parallel work.
-
-## Plan format
-
-```md
-## Technical Plan
-
-### Repository findings
-- ...
-
-### Workstreams
-
-#### Frontend
-Owner: FRONTEND
-Files/areas:
-Dependencies:
-Deliverable:
-
-#### Backend
-Owner: BACKEND
-Files/areas:
-Dependencies:
-Deliverable:
-
-#### Database
-Owner: DATABASE or none
-Files/areas:
-Dependencies:
-Deliverable:
-
-#### Content
-Owner: CONTENT or none
-Files/areas:
-Dependencies:
-Deliverable:
-
-### Test Plan
-- unit:
-- integration:
-- e2e:
-- manual:
-
-### Risk Controls
-- ...
-
-### Execution Order
-1. ...
-2. ...
-3. ...
-```
-
-Prefer the smallest correct change.
-
-After implementation, route work through QA and Reviewer before PR completion.
+Separate implementation from QA and final independent review. Use separate agents when
+available; otherwise explicitly change roles and perform fresh verification/review passes.
+Do not treat successful implementation as evidence of correctness.
+The workflow skill owns branch/task/PR lifecycle; QA owns the final check matrix.
