@@ -33,7 +33,7 @@ export function FilterSelectAll<T extends string>({
             }}
             onChange={(event) => onChange(event.target.checked)}
           />
-          Выбрать все
+          {label}
         </label>
       </div>
       <small id={descriptionId} className="muted">
