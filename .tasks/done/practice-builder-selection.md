@@ -1,6 +1,6 @@
 # Easier, more pleasant practice selection
 
-Status: READY_FOR_PR
+Status: DONE
 Branch: dmitrij/feature/practice-builder-selection
 Owner: dmitrij / PM + TECH_LEAD
 
@@ -45,7 +45,7 @@ Authentication, database/schema, question bank, scoring/session algorithms, AI, 
 - [x] Availability/summary stays truthful; empty/insufficient selection clear, no silent difficulty changes.
 - [x] Edit configuration survives UI grouping; duplicate protection, retry, first question and refresh unchanged.
 - [x] Desktop/mobile/keyboard checks, unit/integration/E2E/typecheck/lint/build pass.
-- [ ] Independent QA/review, latest main sync, commit/push/PR ready; recap updated; no merge.
+- [x] Independent QA/review, latest main sync, commit/push/PR ready; recap updated; no merge.
 
 ## Repository Findings
 
@@ -99,6 +99,7 @@ Baseline and final screenshots desktop/mobile; subject/topic search/bulk/add/rem
 - Baseline audit1/1 PASS; root visually inspected desktop/mobile screenshots. Implemented frontend refinement; no fixed mobile overlay, no API/start handler changes. Search helper3/3 tests and typecheck PASS. Independent QA and reviewer assigned; full checks pending.
 - 2026-10-07: Safe resume after interruption; no stale browser test processes. Fixed fixturecallback lint issue, explicit subject accessible name, preset descriptions and scoped search padding. After fresh main sync:51/51 unit,26/26 integration,typecheck/lint PASS; QA4/4 browser cases PASS, fifth recovery case and final screenshots pending. Reviewer no production blocker/major; no backend/schema/content changes.
 - Final verification: new5/5 E2E and repeatmobile1/1; old19/19 regression E2E after precise topic-checkbox selector fix. Typecheck/lint final PASS, productionbuild PASS, Prisma validate PASS, diff check PASS. Separate QA PASS and reviewer APPROVE. Details `.tasks/qa/practice-builder-selection.md`; ready for commit/push/PR.
+- Published20c01d0/2b31a55 on task branch; PR#5 open in main, merged=false. Final fetch/merge remains7f2ce7e Already up to date; reviewer approval retained for committed test diff. Moved task to done; closure recap committed/pushed separately. No automatic merge.
 
 ## QA Result
 
@@ -119,7 +120,7 @@ Checks rerun after sync:51unit,26integration,5new/19existing E2E, typecheck/lint
 
 ## Result
 
-Commits:20c01d0 (frontend and tests); documentation/publication pending
-PR:pending
+Commits:20c01d0 (frontend and tests),2b31a55 (research/QA/review/recap); documentation closure follows
+PR:https://github.com/gulTrueKanekiSSS/vibe_code/pull/5 — OPEN, not merged
 Known limitations:public documentation/screens only, no account-based competitor usability tests or measured human outcomes
-Follow-up:commit/push task branch and prepare PR; human review/merge and eventual usability feedback only
+Follow-up:human review/merge and eventual usability feedback; no deployment or next feature authorized

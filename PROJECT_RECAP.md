@@ -1,6 +1,6 @@
 # StudySpace — краткий рекап проекта
 
-Обновлено: 2026-10-07. Текущая задача: `dmitrij/feature/practice-builder-selection`.
+Обновлено: 2026-10-07. Последняя завершённая задача: `dmitrij/feature/practice-builder-selection`.
 Проверенная база: `origin/main` — `7f2ce7e`; человек слил контентный PR #4.
 
 ## Как пользоваться
@@ -32,18 +32,15 @@
 - Для учебных изменений читать `STUDYSPACE_UNIVERSITY_CONTENT_MASTER.md`; для расширения банка также `CONTENT_EXPANSION_PROGRESS.md`.
 - Работать в отдельной ветке; не коммитить/пушить в `main`, не сливать PR автоматически. Prisma требует единственного владельца изменений.
 
-## Текущая задача — удобный выбор практики
+## Завершённая задача — удобный выбор практики
 
-- Изолированная ветка от актуального main `7f2ce7e`; чужая untracked `.idea/` сохранена. Задача: `.tasks/active/practice-builder-selection.md`.
-- Сравнены первичные документы Quizlet Test, Khan Academy, Brilliant и NN/G; отдельный UX reviewer рекомендует одностраничное улучшение. Решение/ограничения: `.tasks/research/practice-builder-selection.md`.
-- План: поиск/группировка тем, видимый выбранный набор, редактируемые пресеты, сводка, одно раскрытие дополнительных настроек. Без wizard и без изменения API/start/auth/БД/контента.
-- Реализован UI в `src/components/practice-builder.tsx` и scoped `src/app/globals.css`: пресеты-карточки, поиск/группировка, удаляемые выбранные темы, разные global/found bulk actions, сводка и advanced disclosure. `filter-select-all.tsx` теперь показывает понятные названия вместо одинакового «Выбрать все». Start handler/API сохранены.
-- Добавлен presentation-only `src/lib/practice-topic-search.ts`; 3/3 новых unit-тестов поиска/scoped selection прошли (`tests/practice-topic-search.test.ts`). QA снял/проверил исходные desktop/mobile screenshots, исходный audit1/1 PASS. Обновлены три прежних E2E шага для открытия advanced; новый независимый QA spec покрывает поиск/presets/edit/mobile/duplicate/reload.
-- Восстановлено после прерывания 2026-10-07: старые Playwright процессы завершились; dev49800 слушает3000. Новый QA fixture `runFixture` исправил lint false-positive. Уточнены доступное имя предмета, описания preset для screen reader и specificity поиска (значок больше не перекрывает текст).
-- После fetch/merge актуального main `7f2ce7e` (Already up to date): **51/51 unit, 26/26 integration, 5/5 новых +19/19 прежних E2E**, финальные typecheck/lint и production build PASS; Prisma validate/diff check PASS. Исправлен неоднозначный старый тестовый селектор темы (он находил новую кнопку удаления), без изменения проверки поведения.
-- Отдельный QA PASS и reviewer APPROVE; desktop/light/dark,390/320px, клавиатура, сохранение/редактирование/retry/duplicates/reload проверены. Финальные screenshots без переходов;320px viewport снимки заменяют Chrome fullPage artifact. Подробно: `.tasks/qa/practice-builder-selection.md`.
-- Известный unrelated `/favicon.ico`404 не исправляется в UI-задаче, отдельно исключён из console assertion только по точному URL/message. Реальный Telegram login/remote deploy не проверяются.
-- Frontend/tests закоммичены: `20c01d0`. Build-only изменения `next-env.d.ts` проверены и исключены; dev-сервер продолжает работать на `http://localhost:3000` (эта версия Next изолирует dev/build output). Следующий шаг: commit отчётов, push/PR (без merge); task READY_FOR_PR.
+- Ветка от main `7f2ce7e`; финальные fetch/merge 2026-10-07 — Already up to date. Коммиты `20c01d0` (UI/tests), `2b31a55` (research/QA/review), closure-docs опубликованы в task-ветке. [PR #5](https://github.com/gulTrueKanekiSSS/vibe_code/pull/5) открыт в main, **не слит**. Задача: `.tasks/done/practice-builder-selection.md`.
+- Изучены первичные документы Quizlet Test, Khan Academy, Brilliant и NN/G; независимый UX обзор подтвердил одностраничное улучшение. Решение/ограничения: `.tasks/research/practice-builder-selection.md`; human usability study не проводился.
+- `src/components/practice-builder.tsx`, scoped `src/app/globals.css`, `filter-select-all.tsx`: пресеты-карточки, поиск/группировка тем, удаляемый выбранный набор, разные global/found bulk actions, сводка и одно раскрытие advanced. Без wizard, новых режимов или изменений API/start/request-key/auth/БД/контента/AI.
+- `src/lib/practice-topic-search.ts`, `tests/practice-topic-search.test.ts`, `e2e/practice-builder-selection.spec.ts`; прежний practice-start E2E уточнён для раскрытия advanced и однозначного checkbox locator. Поиск presentation-only; hidden selection/filters и пустой all-topics scope явно отражены.
+- **51/51 unit,26/26 integration,5/5 новых +19/19 прежних E2E**, typecheck/lint/production build/Prisma validate/diff check PASS. Отдельный QA PASS и reviewer APPROVE; desktop/light/dark,390/320px, клавиатура, saved config/edit/retry/duplicates/reload проверены. Подробно: `.tasks/qa/practice-builder-selection.md`.
+- Исправлены после прерывания fixture lint, доступные описания preset/предмета, search padding и тестовые locators; screenshot transitions/Chrome fullPage artifacts отделены от реальных ошибок. `.idea/`, env/secrets, build/screenshot artifacts не committed; generated `next-env.d.ts` исключён. Схема/seed/migrations не менялись, банк742/64 сохранён.
+- Dev-сервер продолжает работать: `http://localhost:3000/practice/custom` после входа. Existing `/favicon.ico`404 вне scope; реальный Telegram login, remote deploy и unrelated full learning E2E не проверялись. Следующий шаг: ручной просмотр и review/merge человеком; не выполнять merge или deployment автоматически.
 
 ## Последний завершённый контентный пакет — минимум 10 заданий на тему
 
