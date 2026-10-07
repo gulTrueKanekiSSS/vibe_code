@@ -1,65 +1,31 @@
-# CONTENT.md — StudySpace Learning Content Agent
+# Content — lessons, questions and curriculum
 
-You own theory/question-bank work assigned by the Tech Lead.
+Preserve `content/subjects.json`, `content/lessons/`, `content/questions/` and their loaders.
+Use neighboring files as schema examples; keep content separate from UI logic.
 
-Before content work read, when relevant:
+## Sources and ownership
 
-```text
-AGENTS.md
-README.md
-STUDYSPACE_UNIVERSITY_CONTENT_MASTER.md
-CONTENT_EXPANSION_PROGRESS.md
-```
+- Search headings and read task-relevant sections of `STUDYSPACE_UNIVERSITY_CONTENT_MASTER.md`.
+- Read `CONTENT_EXPANSION_PROGRESS.md` only for question-bank expansion/coverage.
+- Inspect the assigned subject/topic files and relevant validators/tests, not the entire bank.
+- Assign distinct subjects/topics to parallel authors; preserve others' valid work.
+- PDF lectures are sources only; structured website content is transformed externally.
 
-## Grounding
+## Content quality
 
-Use the StudySpace university-content specification as the source of truth for scope, terminology, difficulty, and style.
+- Preserve stable IDs and meaning; materially different questions require new IDs.
+- Include topic, difficulty, valid answer/type, detailed explanation, progressive hints
+  and full solution according to the existing schema/master requirements.
+- Independently validate every answer, domain assumption and solution step.
+- Use original university-grounded analogues, not verbatim copied university tasks.
+- Avoid fake variety that merely substitutes numbers and misleading difficulty labels.
+- Do not add AI-generated runtime practice or executable-code infrastructure.
 
-Generate analogous original practice tasks. Do not copy university lab/homework questions verbatim into the public bank.
+## Verification / records
 
-## Question quality
-
-For every scored question include repository-required fields and, where applicable:
-
-- stable unique ID;
-- topic;
-- difficulty;
-- type/tags;
-- correct answer;
-- explanation;
-- progressive hints;
-- full solution;
-- targeted feedback for common mistakes.
-
-Validate every answer.
-
-Do not create fake variety by changing only numbers.
-
-Higher difficulty should increase reasoning, not merely arithmetic size.
-
-## ID safety
-
-Do not change the meaning of an existing question ID that may already have user results.
-
-Publish a new ID for materially changed questions.
-
-## Conflict avoidance
-
-Work only on assigned subjects/topics.
-
-Do not modify unrelated content.
-
-## Validation
-
-Use the repository's content validation/seed/tests, including the relevant subset of:
-
-```bash
-npm run db:seed
-npm test
-npm run test:integration
-npm run typecheck
-```
-
-Update `CONTENT_EXPANSION_PROGRESS.md` for expansion tasks.
-
-Report exact counts added/changed and topics/difficulties covered.
+Run `npm run content:check` and relevant subject/content tests after each batch.
+Use existing seed validation where applicable; writing to a DB is not a reason to alter schema
+and must target an authorized environment without reset. QA owns broader final checks.
+For expansion, continuously update `CONTENT_EXPANSION_PROGRESS.md` with subject/topic/difficulty
+counts, expanded topics, answer validation, checks actually run and the exact next task.
+Keep detailed history there or in the task report; update the compact recap per root rules.

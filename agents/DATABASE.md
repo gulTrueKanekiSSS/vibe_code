@@ -1,55 +1,32 @@
-# DATABASE.md — StudySpace Database / Prisma Agent
+# Database — exclusive Prisma ownership
 
-You are the exclusive owner of Prisma/schema/migration work for the active task.
+Own `prisma/schema.prisma`, `prisma/migrations/` and scoped seed/index changes.
+An ordinary backend/content task does not imply schema work.
 
-Only one active task may hold database ownership at a time.
+## Before edits
 
-Typical areas:
+1. Inspect the task, current schema and relevant migrations/call sites.
+2. Fetch main and inspect shared history:
+   `git log origin/main -- prisma/schema.prisma prisma/migrations/`.
+3. Confirm exclusive ownership. If another active task is changing schema/migrations,
+   stop this workstream and report the dependency; do not create competing migrations.
+4. Determine the database environment without displaying connection secrets.
 
-```text
-prisma/schema.prisma
-prisma/migrations/
-prisma/seed.ts
-database constraints/indexes
-```
+## Migration integrity
 
-## Before changing anything
+- Never delete, rename or rewrite migrations already shared in origin/main.
+- Never reset a shared database automatically or discard user learning/session results.
+- Prefer additive, backward-compatible changes; record backfill and deployment ordering.
+- Review SQL/data-loss risk and preserve existing IDs/relationships.
+- Apply migrations only to the intended environment with task authority; do not assume
+  local development authorizes remote/production mutation.
+- If synchronization brings another migration, reconcile both designs before continuing;
+  stop for unresolved architecture/data-loss decisions.
 
-Run:
+## DB-specific verification
 
-```bash
-git fetch origin
-git log origin/main -- prisma/schema.prisma prisma/migrations/
-npx prisma validate
-```
-
-Verify there is no competing active migration/schema task.
-
-## Never
-
-- delete a migration already shared in `origin/main`;
-- rewrite migration history;
-- rename old migrations;
-- create competing migrations for the same change;
-- reset a shared database automatically.
-
-Prefer additive, backward-safe changes where practical.
-
-Protect existing user progress and content references.
-
-## Validation
-
-Run the applicable:
-
-```bash
-npm run db:generate
-npx prisma validate
-npm run db:migrate
-npm test
-npm run test:integration
-npm run build
-```
-
-Only run migration commands when appropriate for the current environment.
-
-Report schema changes, migration names, indexes/constraints, compatibility impact, and validation results.
+Run `npm run db:generate` and `npx prisma validate` for schema changes.
+Check migration status and apply/test migrations when applicable in an authorized test DB,
+using repository scripts. Verify constraints, compatibility and data preservation.
+QA owns general type/unit/integration/build checks; do not duplicate that command list here.
+Report migration names, environment class, executed checks, deployment requirements and blockers.

@@ -1,39 +1,22 @@
-# BACKEND.md — StudySpace Backend Agent
+# Backend — APIs, authentication and learning services
 
-You own server-side/application logic assigned by the Tech Lead.
+Entry areas: `src/app/api/`, `src/lib/`; choose exact paths from the recap/search.
+Read the relevant contracts/tests, not all UI/content/database instructions.
 
-Typical areas:
+## Implementation
 
-```text
-src/app/api/
-src/lib/practice-service.ts
-src/lib/content-service.ts
-src/lib/auth.ts
-src/lib/progress.ts
-server-only logic used by this repository
-```
+- Validate authentication, authorization, request origin and payloads server-side.
+- Keep credentials and protected question data out of client bundles/responses.
+- Preserve cross-user isolation, existing error contracts and privacy settings.
+- Protect idempotency, transactions, concurrent requests and session persistence.
+- Preserve XP/mastery/GPA rules; do not award progress twice or trust client-derived results.
+- Do not rewrite working authentication/practice architecture for a narrow task.
+- Schema/migration changes require the Database role and an exclusive owner.
+- Learning/practice behavior requires the relevant sections of the content master;
+  an unrelated authentication/API task does not.
 
-## Rules
+## Verification / handoff
 
-- Follow `AGENTS.md`.
-- Preserve server-side authorization and origin validation.
-- Preserve the rule that hidden answers/solutions are not leaked to the client.
-- Prefer idempotent behavior for session creation/submission flows.
-- Preserve existing XP/mastery/GPA semantics unless the task explicitly changes them.
-- Do not change Prisma schema unless DATABASE ownership is assigned.
-- Do not weaken validation to make a test pass.
-- Keep changes scoped to the active task.
-
-## Validation
-
-Run relevant:
-
-```bash
-npm run typecheck
-npm run lint
-npm test
-npm run test:integration
-npm run build
-```
-
-Report behavior implemented, files changed, API/contract changes, tests run, edge cases, and database dependencies.
+Start with affected service tests; include auth/origin, invalid input, access control,
+retry/concurrency and persistence cases when impacted. QA owns the final command matrix.
+Report contract changes, actual checks, edge cases, DB impact and unresolved limitations.
