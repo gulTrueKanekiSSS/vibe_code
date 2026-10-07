@@ -1367,7 +1367,53 @@ blockquote {
   margin: 6px 0 0;
 }
 .practice-builder > .muted {
-  margin: 14px 0 20px;
+  margin: 14px 0 24px;
+  max-width: 760px;
+}
+.practice-builder-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 300px);
+  gap: 28px;
+  align-items: start;
+}
+.practice-builder-controls {
+  min-width: 0;
+}
+.practice-builder-presets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.practice-builder-preset {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 5px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.practice-builder-preset strong {
+  font-size: 13px;
+}
+.practice-builder-preset span,
+.practice-builder-preset small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.practice-builder-preset:hover:not(:disabled),
+.practice-builder-preset[aria-pressed="true"] {
+  border-color: var(--purple);
+  background: var(--purple-bg);
+}
+.practice-builder-section {
+  padding-top: 24px;
+}
+.practice-builder-section h3 {
+  margin-bottom: 16px;
 }
 .practice-builder-grid {
   display: grid;
@@ -1376,6 +1422,7 @@ blockquote {
 }
 .practice-builder-field,
 .practice-builder-fieldset {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 9px;
@@ -1416,10 +1463,219 @@ blockquote {
   border-radius: 10px;
   font-weight: 500;
   cursor: pointer;
+  background: var(--surface);
+}
+.practice-builder-options label:has(input:checked),
+.practice-builder-topics label:has(input:checked) {
+  border-color: var(--purple);
+  background: var(--purple-bg);
+}
+.practice-builder-options .button[aria-pressed="true"] {
+  border-color: var(--purple);
+  color: var(--purple);
+  background: var(--purple-bg);
+}
+.practice-builder-topics label:has(input:disabled) {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 .practice-builder-topics {
-  max-height: 220px;
+  display: block;
+  max-height: 320px;
   overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  scroll-padding-block: 12px;
+}
+.practice-builder-topic-group + .practice-builder-topic-group {
+  margin-top: 16px;
+}
+.practice-builder-topic-group h4 {
+  font-size: 12px;
+  margin: 4px 3px 10px;
+}
+.practice-builder-topics label {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  padding: 11px;
+  margin-top: 6px;
+  align-items: flex-start;
+}
+.practice-builder-topics label > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.practice-builder-topics strong {
+  display: block;
+  font-weight: 500;
+  font-size: 12px;
+}
+.practice-builder-topics small {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+}
+.practice-builder-topics input {
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.practice-builder-scope {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.practice-builder-selected {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  max-height: 160px;
+  overflow: auto;
+  padding: 4px;
+}
+.practice-builder-selected:empty {
+  display: none;
+}
+.practice-builder-selected button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 9px;
+  background: var(--purple-bg);
+  color: var(--ink);
+  font-size: 11px;
+  text-align: left;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.practice-builder-all-topics {
+  align-self: flex-start;
+  font-size: 12px;
+}
+.practice-builder-search > span {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.practice-builder-search svg {
+  position: absolute;
+  left: 12px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.practice-builder-search input[type="search"] {
+  padding-left: 38px;
+  min-width: 0;
+}
+.practice-builder-search-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.practice-builder-search-info .text-link {
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.practice-builder-empty {
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 400;
+}
+.practice-builder-count {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+.practice-builder-count .practice-builder-field {
+  width: 160px;
+}
+.practice-builder-count .button {
+  font-size: 12px;
+  padding: 11px 12px;
+}
+.practice-builder-advanced {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.practice-builder-advanced-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 0;
+  text-align: left;
+  color: var(--ink);
+  background: transparent;
+}
+.practice-builder-advanced-toggle span {
+  flex: 1;
+}
+.practice-builder-advanced-toggle strong,
+.practice-builder-advanced-toggle small {
+  display: block;
+}
+.practice-builder-advanced-toggle strong {
+  font-size: 13px;
+}
+.practice-builder-advanced-toggle small {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 3px;
+}
+.practice-builder-advanced-toggle[aria-expanded="true"] > svg:last-child {
+  transform: rotate(180deg);
+}
+.practice-builder-summary {
+  position: sticky;
+  top: 24px;
+  padding: 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.practice-builder-summary h3 {
+  font-size: 25px;
+  margin-top: 8px;
+}
+.practice-builder-summary dl {
+  display: grid;
+  gap: 14px;
+  margin: 22px 0;
+}
+.practice-builder-summary dt {
+  font-size: 11px;
+  color: var(--muted);
+}
+.practice-builder-summary dd {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 500;
+}
+.practice-builder-summary p {
+  margin-top: 14px;
+  font-size: 12px;
+}
+.practice-builder-summary .button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  font-size: 12px;
+  white-space: normal;
+}
+.practice-builder-summary > small {
+  display: block;
+  margin-top: 14px;
+  font-size: 11px;
 }
 .practice-builder input[type="checkbox"] {
   accent-color: var(--purple);
@@ -1430,16 +1686,32 @@ blockquote {
 .practice-builder-preferences {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.practice-builder > .practice-builder-options {
-  margin: 0 0 20px;
-}
-.practice-builder > .practice-builder-options .button {
-  font-size: 11px;
-  padding: 9px 12px;
+@media (max-width: 1100px) {
+  .practice-builder-layout {
+    grid-template-columns: 1fr;
+  }
+  .practice-builder-summary {
+    position: static;
+  }
+  .practice-builder-summary dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 @media (max-width: 640px) {
+  .practice-builder {
+    padding: 18px;
+  }
   .practice-builder-grid {
     grid-template-columns: 1fr;
+  }
+  .practice-builder-summary dl {
+    grid-template-columns: 1fr;
+  }
+  .practice-builder-search-info {
+    flex-direction: column;
+  }
+  .practice-builder-preset {
+    padding: 11px;
   }
 }
 .practice-subject {

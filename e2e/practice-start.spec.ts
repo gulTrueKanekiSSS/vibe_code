@@ -98,6 +98,7 @@ test("select all filters support partial selection, keyboard clearing and saved 
   await expect(allLevels).toBeChecked({ indeterminate: true });
   await allLevels.check();
 
+  await builder.getByRole("button", { name: "Дополнительные настройки", exact: true }).click();
   const allTypes = builder.getByRole("checkbox", {
     name: "Выбрать все типы заданий",
     exact: true,
@@ -287,6 +288,7 @@ test("university custom route filters task patterns, persists questions, and ren
   await builder.getByLabel("Рекурсия: база, возврат и статическое состояние", {exact:false}).check();
   await builder.getByLabel("Базовый",{exact:true}).uncheck();
   await builder.getByLabel("Средний",{exact:true}).uncheck();
+  await builder.getByRole("button", { name: "Дополнительные настройки", exact: true }).click();
   const types=builder.getByRole("group",{name:"Типы заданий",exact:true});
   const checked=types.locator('input:not([aria-label])');
   for(const checkbox of await checked.all()) await checkbox.uncheck();
@@ -373,11 +375,12 @@ test("custom delayed feedback, mistake review and practice again preserve settin
 }) => {
   await page.goto("/practice?topic=projection#custom-practice");
   const builder = page.locator(".practice-builder");
-  await expect(builder.getByLabel("Проекция вектора")).toBeChecked();
+  await expect(builder.getByRole("checkbox", { name: /^Проекция вектора/ })).toBeChecked();
   await builder.getByLabel("Базовый").uncheck();
   await builder.getByLabel("Средний").uncheck();
   await builder.getByLabel("Вызов").uncheck();
   await builder.getByLabel("Количество заданий", {exact:true}).fill("1");
+  await builder.getByRole("button", { name: "Дополнительные настройки", exact: true }).click();
   await builder.getByRole("radio", { name: "Отключены" }).check();
   await builder.getByRole("radio", { name: "В конце сессии" }).check();
   const first = await expectSession(

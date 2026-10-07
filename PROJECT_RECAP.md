@@ -1,7 +1,7 @@
 # StudySpace — краткий рекап проекта
 
-Обновлено: 2026-10-06. Текущая задача: `dmitrij/content/ten-questions-per-topic`.
-Проверенная база: `origin/main` — `6a92406`; правило рекапа уже слито человеком в main.
+Обновлено: 2026-10-07. Последняя завершённая задача: `dmitrij/feature/practice-builder-selection`.
+Проверенная база: `origin/main` — `7f2ce7e`; человек слил контентный PR #4.
 
 ## Как пользоваться
 
@@ -32,7 +32,17 @@
 - Для учебных изменений читать `STUDYSPACE_UNIVERSITY_CONTENT_MASTER.md`; для расширения банка также `CONTENT_EXPANSION_PROGRESS.md`.
 - Работать в отдельной ветке; не коммитить/пушить в `main`, не сливать PR автоматически. Prisma требует единственного владельца изменений.
 
-## Последний завершённый пакет — минимум 10 заданий на тему
+## Завершённая задача — удобный выбор практики
+
+- Ветка от main `7f2ce7e`; финальные fetch/merge 2026-10-07 — Already up to date. Коммиты `20c01d0` (UI/tests), `2b31a55` (research/QA/review), closure-docs опубликованы в task-ветке. [PR #5](https://github.com/gulTrueKanekiSSS/vibe_code/pull/5) открыт в main, **не слит**. Задача: `.tasks/done/practice-builder-selection.md`.
+- Изучены первичные документы Quizlet Test, Khan Academy, Brilliant и NN/G; независимый UX обзор подтвердил одностраничное улучшение. Решение/ограничения: `.tasks/research/practice-builder-selection.md`; human usability study не проводился.
+- `src/components/practice-builder.tsx`, scoped `src/app/globals.css`, `filter-select-all.tsx`: пресеты-карточки, поиск/группировка тем, удаляемый выбранный набор, разные global/found bulk actions, сводка и одно раскрытие advanced. Без wizard, новых режимов или изменений API/start/request-key/auth/БД/контента/AI.
+- `src/lib/practice-topic-search.ts`, `tests/practice-topic-search.test.ts`, `e2e/practice-builder-selection.spec.ts`; прежний practice-start E2E уточнён для раскрытия advanced и однозначного checkbox locator. Поиск presentation-only; hidden selection/filters и пустой all-topics scope явно отражены.
+- **51/51 unit,26/26 integration,5/5 новых +19/19 прежних E2E**, typecheck/lint/production build/Prisma validate/diff check PASS. Отдельный QA PASS и reviewer APPROVE; desktop/light/dark,390/320px, клавиатура, saved config/edit/retry/duplicates/reload проверены. Подробно: `.tasks/qa/practice-builder-selection.md`.
+- Исправлены после прерывания fixture lint, доступные описания preset/предмета, search padding и тестовые locators; screenshot transitions/Chrome fullPage artifacts отделены от реальных ошибок. `.idea/`, env/secrets, build/screenshot artifacts не committed; generated `next-env.d.ts` исключён. Схема/seed/migrations не менялись, банк742/64 сохранён.
+- Dev-сервер продолжает работать: `http://localhost:3000/practice/custom` после входа. Existing `/favicon.ico`404 вне scope; реальный Telegram login, remote deploy и unrelated full learning E2E не проверялись. Следующий шаг: ручной просмотр и review/merge человеком; не выполнять merge или deployment автоматически.
+
+## Последний завершённый контентный пакет — минимум 10 заданий на тему
 
 - Ветка: `dmitrij/content/ten-questions-per-topic`; актуальный `origin/main` `6a92406` интегрирован 2026-10-06.
 - **742 вопроса (+390), все 64 темы >=10**. Было 352; все старые объекты/ID неизменны, 17 ранее полных тем не затронуты. Добавлены 47 файловых пакетов по пяти предметам.
@@ -44,8 +54,8 @@
 - Dev-сервер для просмотра: `http://localhost:3000`. Полный unrelated E2E и реальный Telegram login не проверялись; no deployment/remote DB updates.
 - Сгенерированные build-правки `next-env.d.ts` исключены; чужая `.idea/` не тронута/не staged.
 - Детальные счётчики и validation: [CONTENT_EXPANSION_PROGRESS.md](CONTENT_EXPANSION_PROGRESS.md). Закрытая задача: `.tasks/done/ten-questions-per-topic.md`; описание PR: `.tasks/pr/ten-questions-per-topic.md`.
-- Коммиты `2e21172`, `4189218`, `8c2e49f` опубликованы; [PR #4](https://github.com/gulTrueKanekiSSS/vibe_code/pull/4) открыт в main и **не слит**. GitHub API использован с existing Git auth без вывода credentials, настройка авторизации не менялась.
-- Следующий шаг: review/merge человеком и при необходимости seed по обычному workflow отдельно развёрнутого окружения. Не выполнять merge и не начинать новое расширение автоматически.
+- Коммиты `2e21172`, `4189218`, `8c2e49f`, `cd60937` опубликованы; [PR #4](https://github.com/gulTrueKanekiSSS/vibe_code/pull/4) **слит человеком** в main `7f2ce7e` (подтверждено Git 2026-10-06). GitHub API использован с existing Git auth без вывода credentials, настройка авторизации не менялась.
+- Seed отдельно развёрнутого окружения выполняется отдельно по обычному workflow; эта UI-задача не обновляет remote DB и не расширяет банк.
 
 ## Историческая документация
 
