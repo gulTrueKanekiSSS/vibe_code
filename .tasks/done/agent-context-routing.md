@@ -1,6 +1,6 @@
 # Token-efficient agent instruction routing
 
-Status: BLOCKED
+Status: DONE
 Branch: dmitrij/chore/agent-context-routing
 Owner: dmitrij / Codex
 
@@ -31,7 +31,7 @@ Preserve unrelated untracked .idea/.
 - [x] Compact recap retains useful paths, decisions, report links and exact next step.
 - [x] Repo-local workflow skill is supported, narrowly scoped and validated.
 - [x] Documentation QA and independent review pass; no application paths changed.
-- [ ] Latest main integrated, all task changes committed/pushed, PR prepared without merging. Implementation published, final handoff-doc push blocked by GitHub 500.
+- [x] Latest main integrated, all previously blocked commits pushed, PR prepared without merging. Publication recovered; final status recorded in a documentation-only handoff commit.
 
 ## Repository Findings
 
@@ -76,6 +76,6 @@ Initial/final base 353fa03. Final fetch/merge on 2026-10-07: Already up to date;
 
 Implementation commit `abca807` pushed to origin/dmitrij/chore/agent-context-routing.
 PR: https://github.com/gulTrueKanekiSSS/vibe_code/pull/6 — open, merged=false, confirmed via API.
-Local handoff commit `9bb889b` was rejected by GitHub with Internal Server Error on three ordinary pushes. Read-only remote-ref check still showed `abca807`; no force/auth/history changes attempted. This blocker report is a further local documentation commit.
-Exact next step: verify HEAD vs origin/dmitrij/chore/agent-context-routing, retry ordinary push when GitHub recovers, then move this task to done/update recap and publish closure docs. No instruction implementation remains; human owns PR review/merge.
+Publication recovered: ordinary push sent `9bb889b` and `6b99568`; local/remote branch matched at `6b995681c15def37ce0d14420ba7bf0ccfa1c6c8`. No force/auth/history changes or repeated optimization.
+Exact next step: human review and optional human merge of PR #6; no unfinished implementation. Final publication-status documentation is committed on the same branch.
 Known limitations: no measured token benchmark or fresh-session skill-discovery benchmark; direct-path fallback provided. No application/runtime behavior changed or claimed tested.

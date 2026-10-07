@@ -35,12 +35,12 @@ Tracked-файлы — основной scope; новые релевантные
 - Банк: 5 предметов / 64 темы / 742 вопроса; все темы >=10, старые ID/объекты сохранены. [Счётчики и validation](CONTENT_EXPANSION_PROGRESS.md), [задача](.tasks/done/ten-questions-per-topic.md). PR #4 слит в `7f2ce7e`. README содержит старые счётчики; для expansion сверять progress и текущий content report.
 - Прежние app-проверки находятся в связанных QA/task отчётах; они не означают, что текущий worktree прошёл новые проверки. История рекапа — Git / PR #3 (`6a92406`), не копировать её сюда.
 
-## Незавершённый handoff / exact next step
+## Завершённый handoff / exact next step
 
-- Инструкции готовы: root 99 строк, роли подключаются условно; один skill `git-task-workflow` с отдельными start/finalize references. [Задача: publication blocked](.tasks/active/agent-context-routing.md).
+- Инструкции готовы: root 99 строк, роли подключаются условно; один skill `git-task-workflow` с отдельными start/finalize references. [Закрытая задача](.tasks/done/agent-context-routing.md).
 - Сделано после прерывания: проверены Git/diff и процессы; зависших операций изменения не обнаружено. Готовые изменения сохранены, skill дописан.
 - Проверки: структурная/path/scope validation, byte-identical Next.js block, skill validator и diff check PASS; независимые QA PASS / Reviewer APPROVE. [Отчёт и структура](.tasks/qa/agent-context-routing.md). App tests/lint/typecheck/build/DB commands для docs-only diff не запускались.
-- Main: `353fa03`, Already up to date. `abca807` опубликован; [PR #6](https://github.com/gulTrueKanekiSSS/vibe_code/pull/6) открыт, не слит. Push локального handoff `9bb889b` трижды отклонён GitHub: Internal Server Error. Следующий шаг: сверить HEAD/remote ref, повторить обычный push после восстановления GitHub, затем закрыть task/опубликовать closure. Force/auth/history не менять; реализация готова. Токены не benchmarked, skill имеет direct-path fallback.
+- Main: `353fa03`. Публикация восстановлена: обычный push отправил `9bb889b` и `6b99568`, local/remote совпали; [PR #6](https://github.com/gulTrueKanekiSSS/vibe_code/pull/6) открыт, не слит. Обновлены только статусы handoff; оптимизация не повторялась. Следующий шаг: review/merge человеком. Токены не benchmarked, skill имеет direct-path fallback.
 
 ## Ограничения
 
