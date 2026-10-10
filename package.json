@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "content:check": "tsx scripts/content-report.ts",
+    "tutor:index": "node --env-file=.env --import tsx scripts/index-tutor.ts",
     "test:e2e": "playwright test",
     "test:integration": "node --env-file=.env --import tsx --test integration/*.test.ts",
     "format": "prettier --write src content tests integration e2e prisma/seed.ts",

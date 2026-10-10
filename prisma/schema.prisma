@@ -17,6 +17,8 @@ model User {
   authSessions AuthSession[]
   sessions PracticeSession[]
   progress TopicProgress[]
+  tutorConversations TutorConversation[]
+  tutorUsage TutorUsage?
 }
 model UserSettings {
   userId String @id
@@ -70,6 +72,8 @@ model Topic {
   formulas Formula[]
   questions Question[]
   progress TopicProgress[]
+  tutorConversations TutorConversation[]
+  lectureChunks LectureChunk[]
 }
 model Formula {
   id String @id
@@ -125,6 +129,7 @@ model PracticeItem {
   correct Boolean @default(false)
   xp Int @default(0)
   submissions PracticeAttempt[]
+  tutorConversations TutorConversation[]
   @@unique([sessionId, questionId])
   @@index([questionId, completedAt])
 }
@@ -145,4 +150,61 @@ model TopicProgress {
   startedAt DateTime @default(now())
   readAt DateTime?
   @@id([userId, topicId])
+}
+model TutorConversation {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topicId String
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  itemId String?
+  item PracticeItem? @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  contextKey String
+  summary String @default("")
+  busyUntil DateTime?
+  busyToken String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  messages TutorMessage[]
+  @@unique([userId, contextKey])
+}
+model TutorMessage {
+  id String @id @default(cuid())
+  conversationId String
+  conversation TutorConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role String
+  content String
+  status String @default("complete")
+  requestKey String
+  sources Json @default("[]")
+  createdAt DateTime @default(now())
+  @@unique([conversationId, requestKey, role])
+  @@index([conversationId, createdAt])
+}
+model TutorUsage {
+  userId String @id
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  windowStart DateTime
+  count Int @default(0)
+  dayStart DateTime
+  dayCount Int @default(0)
+}
+model LectureChunk {
+  id String @id
+  topicId String
+  topic Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  subjectId String
+  moduleId String
+  lessonId String
+  title String
+  sectionTitle String
+  sectionIndex Int
+  text String
+  contentHash String
+  embedding Float[] @default([])
+  embeddingModel String @default("")
+  page Int?
+  updatedAt DateTime @updatedAt
+  @@index([subjectId])
+  @@index([topicId])
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Trophy } from "lucide-react";
 import { RichText } from "./markdown";
 import { RepeatPractice } from "./repeat-practice";
+import { TutorPanel } from "./tutor-panel";
 import type { StoredPracticeConfig } from "@/lib/practice-service";
 
 type SummaryItem = {
@@ -138,6 +139,11 @@ export function PracticeSummary({
                 <RichText>{item.mistakeFeedback}</RichText>
               )}
               <RichText>{item.solution}</RichText>
+              <TutorPanel
+                topicId={item.topicId}
+                practiceItemId={item.id}
+                label="Разобрать ошибку с Tutor"
+              />
               <Link className="text-link" href={`/topics/${item.topicId}`}>
                 Повторить теорию: {item.topicTitle}
               </Link>

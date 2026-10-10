@@ -1326,6 +1326,212 @@ blockquote {
   line-height: 1.8;
   padding: 0 15px;
 }
+.tutor-entry {
+  margin-top: 12px;
+}
+.tutor-disabled {
+  margin-top: 8px;
+  font-size: 12px;
+}
+.tutor-dialog {
+  position: fixed;
+  inset: 0 0 0 auto;
+  margin: 0;
+  padding: 0;
+  width: min(600px, 100%);
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  border: 0;
+  border-left: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--surface);
+}
+.tutor-dialog::backdrop {
+  background: #17181e80;
+}
+body:has(.tutor-dialog[open]) {
+  overflow: hidden;
+}
+.tutor-shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.tutor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 10px;
+  gap: 16px;
+}
+.tutor-header h2 {
+  margin: 4px 0 0;
+}
+.tutor-header .icon-button {
+  flex-shrink: 0;
+}
+.tutor-dialog .tutor-context {
+  margin: 0;
+  padding: 0 24px 12px;
+  font-size: 12px;
+  color: var(--purple);
+  overflow-wrap: anywhere;
+}
+.tutor-dialog .tutor-privacy {
+  margin: 0;
+  padding: 0 24px 12px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.tutor-history-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 24px;
+  border-block: 1px solid var(--line);
+  font-size: 11px;
+}
+.tutor-history-toolbar button {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.tutor-history {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px 24px;
+  flex: 1;
+  min-height: 90px;
+}
+.tutor-message {
+  border-radius: 14px;
+  background: var(--surface-2);
+  padding: 14px;
+  margin-bottom: 14px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.tutor-message-user {
+  margin-left: 24px;
+  background: var(--purple-bg);
+}
+.tutor-message > strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.tutor-message .prose {
+  font-size: 14px;
+}
+.tutor-message .prose pre,
+.tutor-message .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.tutor-message .prose img {
+  max-width: 100%;
+}
+.tutor-sources {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+  font-size: 12px;
+}
+.tutor-sources span {
+  color: var(--muted);
+}
+.tutor-sources a {
+  color: var(--purple);
+  text-decoration: underline;
+}
+.tutor-empty {
+  padding: 20px 0;
+  color: var(--muted);
+}
+.tutor-empty h3 {
+  margin: 12px 0 8px;
+  color: var(--ink);
+}
+.tutor-notice {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 13px;
+}
+.tutor-composer {
+  padding: 14px 24px max(18px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+}
+.tutor-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+.tutor-prompts button {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: var(--purple);
+  background: var(--surface-2);
+}
+.tutor-composer label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+.tutor-composer textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 70px;
+  max-height: 180px;
+  font-size: 16px;
+}
+.tutor-send-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.tutor-send-row small {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+.tutor-send-row .button {
+  width: auto;
+  flex-shrink: 0;
+}
+@media (max-width: 520px) {
+  .tutor-header {
+    padding: 14px 16px 8px;
+  }
+  .tutor-dialog .tutor-context,
+  .tutor-dialog .tutor-privacy {
+    padding-inline: 16px;
+  }
+  .tutor-history-toolbar,
+  .tutor-history,
+  .tutor-composer {
+    padding-inline: 16px;
+  }
+  .tutor-composer {
+    padding-top: 10px;
+  }
+  .tutor-prompts button {
+    padding: 6px 9px;
+  }
+  .tutor-history {
+    padding-block: 12px;
+  }
+}
 .practice-modes {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

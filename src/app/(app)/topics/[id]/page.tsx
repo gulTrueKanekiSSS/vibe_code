@@ -5,8 +5,6 @@ import {
   Languages,
   Lightbulb,
   AlertTriangle,
-  Sparkles,
-  LockKeyhole,
   BookOpen,
 } from "lucide-react";
 import { db } from "@/lib/db";
@@ -14,6 +12,7 @@ import { requireUser } from "@/lib/auth";
 import { PageHeading } from "@/components/ui";
 import { RichText, MathFormula } from "@/components/markdown";
 import { MarkRead, StartPractice } from "@/components/actions";
+import { TutorPanel } from "@/components/tutor-panel";
 import type { LessonSection } from "@/lib/content-source";
 import { curriculumLabel } from "@/lib/curriculum";
 
@@ -73,6 +72,11 @@ export default async function Topic({
                   <div>
                     <h3>{name === "Интуиция" ? "Представь это так" : name}</h3>
                     <RichText>{s.text}</RichText>
+                    <TutorPanel
+                      topicId={id}
+                      sectionIndex={index}
+                      label="Разобрать этот фрагмент"
+                    />
                   </div>
                 </section>
               );
@@ -84,6 +88,11 @@ export default async function Topic({
                     <Languages size={20} />
                     <RichText>{s.text}</RichText>
                   </div>
+                  <TutorPanel
+                    topicId={id}
+                    sectionIndex={index}
+                    label="Разобрать этот фрагмент"
+                  />
                 </section>
               );
             if (name === "Формула и её смысл")
@@ -100,6 +109,11 @@ export default async function Topic({
                   ) : (
                     <RichText>{s.text}</RichText>
                   )}
+                  <TutorPanel
+                    topicId={id}
+                    sectionIndex={index}
+                    label="Разобрать этот фрагмент"
+                  />
                 </section>
               );
             if (name === "Проверь понимание")
@@ -115,6 +129,11 @@ export default async function Topic({
                       пройди практику.
                     </small>
                   </details>
+                  <TutorPanel
+                    topicId={id}
+                    sectionIndex={index}
+                    label="Разобрать этот фрагмент"
+                  />
                 </section>
               );
             return (
@@ -136,6 +155,11 @@ export default async function Topic({
                 ) : (
                   <RichText>{s.text}</RichText>
                 )}
+                <TutorPanel
+                  topicId={id}
+                  sectionIndex={index}
+                  label="Разобрать этот фрагмент"
+                />
               </section>
             );
           })}
@@ -168,19 +192,12 @@ export default async function Topic({
             ))}
           </div>
           <div className="card tutor-card">
-            <div className="spread">
-              <Sparkles size={22} />
-              <span className="pill">СКОРО</span>
-            </div>
             <h3>AI Tutor</h3>
             <p>
-              Задавай вопросы по теме и разбирай сложные моменты с помощником.
+              Разбери непонятный шаг, попроси пример и проверь понимание темы.
             </p>
-            <button className="button secondary" disabled>
-              <LockKeyhole size={15} />
-              Спросить AI
-            </button>
-            <small>Объяснить проще · Другой пример</small>
+            <TutorPanel topicId={id} />
+            <small>Короткие объяснения · Материалы курса</small>
           </div>
           <div className="lesson-tip">
             Понимание важнее скорости.
