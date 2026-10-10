@@ -5,6 +5,7 @@ import { db } from "./db";
 import {
   resolveTutorContext,
   protectedTutorReason,
+  protectedTutorSession,
   TutorError,
   tutorContextSchema,
   type TutorContextInput,
@@ -58,14 +59,24 @@ async function snapshot(
 ): Promise<TutorSnapshot> {
   const reason =
     context.unavailableReason ?? (await protectedTutorReason(userId, client));
-  if (reason)
+  if (reason) {
+    const blocking = await protectedTutorSession(userId, client);
     return {
       context: context.display,
       conversationId: null,
       messages: [],
       available: false,
       unavailableReason: reason,
+      ...(blocking
+        ? {
+            blockingSession: {
+              ...blocking,
+              createdAt: blocking.createdAt.toISOString(),
+            },
+          }
+        : {}),
     };
+  }
   const conversation = await client.tutorConversation.findUnique({
     where: { userId_contextKey: { userId, contextKey: context.key } },
     include: {

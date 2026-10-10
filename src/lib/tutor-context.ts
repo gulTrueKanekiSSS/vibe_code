@@ -61,11 +61,11 @@ export type ResolvedTutorContext = {
 };
 
 // This is deliberately user-wide: opening another lesson must not bypass an exam.
-export async function protectedTutorReason(
+export async function protectedTutorSession(
   userId: string,
   client: Client = db,
 ) {
-  const protectedSession = await client.practiceSession.findFirst({
+  return client.practiceSession.findFirst({
     where: {
       userId,
       finishedAt: null,
@@ -75,8 +75,15 @@ export async function protectedTutorReason(
         { config: { path: ["hintsAllowed"], equals: false } },
       ],
     },
-    select: { id: true },
+    orderBy: { createdAt: "asc" },
+    select: { id: true, mode: true, createdAt: true },
   });
+}
+export async function protectedTutorReason(
+  userId: string,
+  client: Client = db,
+) {
+  const protectedSession = await protectedTutorSession(userId, client);
   return protectedSession
     ? "Tutor недоступен, пока не завершена сессия экзамена, с отложенной проверкой или без подсказок."
     : undefined;

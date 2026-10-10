@@ -12,6 +12,7 @@ type SummaryItem = {
   difficulty: string;
   prompt: string;
   correct: boolean;
+  completed: boolean;
   xp: number;
   attempts: { answer: unknown; correct: boolean; feedback: string | null }[];
   expectedAnswer: unknown;
@@ -40,12 +41,14 @@ export function PracticeSummary({
   config: StoredPracticeConfig | null;
   overallAfter: number | null;
 }) {
-  const correct = items.filter((item) => item.correct).length;
+  const completed = items.filter((item) => item.completed);
+  const early = completed.length < items.length;
+  const correct = completed.filter((item) => item.correct).length;
   const topicNames = [...new Set(items.map((item) => item.topicTitle))];
   const mistakes = items.flatMap((item) => {
     const attempts = item.attempts.length
       ? item.attempts
-      : item.correct
+      : item.correct || !item.completed
         ? []
         : [{ answer: null, correct: false, feedback: null }];
     return attempts
@@ -65,10 +68,23 @@ export function PracticeSummary({
           <Trophy size={34} />
         </div>
         <span className="eyebrow">ЕЩЁ ОДИН ШАГ ВПЕРЁД</span>
-        <h1>{mode === "exam" ? "Результат экзамена" : "Практика завершена"}</h1>
+        <h1>
+          {early
+            ? "Сессия завершена досрочно"
+            : mode === "exam"
+              ? "Результат экзамена"
+              : "Практика завершена"}
+        </h1>
         <p>
-          Решено верно {correct} из {items.length} заданий.
+          Решено верно {correct} из {completed.length} завершённых заданий.
         </p>
+        {early && (
+          <p className="muted">
+            Не завершено: {items.length - completed.length}. Эти задания не
+            засчитаны как выполненные или неверные; новые ответы в этой сессии
+            больше не принимаются.
+          </p>
+        )}
         <p className="muted">
           {topicNames.length <= 3
             ? `Темы: ${topicNames.join(", ")}`
@@ -78,13 +94,21 @@ export function PracticeSummary({
           +{xp} <small>XP</small>
         </div>
         <p className="muted">
-          {config?.overallBefore !== null &&
-          config?.overallBefore !== undefined &&
-          overallAfter !== null
-            ? `Общее mastery: ${config.overallBefore} → ${overallAfter}.`
-            : "Прогресс и Practice GPA обновлены."}
+          {completed.length === 0
+            ? "Нет завершённых заданий — XP, mastery и Practice GPA не изменены."
+            : config?.overallBefore !== null &&
+                config?.overallBefore !== undefined &&
+                overallAfter !== null
+              ? `Общее mastery: ${config.overallBefore} → ${overallAfter}.`
+              : "Прогресс и Practice GPA обновлены."}
         </p>
         <div className="button-row">
+          <Link
+            className="button secondary"
+            href="/practice#unfinished-sessions"
+          >
+            К практике и незавершённым сессиям
+          </Link>
           {config && <RepeatPractice sessionId={sessionId} />}
           <Link className="button secondary" href={editUrl}>
             Изменить настройки
@@ -107,7 +131,7 @@ export function PracticeSummary({
       <section className="card practice-summary-details">
         <h2>По уровню сложности</h2>
         {(["EASY", "MEDIUM", "HARD", "CHALLENGE"] as const).map((level) => {
-          const group = items.filter((item) => item.difficulty === level);
+          const group = completed.filter((item) => item.difficulty === level);
           return group.length ? (
             <div className="spread" key={level}>
               <span>{labels[level]}</span>
@@ -121,7 +145,11 @@ export function PracticeSummary({
       <section className="card practice-summary-details" id="mistake-review">
         <h2>Разбор ошибок</h2>
         {mistakes.length === 0 ? (
-          <p className="muted">Ошибок нет — отличная работа.</p>
+          <p className="muted">
+            {completed.length === 0
+              ? "Нет ответов для разбора."
+              : "Ошибок в отправленных ответах нет."}
+          </p>
         ) : (
           mistakes.map((item, index) => (
             <article key={`${item.id}-${index}`} className="mistake-item">

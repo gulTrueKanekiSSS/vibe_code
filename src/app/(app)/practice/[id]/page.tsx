@@ -5,6 +5,7 @@ import { PageHeading } from "@/components/ui";
 import { getProgress } from "@/lib/progress";
 import { readPracticeConfig } from "@/lib/practice-service";
 import { PracticeSummary } from "@/components/practice-summary";
+import { FinishPractice } from "@/components/finish-practice";
 import {
   PracticeRunner,
   type PracticeView,
@@ -49,6 +50,7 @@ export default async function Session({
           difficulty: item.question.difficulty,
           prompt: item.question.prompt,
           correct: item.correct,
+          completed: !!item.completedAt,
           xp: item.xp,
           attempts: item.submissions.map((attempt) => ({
             answer: attempt.answer,
@@ -113,6 +115,9 @@ export default async function Session({
         hintsAllowed={config?.hintsAllowed ?? true}
         feedbackAtEnd={config?.feedbackMode === "end"}
       />
+      <div className="session-finish-action">
+        <FinishPractice sessionId={session.id} />
+      </div>
     </>
   );
 }

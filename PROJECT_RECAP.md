@@ -1,7 +1,7 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-10. Задача/ветка: `dmitrij/feature/contextual-ai-tutor`.
-Проверенная база: `origin/main 03790cf` (PR #6 слит человеком; Git проверен).
+Обновлено: 2026-10-10. Задача/ветка: `dmitrij/fix/unfinished-practice-controls`.
+Проверенная база: `origin/main 36a7add` (PR #7 слит человеком; Git проверен).
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
 ## Карта подсистем — искать, затем открывать
@@ -12,6 +12,7 @@
 | UI / страницы | `src/app/(app)/`, `src/components/`, `src/app/globals.css` | роль Frontend; точечные E2E |
 | Выбор практики | `src/components/practice-builder.tsx`, `practice-setup.tsx`; `src/lib/practice-topic-search.ts`, `filter-selection.ts` | `tests/practice-topic-search.test.ts`, `e2e/practice-builder-selection.spec.ts` |
 | Старт / ответы / resume | `src/app/api/practice/`, `src/lib/practice-service.ts`, `src/components/practice-runner.tsx` | `integration/practice.test.ts`, `e2e/practice-start.spec.ts` |
+| Незавершённые / досрочное завершение | `src/components/unfinished-practice.tsx`, `finish-practice.tsx`; `/practice`, `/practice/[id]`; `finishPractice` | `integration/practice-finish.test.ts`, `e2e/practice-finish.spec.ts` |
 | XP / mastery / GPA / рейтинг | `src/lib/learning.ts`, `src/lib/progress.ts` | точечные `tests/` и `integration/` |
 | Telegram / сессии / privacy | `src/lib/telegram.ts`, `auth.ts`, `request-origin.ts`; `src/app/api/auth/` | роль Backend; auth/integration tests |
 | AI Tutor V1 | `src/components/tutor-panel.tsx`, `src/app/api/tutor/route.ts`; `src/lib/tutor-context.ts`, `tutor-service.ts`, `tutor/` | `tests/tutor.test.ts`, `integration/tutor*.test.ts`, `e2e/tutor.spec.ts`; `scripts/index-tutor.ts` |
@@ -46,7 +47,9 @@ Tracked-файлы — основной scope; новые релевантные
 - Additive migration `20261008120000_contextual_ai_tutor` применена только локально; Prisma generate/validate/status и DB/schema diff PASS, прежние учебные таблицы сохранены. Deploy требует этой миграции перед новым кодом.
 - Проверки: typecheck/lint/build PASS; unit 62/62, integration 40/40, финальные Tutor E2E 9/9 и прежние 3 practice regressions PASS. [QA](.tasks/qa/contextual-ai-tutor.md), [Review APPROVE](.tasks/qa/contextual-ai-tutor-review.md). Исправлены focus trap, Markdown external-image leak и retry после 4xx. AI-текст в E2E подставной; live-вызовов нет.
 - Локальный text index: 64 темы / 505 chunks / 0 новых embeddings. README содержит env/index/live smoke инструкции и ограничения V1.
-- Main sync `03790cf`: already up to date. Implementation `7204451` отправлен; [PR #7](https://github.com/gulTrueKanekiSSS/vibe_code/pull/7) открыт в main, **не слит**. Exact next step: human review и live-проверка после настройки AI env/embeddings, затем решение о rollout. Публикация не означает production deployment.
+- [PR #7](https://github.com/gulTrueKanekiSSS/vibe_code/pull/7) слит человеком в `36a7add`. Live-проверка после настройки AI env/embeddings остаётся отдельным шагом; merge не означает production deployment.
+- [Текущая задача](.tasks/active/unfinished-practice-controls.md): старые protected-сессии скрывались за `take: 3`, блокируя Tutor. Добавлены полный доступный список, продолжение/подтверждаемое досрочное закрытие, ссылка из Tutor, честный summary незавершённых заданий. Без схемы/миграций; реальные пользовательские сессии не закрывались автоматически.
+- Сервер: только `finishedAt`, owner check + user lock, идемпотентность, запрет новых answer/hint после закрытия. Незавершённые items не превращаются в assessment. Проверки PASS: typecheck/lint/build, unit62, integration48 (8 новых), E2E15 (6 finish + 9 Tutor). [QA](.tasks/qa/unfinished-practice-controls.md), [Review APPROVE](.tasks/qa/unfinished-practice-controls-review.md); focus и неоднозначный старый Tutor test locator исправлены. Main sync `36a7add` без конфликтов. Exact next step: commit/push и отдельный PR.
 
 ## Ограничения
 

@@ -7,6 +7,7 @@ import {
   submitPractice,
   revealHint,
   repeatPractice,
+  finishPractice,
 } from "@/lib/practice-service";
 const schema = z.discriminatedUnion("action", [
   z.object({
@@ -66,6 +67,14 @@ const schema = z.discriminatedUnion("action", [
     sessionId: z.string().max(100),
     requestKey: z.uuid(),
   }),
+  z.strictObject({
+    action: z.literal("finish"),
+    sessionId: z
+      .string()
+      .min(1)
+      .max(100)
+      .regex(/^[a-zA-Z0-9_-]+$/),
+  }),
 ]);
 export async function POST(request: Request) {
   if (!sameOrigin(request))
@@ -78,6 +87,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Войди в аккаунт." }, { status: 401 });
   try {
     const body = schema.parse(await request.json());
+    if (body.action === "finish")
+      return NextResponse.json(await finishPractice(user.id, body.sessionId));
     if (body.action === "start")
       return NextResponse.json({
         sessionId: await startPractice(
