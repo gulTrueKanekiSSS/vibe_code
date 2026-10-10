@@ -42,11 +42,11 @@ Tracked-файлы — основной scope; новые релевантные
 
 - Инструкции готовы: root 99 строк, роли подключаются условно; один skill `git-task-workflow` с отдельными start/finalize references. [Закрытая задача](.tasks/done/agent-context-routing.md).
 - [PR #6](https://github.com/gulTrueKanekiSSS/vibe_code/pull/6) слит человеком; прежний [QA инструкций](.tasks/qa/agent-context-routing.md) — исторический результат.
-- [AI Tutor task/PM/Tech Lead](.tasks/active/contextual-ai-tutor.md): готовы contextual drawer, owned persisted turns, leases/idempotency/quotas, safe context, provider, chunk/index/retrieval, unit/integration/E2E. Auth, scoring и question bank не переписывались.
+- [AI Tutor task/PM/Tech Lead](.tasks/done/contextual-ai-tutor.md): готовы contextual drawer, owned persisted turns, leases/idempotency/quotas, safe context, provider, chunk/index/retrieval, unit/integration/E2E. Auth, scoring и question bank не переписывались.
 - Additive migration `20261008120000_contextual_ai_tutor` применена только локально; Prisma generate/validate/status и DB/schema diff PASS, прежние учебные таблицы сохранены. Deploy требует этой миграции перед новым кодом.
 - Проверки: typecheck/lint/build PASS; unit 62/62, integration 40/40, финальные Tutor E2E 9/9 и прежние 3 practice regressions PASS. [QA](.tasks/qa/contextual-ai-tutor.md), [Review APPROVE](.tasks/qa/contextual-ai-tutor-review.md). Исправлены focus trap, Markdown external-image leak и retry после 4xx. AI-текст в E2E подставной; live-вызовов нет.
 - Локальный text index: 64 темы / 505 chunks / 0 новых embeddings. README содержит env/index/live smoke инструкции и ограничения V1.
-- Main sync `03790cf`: already up to date. Exact next step: inspect/stage, commit/push и PR. Финальный handoff ещё не выполнен.
+- Main sync `03790cf`: already up to date. Implementation `7204451` отправлен; [PR #7](https://github.com/gulTrueKanekiSSS/vibe_code/pull/7) открыт в main, **не слит**. Exact next step: human review и live-проверка после настройки AI env/embeddings, затем решение о rollout. Публикация не означает production deployment.
 
 ## Ограничения
 

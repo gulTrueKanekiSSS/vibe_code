@@ -1,6 +1,6 @@
 # Contextual AI Tutor V1
 
-Status: VERIFIED — publication pending
+Status: DONE — PR ready for human review; live provider rollout not certified
 Branch: dmitrij/feature/contextual-ai-tutor
 Owner: dmitrij / Codex; base origin/main 03790cf (human merged PR #6).
 
@@ -26,7 +26,7 @@ No autonomous teacher, generated scored questions, code execution, PDF upload/pa
 - [x] Exam/delayed-feedback/no-hints protection enforced server-side, including access through other contexts; no protected answer/solution/grading exposure.
 - [x] AI cannot modify existing scored practice/progress; only safe user learning context leaves the server.
 - [x] Unit/integration, typecheck, lint, build, Prisma validation/generation/migration checks and relevant E2E; independent QA/review.
-- [ ] Latest main integrated, committed, pushed, PR prepared; human merge only.
+- [x] Latest main integrated, committed, pushed, [PR #7](https://github.com/gulTrueKanekiSSS/vibe_code/pull/7) prepared; human merge only.
 
 ## Repository findings
 
@@ -68,6 +68,6 @@ Verification: full typecheck/lint PASS; unit 62/62 and integration 40/40 PASS af
 
 Fixed findings: keyboard focus escape, test fixture lint name, expired pending error text, safe options/type context, removal of private exercise IDs from provider payload, external-image Markdown egress and editor lock after definitive rejected requests. No auth/scoring/content-bank changes. Unrelated `.idea/` preserved.
 
-Main fetched and merged: already up to date at `03790cf`. No force operations, reset or automatic merge. Exact next step: inspect final staged diff, commit/push this branch and create a PR into main, then record handoff.
+Main fetched and merged: already up to date at `03790cf`. Implementation commit `720445153a7bf48d793994a2434d28180d8cd825` pushed successfully to existing task branch. [PR #7](https://github.com/gulTrueKanekiSSS/vibe_code/pull/7) is open into main, not merged. No force operations, reset or automatic merge. Exact next step: human PR review; configure server AI credentials/models and perform the documented live teaching/embedding smoke before production rollout.
 
 Release limitations: no credentials/live provider or real Telegram test; no paid semantic index built locally; no raw streaming or automatic history summary. Free model explanations are limited to lessons and legitimately unlocked exercises; unsolved exercises use safe server coaching actions. Owner must configure models/key, run index with `--embeddings`, and validate teaching quality before production rollout.
