@@ -1,6 +1,6 @@
 # Unfinished practice controls
 
-Status: READY_FOR_PR
+Status: DONE — PR ready for human review
 Branch: dmitrij/fix/unfinished-practice-controls
 Owner: Codex; base origin/main 36a7add (Tutor PR #7 merged by human).
 
@@ -16,7 +16,7 @@ User cannot see an old unfinished protected practice session that blocks Tutor. 
 - [x] Server finish is authenticated, owner-scoped, serialized/idempotent; closed sessions cannot accept new answers/hints.
 - [x] Preserve completed results and XP; untouched/incomplete items do not become completed or invented mistakes. Summary distinguishes early finish from full completion.
 - [x] Closing last protected session removes Tutor block; another protected session still blocks it.
-- [ ] Relevant unit/integration/E2E + typecheck/lint/build, independent review, latest-main sync and PR without auto-merge.
+- [x] Relevant unit/integration/E2E + typecheck/lint/build, independent review, latest-main sync and PR without auto-merge.
 
 ## Findings / plan
 
@@ -32,4 +32,4 @@ Implemented all controls and narrow server finish action, preserving existing se
 
 PASS: typecheck, lint, 62 unit, 48 integration, 15 E2E (six finish + nine Tutor), production build. Main synchronized at `36a7add` without conflicts. [QA](../qa/unfinished-practice-controls.md), [independent review](../qa/unfinished-practice-controls-review.md).
 
-Next: inspect/stage/commit, push dedicated branch and open PR; no auto-merge. Real user sessions remain untouched until explicit UI confirmation.
+Implementation commit `3e9a6b46dfbe982dfccb7e1ab23b99ac1cfb304f` pushed to the dedicated branch. [PR #8](https://github.com/gulTrueKanekiSSS/vibe_code/pull/8) is open into main, not merged. Next: human review/merge and deployment as appropriate; user can explicitly continue or close the old session in `/practice#unfinished-sessions`. No real user session was automatically closed; no schema migration is needed.
