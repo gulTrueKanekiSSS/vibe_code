@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+import { practiceSessionLabel } from "@/lib/practice-session-label";
 
 import { useId, useRef, useState } from "react";
 import { RefreshCw, Send, Sparkles, X } from "lucide-react";
@@ -325,6 +327,34 @@ export function TutorPanel({
                 {snapshot.unavailableReason ||
                   "Tutor недоступен в текущем режиме практики. Вернись после её завершения."}
               </p>
+            )}
+            {unavailable && snapshot.blockingSession && (
+              <div className="tutor-notice">
+                <p>
+                  {practiceSessionLabel(snapshot.blockingSession.mode)} ·{" "}
+                  {new Date(
+                    snapshot.blockingSession.createdAt,
+                  ).toLocaleDateString("ru-RU", { timeZone: "UTC" })}
+                </p>
+                <p>
+                  Эта сессия ещё не закрыта. Можно продолжить её или завершить
+                  досрочно на странице практики.
+                </p>
+                <div className="button-row">
+                  <Link
+                    className="button secondary"
+                    href={`/practice/${snapshot.blockingSession.id}`}
+                  >
+                    Продолжить сессию
+                  </Link>
+                  <Link
+                    className="text-link"
+                    href="/practice#unfinished-sessions"
+                  >
+                    Управлять незавершёнными сессиями
+                  </Link>
+                </div>
+              </div>
             )}
             {current?.restricted && !unavailable && (
               <p className="tutor-notice">

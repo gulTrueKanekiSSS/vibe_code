@@ -346,6 +346,22 @@ export async function startPractice(
     return session.id;
   });
 }
+export async function finishPractice(userId: string, sessionId: string) {
+  return serial(userId, async (tx) => {
+    const session = await tx.practiceSession.findFirst({
+      where: { id: sessionId, userId },
+      select: { id: true, finishedAt: true },
+    });
+    if (!session) throw new PracticeError("Сессия не найдена.");
+    // Closing is terminal, but does not turn skipped questions into attempts.
+    if (!session.finishedAt)
+      await tx.practiceSession.update({
+        where: { id: session.id },
+        data: { finishedAt: new Date() },
+      });
+    return { sessionId: session.id };
+  });
+}
 export async function repeatPractice(
   userId: string,
   sessionId: string,
@@ -420,6 +436,8 @@ export async function submitPractice(
                 )
               : null,
       };
+    if (item.session.finishedAt)
+      throw new PracticeError("Сессия уже завершена. Начни новую практику.");
     if (item.attempts >= RULES.maxAttempts)
       throw new PracticeError("Лимит попыток исчерпан.");
     const correct = checkAnswer(
@@ -500,7 +518,7 @@ export async function revealHint(userId: string, itemId: string) {
       where: { id: itemId, session: { userId } },
       include: { question: true, session: true },
     });
-    if (!item || item.completedAt)
+    if (!item || item.completedAt || item.session.finishedAt)
       throw new PracticeError("Подсказка недоступна.");
     if (
       item.session.mode === "exam" ||

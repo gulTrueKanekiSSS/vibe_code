@@ -12,6 +12,11 @@ import { db } from "@/lib/db";
 import { PageHeading, SectionHeading, SubjectIcon } from "@/components/ui";
 import { StartPractice } from "@/components/actions";
 import { PracticeSetup } from "@/components/practice-setup";
+import { UnfinishedPractice } from "@/components/unfinished-practice";
+import {
+  practiceSessionLabel,
+  protectedPracticeSession,
+} from "@/lib/practice-session-label";
 export default async function Practice({
   searchParams,
 }: {
@@ -23,7 +28,13 @@ export default async function Practice({
     active = await db.practiceSession.findMany({
       where: { userId: user.id, finishedAt: null },
       orderBy: { createdAt: "desc" },
-      take: 3,
+      select: {
+        id: true,
+        mode: true,
+        config: true,
+        createdAt: true,
+        items: { select: { completedAt: true } },
+      },
     });
   return (
     <>
@@ -32,6 +43,20 @@ export default async function Practice({
         title="Время практики"
         description="Попробуй, ошибись, разберись. Здесь каждый ответ помогает учиться."
       />
+      {active.length > 0 && (
+        <UnfinishedPractice
+          sessions={active.map((session) => ({
+            id: session.id,
+            label: practiceSessionLabel(session.mode),
+            createdLabel:
+              session.createdAt.toLocaleString("ru-RU", { timeZone: "UTC" }) +
+              " UTC",
+            completed: session.items.filter((item) => item.completedAt).length,
+            total: session.items.length,
+            blocksTutor: protectedPracticeSession(session.mode, session.config),
+          }))}
+        />
+      )}
       <div className="practice-modes">
         {[
           {
@@ -92,23 +117,6 @@ export default async function Practice({
         </Link>
       </p>
       <PracticeSetup userId={user.id} query={query} />
-      {active.length > 0 && (
-        <section>
-          <SectionHeading title="Продолжить сессию" />
-          <div className="card">
-            {active.map((s) => (
-              <Link key={s.id} className="topic-row" href={`/practice/${s.id}`}>
-                <Target size={18} />
-                <span className="topic-name">
-                  Незавершённая практика ·{" "}
-                  {s.createdAt.toLocaleDateString("ru-RU")}
-                </span>
-                <ArrowRight size={18} />
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
       <SectionHeading title="Практика по предмету" />
       <div className="subject-cards">
         {p.subjects.map((s) => (

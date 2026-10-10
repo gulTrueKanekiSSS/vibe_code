@@ -422,8 +422,14 @@ for (const protection of ["exam", "delayed", "no-hints"] as const) {
     await expect(
       dialog.getByRole("button", { name: "Отправить", exact: true }),
     ).toBeDisabled();
-    await expect(dialog.locator(".tutor-notice")).toContainText(
+    await expect(dialog.locator('.tutor-notice[role="status"]')).toContainText(
       /экзамен|практик|заверш/i,
     );
+    await expect(
+      dialog.getByRole("link", { name: "Продолжить сессию" }),
+    ).toHaveAttribute("href", `/practice/${session.id}`);
+    await expect(
+      dialog.getByRole("link", { name: "Управлять незавершёнными сессиями" }),
+    ).toHaveAttribute("href", "/practice#unfinished-sessions");
   });
 }

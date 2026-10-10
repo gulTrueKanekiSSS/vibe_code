@@ -1532,6 +1532,33 @@ body:has(.tutor-dialog[open]) {
     padding-block: 12px;
   }
 }
+.unfinished-sessions {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.unfinished-session {
+  padding: 20px;
+  min-width: 0;
+}
+.unfinished-session h3 {
+  margin: 0;
+}
+.finish-practice {
+  min-width: 0;
+  max-width: 100%;
+}
+.finish-confirmation {
+  max-width: 560px;
+  overflow-wrap: anywhere;
+}
+.session-finish-action {
+  margin-top: 24px;
+}
+#unfinished-sessions {
+  margin-bottom: 28px;
+  scroll-margin-top: 24px;
+}
 .practice-modes {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

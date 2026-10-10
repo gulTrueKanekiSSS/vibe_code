@@ -39,6 +39,7 @@ export type TutorSnapshot = {
   messages: TutorMessageView[];
   available: boolean;
   unavailableReason?: string;
+  blockingSession?: { id: string; mode: string; createdAt: string };
 };
 export type TutorHistoryEntry = { role: "user" | "assistant"; content: string };
 export type TutorExercise = {
