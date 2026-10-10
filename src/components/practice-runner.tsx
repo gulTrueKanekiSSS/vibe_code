@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { RichText } from "./markdown";
 import { ProgressBar } from "./ui";
+import { TutorPanel } from "./tutor-panel";
 export type PracticeView = {
   id: string;
   questionId: string;
@@ -386,6 +387,17 @@ export function PracticeRunner({
         Прогресс сохраняется автоматически. За повторно решённый вопрос XP не
         начисляется.
       </p>
+      <TutorPanel
+        key={item.id}
+        topicId={item.topicId}
+        practiceItemId={item.id}
+        label="Обсудить задание с Tutor"
+        disabledReason={
+          exam || feedbackAtEnd || !hintsAllowed
+            ? "Tutor доступен после завершения практики: сейчас включён экзамен, отложенная проверка или режим без подсказок."
+            : undefined
+        }
+      />
     </div>
   );
 }

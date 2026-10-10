@@ -87,7 +87,8 @@ or report the blocker and exact next step without claiming completion.
 - Shared sensitive files have one owner; parallelize only independent workstreams.
 - Prisma schema/migrations require exclusive ownership. Stop that workstream if another task owns it.
   Shared migrations are immutable; never reset a shared DB automatically. Details: Database role.
-- AI Tutor remains `Coming soon`: no LLM SDK/API/keys/endpoints/chat storage/runtime AI practice.
+- AI Tutor V1 is explicitly authorized: server-only provider access, owned history, grounded sources,
+  protected exam/answer boundaries; no AI changes to deterministic mastery/GPA or scored practice.
 
 ## Verification and persistent recap
 
