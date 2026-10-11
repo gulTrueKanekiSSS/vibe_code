@@ -44,7 +44,10 @@ export async function indexCourseContent(
       );
       for (let offset = 0; offset < missing.length; offset += 16) {
         const batch = missing.slice(offset, offset + 16);
-        const vectors = await provider.embedText(batch.map((c) => c.text));
+        const vectors = await provider.embedText(
+          batch.map((c) => c.text),
+          "document",
+        );
         if (
           vectors.length !== batch.length ||
           vectors.some(

@@ -1,172 +1,55 @@
 import { env } from "node:process";
+import { boundedHistory, TUTOR_INSTRUCTIONS } from "./policy";
 import {
-  boundedHistory,
-  guidedResponseSchema,
-  teachingResponseSchema,
-  TUTOR_INSTRUCTIONS,
-} from "./policy";
-import type { TutorGenerationInput, TutorProvider } from "./types";
+  TutorProviderError,
+  requestProviderJson,
+  tutorInputData,
+  tutorOutputSchema,
+  parseTutorOutput,
+  validateEmbeddingTexts,
+  validateVectors,
+} from "./provider-common";
+import { createYandexTutorProvider } from "./yandex-provider";
+import type { TutorProvider } from "./types";
 
-export class TutorProviderError extends Error {
-  constructor(
-    public readonly code: "timeout" | "unavailable" | "invalid_response",
-  ) {
-    super(
-      code === "timeout"
-        ? "Tutor не успел ответить. Попробуй ещё раз."
-        : "Сервис Tutor временно недоступен. Попробуй позже.",
-    );
-    this.name = "TutorProviderError";
-  }
-}
+export { TutorProviderError } from "./provider-common";
 type Config = { apiKey: string; model: string; embeddingModel: string };
-type Fetch = typeof fetch;
-
-async function readBoundedJson(response: Response): Promise<unknown> {
-  if (!response.body) throw new TutorProviderError("invalid_response");
-  const reader = response.body.getReader();
-  const parts: Uint8Array[] = [];
-  let size = 0;
-  try {
-    for (;;) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      size += value.byteLength;
-      if (size > 2_000_000) {
-        await reader.cancel();
-        throw new TutorProviderError("invalid_response");
-      }
-      parts.push(value);
-    }
-    return JSON.parse(Buffer.concat(parts).toString("utf8"));
-  } finally {
-    reader.releaseLock();
-  }
-}
 
 // REST adapter isolated here: application services depend only on TutorProvider.
 export function createOpenAiTutorProvider(
   config: Config,
-  fetcher: Fetch = fetch,
+  fetcher: typeof fetch = fetch,
   timeoutMs = 25000,
 ): TutorProvider {
-  async function request(
-    path: "responses" | "embeddings",
-    payload: unknown,
-  ): Promise<unknown> {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeoutMs);
-    try {
-      const response = await fetcher(`https://api.openai.com/v1/${path}`, {
-        method: "POST",
-        signal: controller.signal,
-        cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${config.apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
-        await response.body?.cancel();
-        throw new TutorProviderError("unavailable");
-      }
-      return await readBoundedJson(response);
-    } catch (error) {
-      if (controller.signal.aborted) throw new TutorProviderError("timeout");
-      if (error instanceof TutorProviderError) throw error;
-      // Never propagate provider response bodies/headers/credentials to callers or logs.
-      throw new TutorProviderError("invalid_response");
-    } finally {
-      clearTimeout(timer);
-    }
-  }
+  const request = (path: "responses" | "embeddings", payload: unknown) =>
+    requestProviderJson(
+      `https://api.openai.com/v1/${path}`,
+      { Authorization: `Bearer ${config.apiKey}` },
+      payload,
+      fetcher,
+      timeoutMs,
+    );
   return {
     embeddingModel: `openai:${config.embeddingModel}`,
     async embedText(texts) {
-      if (
-        !texts.length ||
-        texts.length > 16 ||
-        texts.some((t) => !t.trim() || Buffer.byteLength(t, "utf8") > 8000)
-      )
-        throw new TutorProviderError("invalid_response");
+      validateEmbeddingTexts(texts);
       const result = (await request("embeddings", {
         model: config.embeddingModel,
         input: texts,
         encoding_format: "float",
-      })) as {
-        data?: { index: number; embedding: number[] }[];
-      };
-      if (!Array.isArray(result?.data) || result.data.length !== texts.length)
+      })) as { data?: { index: number; embedding: number[] }[] };
+      if (!Array.isArray(result?.data) || result.data.some((e) => !e))
         throw new TutorProviderError("invalid_response");
       const entries = [...result.data].sort((a, b) => a.index - b.index);
-      const dimension = entries[0]?.embedding?.length;
-      if (
-        !dimension ||
-        dimension > 4096 ||
-        entries.some(
-          (e, i) =>
-            e.index !== i ||
-            !Array.isArray(e.embedding) ||
-            e.embedding.length !== dimension ||
-            e.embedding.some(
-              (n) => typeof n !== "number" || !Number.isFinite(n),
-            ),
-        )
-      )
+      if (entries.some((e, i) => e.index !== i))
         throw new TutorProviderError("invalid_response");
-      return entries.map((e) => e.embedding);
+      return validateVectors(
+        entries.map((e) => e.embedding),
+        texts.length,
+      );
     },
-    async generateTutorResponse(input: TutorGenerationInput) {
+    async generateTutorResponse(input) {
       const restricted = input.context.restricted;
-      const schema = restricted
-        ? {
-            type: "object",
-            additionalProperties: false,
-            required: ["kind", "action"],
-            properties: {
-              kind: { type: "string", enum: ["guided"] },
-              action: {
-                type: "string",
-                enum: ["first-step", "simpler", "hint", "why", "check"],
-              },
-            },
-          }
-        : {
-            type: "object",
-            additionalProperties: false,
-            required: ["kind", "message", "citationIds", "grounding"],
-            properties: {
-              kind: { type: "string", enum: ["teaching"] },
-              message: { type: "string" },
-              citationIds: { type: "array", items: { type: "string" } },
-              grounding: {
-                type: "string",
-                enum: ["course", "general", "insufficient"],
-              },
-            },
-          };
-      const data = JSON.stringify({
-        context: {
-          subjectTitle: input.context.subjectTitle,
-          moduleTitle: input.context.moduleTitle,
-          topicTitle: input.context.topicTitle,
-          sectionTitle: input.context.sectionTitle,
-          restricted: input.context.restricted,
-        },
-        exercise: input.exercise,
-        message: input.message,
-        sources: restricted
-          ? []
-          : input.sources.map((s) => ({
-              id: s.id,
-              title: s.title,
-              sectionTitle: s.sectionTitle,
-              text: s.text,
-            })),
-      });
-      if (Buffer.byteLength(data, "utf8") > 24000)
-        throw new TutorProviderError("invalid_response");
       const result = (await request("responses", {
         model: config.model,
         store: false,
@@ -177,14 +60,14 @@ export function createOpenAiTutorProvider(
             role: h.role,
             content: h.content,
           })),
-          { role: "user", content: data },
+          { role: "user", content: tutorInputData(input) },
         ],
         text: {
           format: {
             type: "json_schema",
             name: restricted ? "tutor_guided" : "tutor_teaching",
             strict: true,
-            schema,
+            schema: tutorOutputSchema(restricted),
           },
         },
       })) as {
@@ -196,16 +79,14 @@ export function createOpenAiTutorProvider(
       };
       if (result?.status !== "completed" || !Array.isArray(result.output))
         throw new TutorProviderError("invalid_response");
-      const text = result.output
-        .filter((o) => o.type === "message")
-        .flatMap((o) => o.content ?? [])
-        .filter((c) => c.type === "output_text")
-        .map((c) => c.text ?? "")
-        .join("");
       try {
-        return (
-          restricted ? guidedResponseSchema : teachingResponseSchema
-        ).parse(JSON.parse(text));
+        const text = result.output
+          .filter((o) => o.type === "message")
+          .flatMap((o) => o.content ?? [])
+          .filter((c) => c.type === "output_text")
+          .map((c) => c.text ?? "")
+          .join("");
+        return parseTutorOutput(text, restricted);
       } catch {
         throw new TutorProviderError("invalid_response");
       }
@@ -214,15 +95,37 @@ export function createOpenAiTutorProvider(
 }
 
 export function getTutorProvider(): TutorProvider | null {
+  const provider = env.TUTOR_PROVIDER?.trim() || "openai";
+  if (provider === "yandex") {
+    const apiKey = env.YANDEX_API_KEY?.trim();
+    const folderId = env.YANDEX_FOLDER_ID?.trim();
+    if (!apiKey || !folderId || !/^[a-zA-Z0-9_-]{1,100}$/.test(folderId))
+      return null;
+    const model = env.YANDEX_TUTOR_MODEL?.trim() || "yandexgpt-5.1";
+    const embeddingModel =
+      env.YANDEX_EMBEDDING_MODEL?.trim() || "text-search-doc/latest";
+    const queryEmbeddingModel =
+      env.YANDEX_QUERY_EMBEDDING_MODEL?.trim() || "text-search-query/latest";
+    // Model names, not arbitrary URLs/folders; endpoints remain fixed in the adapter.
+    if (
+      ![model, embeddingModel, queryEmbeddingModel].every((m) =>
+        /^[a-zA-Z0-9_-][a-zA-Z0-9_.-]*(\/[a-zA-Z0-9_-]+)?$/.test(m),
+      )
+    )
+      return null;
+    return createYandexTutorProvider({
+      apiKey,
+      folderId,
+      model,
+      embeddingModel,
+      queryEmbeddingModel,
+    });
+  }
+  if (provider !== "openai") return null;
   const apiKey = env.OPENAI_API_KEY?.trim();
   const model = env.TUTOR_MODEL?.trim();
   const embeddingModel = env.TUTOR_EMBEDDING_MODEL?.trim();
-  if (
-    !apiKey ||
-    !model ||
-    !embeddingModel ||
-    (env.TUTOR_PROVIDER && env.TUTOR_PROVIDER !== "openai")
-  )
-    return null;
-  return createOpenAiTutorProvider({ apiKey, model, embeddingModel });
+  return apiKey && model && embeddingModel
+    ? createOpenAiTutorProvider({ apiKey, model, embeddingModel })
+    : null;
 }

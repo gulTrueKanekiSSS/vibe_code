@@ -72,7 +72,10 @@ export type TutorModelResponse =
     };
 export interface TutorProvider {
   readonly embeddingModel: string;
-  embedText(texts: string[]): Promise<number[][]>;
+  embedText(
+    texts: string[],
+    purpose?: "document" | "query",
+  ): Promise<number[][]>;
   generateTutorResponse(
     input: TutorGenerationInput,
   ): Promise<TutorModelResponse>;

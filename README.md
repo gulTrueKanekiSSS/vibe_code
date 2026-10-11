@@ -88,16 +88,68 @@ e2e/                     Пользовательские сценарии в б
 
 ## AI Tutor: настройка и границы V1
 
-Серверные переменные (никаких `NEXT_PUBLIC_*`):
+### Для пользователей в России: Yandex AI Studio
+
+В `.env.example` выбран `yandex`. Существующий `.env` автоматически не меняется:
+установи `TUTOR_PROVIDER="yandex"` явно. Запросы идут с сервера напрямую в Yandex
+AI Studio, без OpenAI, VPN, прокси или автоматического переключения провайдера.
+
+1. Создай каталог и подключи биллинг Yandex Cloud / AI Studio, установи бюджет.
+2. Создай [API-ключ сервисного аккаунта](https://aistudio.yandex.ru/ru/docs/ai-studio/operations/get-api-key)
+   в AI Studio. Для ручной настройки нужны права генерации и embeddings;
+   [пример embeddings](https://aistudio.yandex.ru/ru/docs/ai-studio/operations/embeddings/search-openai)
+   описывает `ai.languageModels.user` и scope `yc.ai.foundationModels.execute`.
+3. Сохрани секретное значение ключа (не его ID) и ID каталога в локальном `.env`
+   или server secrets окружения размещения; не присылай ключ в чат/Git.
+
+```dotenv
+TUTOR_PROVIDER="yandex"
+YANDEX_API_KEY=""
+YANDEX_FOLDER_ID=""
+# Необязательно: показаны значения по умолчанию.
+YANDEX_TUTOR_MODEL="yandexgpt-5.1"
+YANDEX_EMBEDDING_MODEL="text-search-doc/latest"
+YANDEX_QUERY_EMBEDDING_MODEL="text-search-query/latest"
+```
+
+Модель задаётся именем с необязательной версией, не полным URI: адаптер добавляет
+каталог. Используется [нативная генерация с JSON schema](https://aistudio.yandex.ru/ru/docs/ai-studio/text-generation/api-ref/TextGeneration/completion),
+не все модели каталога поддерживают этот API. Выбранный по умолчанию
+[YandexGPT Pro 5.1](https://aistudio.yandex.ru/ru/docs/ai-studio/concepts/generation/models)
+поддерживает API генерации текста. Модели поиска идут [парой doc/query](https://aistudio.yandex.ru/ru/docs/ai-studio/concepts/embeddings).
+После смены провайдера/пары моделей нужно заново построить embeddings: чужие векторы
+не переиспользуются. До этого доступен явно помеченный lexical fallback.
+
+Для лимита Яндекса 2048 входных токена адаптер делит длинный текст на Unicode-safe
+части до 1800 UTF-8 bytes и объединяет их векторы взвешенным средним, не отбрасывая
+конец текста. Это приближение требует оценки качества поиска на реальных материалах.
+Алгоритм включён в идентификатор индекса. Embedding-вызовы индексатора последовательны
+и разнесены минимум на 110 ms; это не общий limiter для нескольких серверов/процессов.
+На весь embedding поискового запроса отводится 25 секунд, затем lexical fallback.
+
+Перезапусти сервер (`npm run dev` для разработки), затем запусти индексацию ниже.
+Проверь вопрос в уроке, продолжение диалога, ссылки на источники и историю после
+обновления страницы. Нет ответа — проверь биллинг, срок/права ключа, каталог,
+доступность выбранной модели и квоты. Ошибки API намеренно не выводят секреты.
+OpenAI-ключ для этого режима не нужен. Локальная реализация и mock-тесты не заменяют
+проверку реального аккаунта; реальные вызовы и качество обучения требуют live smoke.
+
+### Альтернатива: OpenAI
+
+Только для поддерживаемых провайдером регионов/сценариев. Серверные переменные
+(никаких `NEXT_PUBLIC_*` для настроек любого AI-провайдера):
 
 | Переменная | Назначение |
 | --- | --- |
-| `TUTOR_PROVIDER` | `openai` — первый адаптер; приложение зависит от интерфейса `TutorProvider` |
+| `TUTOR_PROVIDER` | `openai` — явный выбор; также legacy default при отсутствии переменной |
 | `OPENAI_API_KEY` | Серверный ключ проекта провайдера, никогда не отправляется браузеру |
 | `TUTOR_MODEL` | Доступная вашему проекту модель Responses API со strict structured outputs |
 | `TUTOR_EMBEDDING_MODEL` | Доступная embedding-модель, float vectors до 4096 измерений |
 
-Модели задаются явно, без скрытых defaults. Используется REST [Responses / structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses) и [Embeddings](https://developers.openai.com/api/reference/resources/embeddings/methods/create). После изменения env перезапусти сервер. Ограничь бюджет проекта у провайдера.
+Для OpenAI модели задаются явно, без defaults. Используется REST Responses и Embeddings.
+После изменения env перезапусти сервер. Ограничь бюджет проекта у провайдера.
+
+### Индексация и общие границы
 
 После применения миграций и публикации материалов:
 
@@ -124,7 +176,7 @@ Tutor открывается из урока, раздела, текущего �
 
 История приватна: до 200 разговоров, до 120 сообщений в разговоре; модель получает только последние 12 сообщений / 9 KB UTF-8. Автоматического summary или student knowledge state пока нет. «Новый разговор» после подтверждения удаляет историю текущего контекста, не квоты. PostgreSQL ограничивает запросы до 30/час и 150/сутки на пользователя, включая ошибки провайдера. Одинаковый requestKey не создаёт повторный turn; lease ограничивает зависшие операции. DB-транзакция не держится во время AI-вызова.
 
-Сообщения, недавний диалог и нужные учебные excerpts/безопасный exercise context отправляются внешнему провайдеру. Telegram-профиль, токены входа, ключи и чужая история не отправляются. Не вводи личные данные или секреты. Responses использует `store: false`; это не обещание отсутствия иных retention-политик провайдера. Ответ возвращается только после валидации, без raw token streaming. Ошибки не раскрывают provider payload/credentials. Для публичного запуска нужны ingress limits, мониторинг расходов и политика хранения/удаления данных.
+Сообщения, недавний диалог и нужные учебные excerpts/безопасный exercise context отправляются внешнему провайдеру. Telegram-профиль, токены входа, ключи и чужая история не отправляются. Не вводи личные данные или секреты. OpenAI Responses использует `store: false`; Yandex передаёт [отключение логирования](https://aistudio.yandex.ru/ru/docs/ai-studio/operations/disable-logging) `x-data-logging-enabled: false` для генерации и embeddings. Это не обещание отсутствия иных retention-политик провайдера и не юридическая оценка соответствия сервиса 152-ФЗ. Ответ возвращается только после валидации, без raw token streaming. Ошибки не раскрывают provider payload/credentials. Для публичного запуска нужны ingress limits, мониторинг расходов и политика хранения/удаления данных.
 
 Live-проверка владельцем: настроить env → миграция/seed при необходимости → индекс с embeddings → перезапуск → вход → урок/раздел → вопрос и ответ на диагностический вопрос → sources и reload истории → guided exercise и блокировка Exam. Автотесты используют doubles для AI; полноценная live-проверка без credentials не заявляется.
 
