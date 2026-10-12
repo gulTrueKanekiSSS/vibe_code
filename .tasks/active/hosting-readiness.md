@@ -1,6 +1,6 @@
 # Hosting readiness — Vercel + Neon, Tutor deferred
 
-Status: BLOCKED (repository ready for PR; cloud provisioning pending account connection)
+Status: BLOCKED (repository published in PR #10; cloud provisioning pending account connection)
 Branch: dmitrij/chore/hosting-readiness
 Owner: root (implementation/database deployment instructions); separate QA/review agents
 Base: origin/main c51e58b (PR #9 merged by human)
@@ -44,6 +44,9 @@ Remote manual smoke: real Telegram, practice start/answer/refresh/finish, privac
 blocked dev auth/Tutor; never use demo auth as proof of Telegram success.
 
 ## Results
+- Implementation commit `baa914ca7cc5cd57ff777cb2c96da658594b7379` pushed.
+- [PR #10](https://github.com/gulTrueKanekiSSS/vibe_code/pull/10) OPEN into main,
+  not merged. Task remains active because actual hosting is not provisioned.
 - Full unit tests: 79/79 PASS; hosting targeted tests: 3/3 PASS.
 - Typecheck and lint PASS after correction of overly narrow ProcessEnv parameter type.
 - `npm run build:hosting` PASS with synthetic hosting env; includes Prisma generate

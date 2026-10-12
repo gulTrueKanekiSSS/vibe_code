@@ -48,7 +48,9 @@ Tracked-файлы — основной scope; новые релевантные
   runbook миграций/seed отдельным процессом с direct DB URL, изоляция preview.
   Schema/auth/practice/UI не менялись. Unit79/79, hosting3/3, lint и production
   `build:hosting` PASS на синтетических реквизитах; реальной cloud DB нет.
-  Typecheck/lint после build PASS; независимые QA PASS/review APPROVE, публикация PR.
+  Typecheck/lint после build PASS; независимые QA PASS/review APPROVE.
+  `baa914c` отправлен; [PR #10](https://github.com/gulTrueKanekiSSS/vibe_code/pull/10)
+  OPEN, не слит. Задача активна до реального deployment.
   Exact next step: подключить аккаунты Vercel/Neon,
   создать free ресурсы, приватно настроить production env, миграции/seed и Telegram,
   затем реальный smoke. Remote deploy/Telegram/network проверки НЕ выполнены.
