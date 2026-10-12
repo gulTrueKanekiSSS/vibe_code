@@ -31,3 +31,7 @@ to one adapter, not a distributed limiter. OpenAI remains an explicit alternativ
 for supported scenarios; there is no automatic cross-provider fallback.
 
 Human review/merge only. Do not auto-merge.
+
+Published: https://github.com/gulTrueKanekiSSS/vibe_code/pull/9 (OPEN, not merged).
+Resume 2026-10-12: provider23/23 PASS; 20-case live pilot prepared at
+`.tasks/qa/tutor-yandex-live-pilot.md` (NOT RUN, credentials missing).

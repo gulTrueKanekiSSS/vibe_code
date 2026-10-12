@@ -1,6 +1,6 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-11. Задача/ветка: `dmitrij/feature/tutor-yandex`.
+Обновлено: 2026-10-12. Задача/ветка: `dmitrij/feature/tutor-yandex`.
 Проверенная база: `origin/main c538d03` (PR #8 слит человеком; fetch выполнен).
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
@@ -41,7 +41,7 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Текущая задача / exact next step
 
-- [Tutor для России](.tasks/active/tutor-yandex.md): добавлен native Yandex adapter,
+- [Tutor для России](.tasks/done/tutor-yandex.md): добавлен native Yandex adapter,
   общие provider safety helpers, document/query embeddings purpose и отдельная
   идентичность пары моделей; `.env.example` и README обновлены. Реальный `.env`
   не менялся. OpenAI сохранён без автоматического fallback; UI/auth/schema/scoring
@@ -49,8 +49,12 @@ Tracked-файлы — основной scope; новые релевантные
   typecheck/lint/build; после sync `c538d03` — typecheck и provider23/23 PASS.
   Длинные embedding-тексты объединяются weighted mean из частей <=1800 bytes;
   качество требует live оценки. [QA](.tasks/qa/tutor-yandex.md),
-  [Review APPROVE](.tasks/qa/tutor-yandex-review.md). Exact next step: commit/push/PR,
-  затем владелец настраивает Yandex key/folder и запускает embeddings/live smoke.
+  [Review APPROVE](.tasks/qa/tutor-yandex-review.md). Implementation `dcaed23` отправлен;
+  [PR #9](https://github.com/gulTrueKanekiSSS/vibe_code/pull/9) OPEN, не слит.
+  После resume: sync без изменений, provider23/23 PASS. Подготовлен
+  [пилот из 20 проверок](.tasks/qa/tutor-yandex-live-pilot.md), NOT RUN.
+  Exact next step: human review/merge, приватно задать Yandex key/folder и выбрать
+  `TUTOR_PROVIDER=yandex`, затем платная индексация двух тем и живой пилот.
 
 - Инструкции готовы: root 99 строк, роли подключаются условно; один skill `git-task-workflow` с отдельными start/finalize references. [Закрытая задача](.tasks/done/agent-context-routing.md).
 - [PR #6](https://github.com/gulTrueKanekiSSS/vibe_code/pull/6) слит человеком; прежний [QA инструкций](.tasks/qa/agent-context-routing.md) — исторический результат.

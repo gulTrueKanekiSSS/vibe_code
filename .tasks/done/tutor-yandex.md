@@ -1,6 +1,6 @@
 # Tutor for Russia: Yandex AI Studio
 
-Status: READY_FOR_PR
+Status: DONE (implementation and PR handoff; live activation pending credentials)
 Branch: `dmitrij/feature/tutor-yandex`
 Owner: root (Backend); separate QA/review agents
 Base: `origin/main c538d03`, including human-merged PR #8.
@@ -60,5 +60,16 @@ Live provider/account/model access and retrieval/teaching quality not tested.
 Independent review APPROVE: `.tasks/qa/tutor-yandex-review.md`, no unresolved blockers.
 QA report: `.tasks/qa/tutor-yandex.md`.
 
-Exact next step: commit/push and PR handoff. User supplies
-Yandex credentials privately, explicitly selects provider, indexes and live-tests later.
+## Handoff 2026-10-12
+
+Interrupted push completed: local/remote implementation SHA
+`dcaed237b0942476b4974d8aeab21a349a110843`. No stale git/node process found.
+Fetch/merge origin/main remains c538d03, already up to date; provider23/23 rerun PASS.
+Created [PR #9](https://github.com/gulTrueKanekiSSS/vibe_code/pull/9), OPEN, not merged.
+Added `.tasks/qa/tutor-yandex-live-pilot.md`: 20 NOT RUN checks over two existing
+lessons and security/history. No application changes on resume.
+
+Exact next step: human PR review/merge and private Yandex key/folder setup with
+`TUTOR_PROVIDER=yandex`, then explicitly authorized small-topic embeddings and live
+pilot. Presence-only env check: key/folder missing, Yandex not selected; no secret
+values printed. Real account/teaching quality and production deployment not verified.
