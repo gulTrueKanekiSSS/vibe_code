@@ -63,9 +63,10 @@ export async function retrieveCourseContext(
     )
   ) {
     try {
-      [queryEmbedding] = await provider.embedText([
-        Array.from(input.query).slice(0, 2000).join(""),
-      ]);
+      [queryEmbedding] = await provider.embedText(
+        [Array.from(input.query).slice(0, 2000).join("")],
+        "query",
+      );
     } catch {
       /* Provider unavailable: use explicitly marked bounded lexical retrieval. */
     }

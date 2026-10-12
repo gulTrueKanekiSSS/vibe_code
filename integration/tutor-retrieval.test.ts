@@ -47,10 +47,12 @@ async function fixture() {
   return { a: await make("a"), b: await make("b") };
 }
 let embeddingCalls = 0;
+const embeddingPurposes: ("document" | "query" | undefined)[] = [];
 const provider: TutorProvider = {
   embeddingModel: "test:semantic-v1",
-  embedText: async (texts) => {
+  embedText: async (texts, purpose) => {
     embeddingCalls++;
+    embeddingPurposes.push(purpose);
     return texts.map(() => [1, 0]);
   },
   generateTutorResponse: async () => {
@@ -70,9 +72,11 @@ test("course index persists embeddings idempotently and retrieval prioritizes to
   const local = await fixture(),
     foreign = await fixture();
   embeddingCalls = 0;
+  embeddingPurposes.length = 0;
   for (const topic of [local.a, local.b, foreign.a])
     await indexCourseContent({ topicId: topic.id, provider });
   assert.equal(embeddingCalls, 3);
+  assert.deepEqual(embeddingPurposes, ["document", "document", "document"]);
   assert.equal(
     (await indexCourseContent({ topicId: local.a.id, provider }))
       .embeddingsCreated,
@@ -91,6 +95,7 @@ test("course index persists embeddings idempotently and retrieval prioritizes to
     provider,
   );
   assert.equal(result[0].topicId, local.a.id);
+  assert.equal(embeddingPurposes.at(-1), "query");
   assert.equal(result[0].retrieval, "semantic");
   assert.ok(result.some((c) => c.topicId === local.b.id));
   assert.ok(result.every((c) => c.topicId !== foreign.a.id));

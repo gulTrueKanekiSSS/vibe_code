@@ -1,7 +1,7 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-10. Задача/ветка: `dmitrij/fix/unfinished-practice-controls`.
-Проверенная база: `origin/main 36a7add` (PR #7 слит человеком; Git проверен).
+Обновлено: 2026-10-12. Задача/ветка: `dmitrij/feature/tutor-yandex`.
+Проверенная база: `origin/main c538d03` (PR #8 слит человеком; fetch выполнен).
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
 ## Карта подсистем — искать, затем открывать
@@ -41,6 +41,21 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Текущая задача / exact next step
 
+- [Tutor для России](.tasks/done/tutor-yandex.md): добавлен native Yandex adapter,
+  общие provider safety helpers, document/query embeddings purpose и отдельная
+  идентичность пары моделей; `.env.example` и README обновлены. Реальный `.env`
+  не менялся. OpenAI сохранён без автоматического fallback; UI/auth/schema/scoring
+  без изменений. Проверки PASS: unit76/76 (14 новых Yandex), integration48/48,
+  typecheck/lint/build; после sync `c538d03` — typecheck и provider23/23 PASS.
+  Длинные embedding-тексты объединяются weighted mean из частей <=1800 bytes;
+  качество требует live оценки. [QA](.tasks/qa/tutor-yandex.md),
+  [Review APPROVE](.tasks/qa/tutor-yandex-review.md). Implementation `dcaed23` отправлен;
+  [PR #9](https://github.com/gulTrueKanekiSSS/vibe_code/pull/9) OPEN, не слит.
+  После resume: sync без изменений, provider23/23 PASS. Подготовлен
+  [пилот из 20 проверок](.tasks/qa/tutor-yandex-live-pilot.md), NOT RUN.
+  Exact next step: human review/merge, приватно задать Yandex key/folder и выбрать
+  `TUTOR_PROVIDER=yandex`, затем платная индексация двух тем и живой пилот.
+
 - Инструкции готовы: root 99 строк, роли подключаются условно; один skill `git-task-workflow` с отдельными start/finalize references. [Закрытая задача](.tasks/done/agent-context-routing.md).
 - [PR #6](https://github.com/gulTrueKanekiSSS/vibe_code/pull/6) слит человеком; прежний [QA инструкций](.tasks/qa/agent-context-routing.md) — исторический результат.
 - [AI Tutor task/PM/Tech Lead](.tasks/done/contextual-ai-tutor.md): готовы contextual drawer, owned persisted turns, leases/idempotency/quotas, safe context, provider, chunk/index/retrieval, unit/integration/E2E. Auth, scoring и question bank не переписывались.
@@ -49,7 +64,7 @@ Tracked-файлы — основной scope; новые релевантные
 - Локальный text index: 64 темы / 505 chunks / 0 новых embeddings. README содержит env/index/live smoke инструкции и ограничения V1.
 - [PR #7](https://github.com/gulTrueKanekiSSS/vibe_code/pull/7) слит человеком в `36a7add`. Live-проверка после настройки AI env/embeddings остаётся отдельным шагом; merge не означает production deployment.
 - [Завершённая задача](.tasks/done/unfinished-practice-controls.md): старые protected-сессии скрывались за `take: 3`, блокируя Tutor. Добавлены полный доступный список, продолжение/подтверждаемое досрочное закрытие, ссылка из Tutor, честный summary незавершённых заданий. Без схемы/миграций; реальные пользовательские сессии не закрывались автоматически.
-- Сервер: только `finishedAt`, owner check + user lock, идемпотентность, запрет новых answer/hint после закрытия. Незавершённые items не превращаются в assessment. Проверки PASS: typecheck/lint/build, unit62, integration48 (8 новых), E2E15 (6 finish + 9 Tutor). [QA](.tasks/qa/unfinished-practice-controls.md), [Review APPROVE](.tasks/qa/unfinished-practice-controls-review.md); focus и неоднозначный старый Tutor test locator исправлены. Main sync `36a7add` без конфликтов. Implementation `3e9a6b4` отправлен; [PR #8](https://github.com/gulTrueKanekiSSS/vibe_code/pull/8) открыт, не слит. Exact next step: human review/merge; старую сессию пользователь закрывает сам через интерфейс.
+- Сервер досрочного завершения: только `finishedAt`, owner check + user lock, идемпотентность, запрет новых answer/hint после закрытия. Исторические проверки: typecheck/lint/build, unit62, integration48, E2E15. [QA](.tasks/qa/unfinished-practice-controls.md), [Review APPROVE](.tasks/qa/unfinished-practice-controls-review.md). [PR #8](https://github.com/gulTrueKanekiSSS/vibe_code/pull/8) слит человеком в `c538d03`; реальные сессии пользователь завершает сам через интерфейс.
 
 ## Ограничения
 
