@@ -246,6 +246,12 @@ npm run test:e2e
 
 ## Production
 
+Бесплатный пилот Vercel + Neon: [пошаговая подготовка хостинга](docs/HOSTING.md).
+Vercel использует `npm run build:hosting`: проверка переменных без вывода значений,
+генерация Prisma Client и сборка. Миграции/seed выполняются отдельно, не в build.
+Для этого пилота задайте `DEV_AUTH=false`, `TUTOR_PROVIDER=disabled`, AI-ключи не переносите.
+Node.js для хостинга — 22.x (не ниже 22.13).
+
 ```sh
 npm ci
 npm run db:generate
