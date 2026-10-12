@@ -1,7 +1,7 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-12. Задача/ветка: `dmitrij/feature/tutor-yandex`.
-Проверенная база: `origin/main c538d03` (PR #8 слит человеком; fetch выполнен).
+Обновлено: 2026-10-12. Задача/ветка: `dmitrij/chore/hosting-readiness`.
+Проверенная база: `origin/main c51e58b` (PR #9 слит человеком; fetch/merge без изменений).
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
 ## Карта подсистем — искать, затем открывать
@@ -9,6 +9,7 @@
 | Подсистема | Entry points | Проверки / подробности |
 | --- | --- | --- |
 | Запуск / команды | `package.json`; нужный раздел `README.md` | Node 22.13+, PostgreSQL |
+| Hosting Vercel + Neon | `vercel.json`, `scripts/hosting-config.ts`, `docs/HOSTING.md` | `tests/hosting.test.ts`; Node 22.x; preflight → Prisma generate → build, без DB writes |
 | UI / страницы | `src/app/(app)/`, `src/components/`, `src/app/globals.css` | роль Frontend; точечные E2E |
 | Выбор практики | `src/components/practice-builder.tsx`, `practice-setup.tsx`; `src/lib/practice-topic-search.ts`, `filter-selection.ts` | `tests/practice-topic-search.test.ts`, `e2e/practice-builder-selection.spec.ts` |
 | Старт / ответы / resume | `src/app/api/practice/`, `src/lib/practice-service.ts`, `src/components/practice-runner.tsx` | `integration/practice.test.ts`, `e2e/practice-start.spec.ts` |
@@ -41,6 +42,17 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Текущая задача / exact next step
 
+- [Подготовка хостинга](.tasks/active/hosting-readiness.md): Vercel + Neon free pilot,
+  Tutor отложен пользователем. `TUTOR_PROVIDER=disabled` в hosting env, AI-ключи не
+  переносить. Добавлены preflight без вывода значений, build config, env ignore,
+  runbook миграций/seed отдельным процессом с direct DB URL, изоляция preview.
+  Schema/auth/practice/UI не менялись. Unit79/79, hosting3/3, lint и production
+  `build:hosting` PASS на синтетических реквизитах; реальной cloud DB нет.
+  Typecheck/lint после build PASS; независимые QA PASS/review APPROVE, публикация PR.
+  Exact next step: подключить аккаунты Vercel/Neon,
+  создать free ресурсы, приватно настроить production env, миграции/seed и Telegram,
+  затем реальный smoke. Remote deploy/Telegram/network проверки НЕ выполнены.
+
 - [Tutor для России](.tasks/done/tutor-yandex.md): добавлен native Yandex adapter,
   общие provider safety helpers, document/query embeddings purpose и отдельная
   идентичность пары моделей; `.env.example` и README обновлены. Реальный `.env`
@@ -50,11 +62,11 @@ Tracked-файлы — основной scope; новые релевантные
   Длинные embedding-тексты объединяются weighted mean из частей <=1800 bytes;
   качество требует live оценки. [QA](.tasks/qa/tutor-yandex.md),
   [Review APPROVE](.tasks/qa/tutor-yandex-review.md). Implementation `dcaed23` отправлен;
-  [PR #9](https://github.com/gulTrueKanekiSSS/vibe_code/pull/9) OPEN, не слит.
+  [PR #9](https://github.com/gulTrueKanekiSSS/vibe_code/pull/9) слит человеком в `c51e58b`.
   После resume: sync без изменений, provider23/23 PASS. Подготовлен
   [пилот из 20 проверок](.tasks/qa/tutor-yandex-live-pilot.md), NOT RUN.
-  Exact next step: human review/merge, приватно задать Yandex key/folder и выбрать
-  `TUTOR_PROVIDER=yandex`, затем платная индексация двух тем и живой пилот.
+  Позже env настроен пользователем; минимальный live-запрос вернул HTTP403.
+  Пользователь отложил Tutor: не повторять платные вызовы/индексацию без новой задачи.
 
 - Инструкции готовы: root 99 строк, роли подключаются условно; один skill `git-task-workflow` с отдельными start/finalize references. [Закрытая задача](.tasks/done/agent-context-routing.md).
 - [PR #6](https://github.com/gulTrueKanekiSSS/vibe_code/pull/6) слит человеком; прежний [QA инструкций](.tasks/qa/agent-context-routing.md) — исторический результат.
@@ -72,4 +84,4 @@ Tracked-файлы — основной scope; новые релевантные
 Уровень >=10 обещан на тему, не на каждую отдельную difficulty/category. Human usability study не проводился.
 Ранее отмечен unrelated favicon 404; актуальность процесса dev-сервера надо проверять перед запуском, не считать его живым по этой сводке.
 Чужая untracked `.idea/` не относится к задаче; не stage/удалять. Никаких remote DB/seed/deployment действий.
-AI credentials отсутствуют: реальные генерация/embeddings и педагогическое качество не проверены. История bounded (12 сообщений/9 KB контекста), не долговременная модель знаний; свободное объяснение доступно в уроках и после разрешённого раскрытия решения.
+Локальные AI credentials заданы приватно; live генерация заблокирована HTTP403, embeddings и педагогическое качество не проверены. Tutor отложен; в hosting env отключён. История bounded (12 сообщений/9 KB контекста), не долговременная модель знаний; свободное объяснение доступно в уроках и после разрешённого раскрытия решения.

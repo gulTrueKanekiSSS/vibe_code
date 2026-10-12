@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
+    "hosting:check": "tsx scripts/check-hosting.ts",
+    "build:hosting": "npm run hosting:check && npm run db:generate && npm run build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -19,7 +21,7 @@
     "db:seed": "tsx prisma/seed.ts"
   },
   "engines": {
-    "node": ">=22.13.0"
+    "node": ">=22.13.0 <23"
   },
   "overrides": {
     "deepmerge-ts": "^8.0.0",
