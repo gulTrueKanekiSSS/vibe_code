@@ -1,7 +1,7 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-12. Задача/ветка: `dmitrij/chore/hosting-readiness`.
-Проверенная база: `origin/main c51e58b` (PR #9 слит человеком; fetch/merge без изменений).
+Обновлено: 2026-10-12. Задача/ветка: `dmitrij/chore/neon-initialization`.
+Проверенная база: `origin/main 3a55ff6` (PR #10 слит человеком; fetch выполнен).
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
 ## Карта подсистем — искать, затем открывать
@@ -42,6 +42,16 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Текущая задача / exact next step
 
+- [Инициализация Neon](.tasks/active/neon-initialization.md): пользователь создал Free
+  production во Frankfurt и приватно добавил direct URL в ignored `.env.hosting.local`.
+  После отключения VPN соединение заработало: пустота public проверена, внешний TLS
+  сертификат PASS. Prisma validate/migrate deploy/status PASS; 6 checksums совпадают.
+  Seed + read-only counts PASS: 5 предметов / 15 модулей / 64 темы / 742 вопроса,
+  везде >=10; пользователей/сессий/Tutor history/chunks нет. AI-вызовов не было.
+  Exact next step: Vercel import main, production-only pooled URL/Telegram/env,
+  DEV_AUTH=false, TUTOR_PROVIDER=disabled, стабильный origin/callback и real smoke.
+  Миграции/seed повторять ради deployment НЕ нужно. Доступа к Vercel аккаунту пока нет.
+
 - [Подготовка хостинга](.tasks/active/hosting-readiness.md): Vercel + Neon free pilot,
   Tutor отложен пользователем. `TUTOR_PROVIDER=disabled` в hosting env, AI-ключи не
   переносить. Добавлены preflight без вывода значений, build config, env ignore,
@@ -50,10 +60,9 @@ Tracked-файлы — основной scope; новые релевантные
   `build:hosting` PASS на синтетических реквизитах; реальной cloud DB нет.
   Typecheck/lint после build PASS; независимые QA PASS/review APPROVE.
   `baa914c` отправлен; [PR #10](https://github.com/gulTrueKanekiSSS/vibe_code/pull/10)
-  OPEN, не слит. Задача активна до реального deployment.
-  Exact next step: подключить аккаунты Vercel/Neon,
-  создать free ресурсы, приватно настроить production env, миграции/seed и Telegram,
-  затем реальный smoke. Remote deploy/Telegram/network проверки НЕ выполнены.
+  слит человеком в `3a55ff6`. Подготовка репозитория завершена, deployment ещё нет.
+  Neon подготовлен отдельным шагом выше. Next: настроить Vercel production env/Telegram
+  и реальный smoke. Remote site deploy/Telegram/network проверки НЕ выполнены.
 
 - [Tutor для России](.tasks/done/tutor-yandex.md): добавлен native Yandex adapter,
   общие provider safety helpers, document/query embeddings purpose и отдельная
@@ -85,5 +94,5 @@ Tracked-файлы — основной scope; новые релевантные
 Реальный Telegram login и remote deployment прежними QA не проверялись; dev-auth не является их доказательством.
 Уровень >=10 обещан на тему, не на каждую отдельную difficulty/category. Human usability study не проводился.
 Ранее отмечен unrelated favicon 404; актуальность процесса dev-сервера надо проверять перед запуском, не считать его живым по этой сводке.
-Чужая untracked `.idea/` не относится к задаче; не stage/удалять. Никаких remote DB/seed/deployment действий.
+Чужая untracked `.idea/` не относится к задаче; не stage/удалять. Neon migration/seed выполнены по явному запросу, remote site deployment ещё нет.
 Локальные AI credentials заданы приватно; live генерация заблокирована HTTP403, embeddings и педагогическое качество не проверены. Tutor отложен; в hosting env отключён. История bounded (12 сообщений/9 KB контекста), не долговременная модель знаний; свободное объяснение доступно в уроках и после разрешённого раскрытия решения.
