@@ -1,6 +1,6 @@
 # Content ingestion infrastructure
 
-Status: READY_FOR_PR
+Status: DONE (PR ready; human merge pending)
 Branch: `dmitrij/feature/content-ingestion`
 Owner: root; importer delegated exclusively to content_importer.
 Base: `origin/main a73033a` (2026-10-13).
@@ -49,4 +49,7 @@ Sync: fetched/merged origin/main a73033a; already up to date; all requested chec
 No schema/migrations/seed/cloud writes, no new educational content.
 Limitations: structural validation is not mathematical verification; abrupt kill requires
 manual lock/journal recovery; file import does not publish DB content.
-Next: inspect/stage final diff, commit/push, create PR; human merge only.
+Implementation commit: `6709ee34aabd4d94c47476199c68e66b96331124`, pushed.
+PR: https://github.com/gulTrueKanekiSSS/vibe_code/pull/12 (open, base main).
+Next: human review/merge; future curators read CONTENT_SCHEMA.md and the pack guide,
+then import a reviewed pack. No automatic seed or PR merge.

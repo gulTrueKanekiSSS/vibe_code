@@ -43,14 +43,15 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Текущая задача / exact next step
 
-- [Content ingestion](.tasks/active/content-ingestion.md): добавлены компактная схема,
+- [Content ingestion](.tasks/done/content-ingestion.md): добавлены компактная схема,
   DB-free validator/report, additive importer с ID/conflict/lock/rollback защитой и
   success receipt. Банк 5/64/742 не менялся; импорт не запускает seed/AI/сеть.
   [QA](.tasks/qa/content-ingestion.md): unit91/91, integration48/48 (local), typecheck,
   lint/build/validate/report PASS после sync a73033a. [Review](.tasks/qa/content-ingestion-review.md):
   независимая проверка кода/12 тестов без blockers; final gate закрыт root после лимита агентов.
   При аварийном kill — ручное recovery по lock/journal; математику проверяет человек.
-  Next: commit/push/PR; публикация файлов в БД отдельно и только с разрешением.
+  `6709ee3` отправлен; [PR #12](https://github.com/gulTrueKanekiSSS/vibe_code/pull/12)
+  открыт в main. Next: human review/merge; публикация файлов в БД отдельно и только с разрешением.
 
 - [Инициализация Neon](.tasks/active/neon-initialization.md): пользователь создал Free
   production во Frankfurt и приватно добавил direct URL в ignored `.env.hosting.local`.
