@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { z } from "zod";
 
 const root = join(process.cwd(), "content");
-const subjectSchema = z.object({
+export const subjectSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   title: z.string().min(1),
   english: z.string().min(1),
@@ -12,7 +12,7 @@ const subjectSchema = z.object({
   color: z.string(),
   modules: z.array(z.string().min(1)).min(1),
 });
-const metadataSchema = z.object({
+export const metadataSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   title: z.string().min(1),
   english: z.string().min(1),

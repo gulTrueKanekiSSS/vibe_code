@@ -53,7 +53,9 @@ Do not reread the whole README for a small task.
 
 ### Large documents are conditional
 
-- Learning/content/practice/curriculum/mastery/XP/GPA/question-generation impact:
+- Prepared content-pack ingestion/validation: `CONTENT_SCHEMA.md`, `content-packs/README.md`
+  and target topic files suffice; no content master read unless teaching design changes.
+- Other learning/content/practice/curriculum/mastery/XP/GPA/question-generation impact:
   search headings and read relevant sections of `STUDYSPACE_UNIVERSITY_CONTENT_MASTER.md`.
 - Question-bank expansion: additionally read `CONTENT_EXPANSION_PROGRESS.md`.
 - Other large prompts/reports: only when explicitly requested or needed for the current task.

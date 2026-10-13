@@ -1,7 +1,7 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-12. Задача/ветка: `dmitrij/chore/neon-initialization`.
-Проверенная база: `origin/main 3a55ff6` (PR #10 слит человеком; fetch выполнен).
+Обновлено: 2026-10-13. Задача/ветка: `dmitrij/feature/content-ingestion`.
+Проверенная база: `origin/main a73033a` (fetch выполнен; PR #11 слит человеком).
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
 ## Карта подсистем — искать, затем открывать
@@ -18,6 +18,7 @@
 | Telegram / сессии / privacy | `src/lib/telegram.ts`, `auth.ts`, `request-origin.ts`; `src/app/api/auth/` | роль Backend; auth/integration tests |
 | AI Tutor V1 | `src/components/tutor-panel.tsx`, `src/app/api/tutor/route.ts`; `src/lib/tutor-context.ts`, `tutor-service.ts`, `tutor/` | `tests/tutor.test.ts`, `integration/tutor*.test.ts`, `e2e/tutor.spec.ts`; `scripts/index-tutor.ts` |
 | Уроки / вопросы | `content/subjects.json`, `content/lessons/`, `content/questions/`; `src/lib/content-source.ts`, `content-service.ts` | роль Content; `npm run content:check` |
+| Импорт готового контента | `CONTENT_SCHEMA.md`, `content-packs/README.md`; `scripts/content-validation.ts`, `content-pack.ts` | DB-free `content:validate`, `content:import`, `content:report`; `tests/content-validation.test.ts`, `content-import.test.ts` |
 | Curriculum / категории | `content/curriculum.json`, `content/practice-patterns.json`, `src/lib/curriculum.ts` | нужные разделы content master |
 | БД / seed | `prisma/schema.prisma`, `prisma/migrations/`, `prisma/seed.ts` | роль Database только при влиянии на БД |
 
@@ -41,6 +42,15 @@ Tracked-файлы — основной scope; новые релевантные
 - Прежние app-проверки находятся в связанных QA/task отчётах; они не означают, что текущий worktree прошёл новые проверки. История рекапа — Git / PR #3 (`6a92406`), не копировать её сюда.
 
 ## Текущая задача / exact next step
+
+- [Content ingestion](.tasks/active/content-ingestion.md): добавлены компактная схема,
+  DB-free validator/report, additive importer с ID/conflict/lock/rollback защитой и
+  success receipt. Банк 5/64/742 не менялся; импорт не запускает seed/AI/сеть.
+  [QA](.tasks/qa/content-ingestion.md): unit91/91, integration48/48 (local), typecheck,
+  lint/build/validate/report PASS после sync a73033a. [Review](.tasks/qa/content-ingestion-review.md):
+  независимая проверка кода/12 тестов без blockers; final gate закрыт root после лимита агентов.
+  При аварийном kill — ручное recovery по lock/journal; математику проверяет человек.
+  Next: commit/push/PR; публикация файлов в БД отдельно и только с разрешением.
 
 - [Инициализация Neon](.tasks/active/neon-initialization.md): пользователь создал Free
   production во Frankfurt и приватно добавил direct URL в ignored `.env.hosting.local`.
