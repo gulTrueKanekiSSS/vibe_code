@@ -5,7 +5,10 @@ Use neighboring files as schema examples; keep content separate from UI logic.
 
 ## Sources and ownership
 
-- Search headings and read task-relevant sections of `STUDYSPACE_UNIVERSITY_CONTENT_MASTER.md`.
+- For prepared content ingestion, read `CONTENT_SCHEMA.md` and `content-packs/README.md`,
+  then only the target subject/topic and supplied sources; no whole-bank/project read.
+- For teaching/curriculum design or question generation, additionally search headings
+  and read task-relevant sections of `STUDYSPACE_UNIVERSITY_CONTENT_MASTER.md`.
 - Read `CONTENT_EXPANSION_PROGRESS.md` only for question-bank expansion/coverage.
 - Inspect the assigned subject/topic files and relevant validators/tests, not the entire bank.
 - Assign distinct subjects/topics to parallel authors; preserve others' valid work.

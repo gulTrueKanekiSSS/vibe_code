@@ -1,8 +1,11 @@
-import { loadContent } from "../src/lib/content-source";
+import { resolve } from "node:path";
+import { validateContentDirectory } from "./content-validation";
 import curriculum from "../content/curriculum.json";
 
 async function main() {
-  const { lessons, questions, subjects } = await loadContent();
+  const { lessons, questions, subjects } = await validateContentDirectory(
+    resolve("content"),
+  );
   const levels = ["EASY", "MEDIUM", "HARD", "CHALLENGE"];
   const count = (items: typeof questions) =>
     Object.fromEntries(
@@ -18,7 +21,12 @@ async function main() {
     const bank = questions.filter((question) =>
       topics.includes(question.topicId),
     );
-    return { subject: subject.id, questions: bank.length, ...count(bank) };
+    return {
+      subject: subject.id,
+      lessons: topics.length,
+      questions: bank.length,
+      ...count(bank),
+    };
   });
   const byTopic = lessons.map((lesson) => {
     const bank = questions.filter((q) => q.topicId === lesson.metadata.id);
@@ -44,8 +52,26 @@ async function main() {
         lessons: lessons.length,
         total: questions.length,
         levels: count(questions),
+        byType: Object.fromEntries(
+          [
+            "NUMERIC",
+            "SHORT_TEXT",
+            "MULTIPLE_CHOICE",
+            "MULTI_SELECT",
+            "TRUE_FALSE",
+            "STEPS",
+            "OUTPUT",
+            "FIX_CODE",
+            "CONCEPTUAL",
+          ].map((type) => [
+            type,
+            questions.filter((q) => q.type === type).length,
+          ]),
+        ),
         bySubject,
         byTopic,
+        lowCoverageThreshold: 10,
+        lowCoverageTopics: byTopic.filter((topic) => topic.total < 10),
         fewerThan15: byTopic
           .filter((topic) => topic.total < 15)
           .map((topic) => topic.topic),
