@@ -63,3 +63,13 @@ a local authoring tool, not a transactional CMS or an atomic multi-file deployme
 Import changes **files only**; PostgreSQL and the running site remain unchanged until
 the reviewed files are deployed and the existing seed is explicitly run against the
 intended DB. The importer never invokes seed, migrations, AI or network services.
+
+## First real pack: ma-lab-6
+
+The original inbox pack and imported receipt preserve the successful first import
+(four analysis topics, 40 questions). Before publication, independent review corrected
+the published inverse-trigonometric/inverse-hyperbolic lessons and two explanation
+strings in the inverse-hyperbolic bank; IDs, prompts and answers were preserved.
+See `.tasks/active/content-ingestion-lab6.md` for evidence until task finalization.
+These are explicit post-import reviewed edits, not a rewritten receipt: replaying the
+original pack must reject the differing published text rather than undo the corrections.

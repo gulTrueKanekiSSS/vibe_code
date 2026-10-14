@@ -17,7 +17,8 @@ function canonical(value: unknown): unknown {
 
 test("every existing topic supplies at least ten distinct practice questions", async () => {
   const { lessons, questions } = await loadContent();
-  assert.equal(lessons.length, 64);
+  // Content packs can add topics; validate coverage, not a snapshot of bank size.
+  assert.ok(lessons.length > 0, "Content must contain topics to check");
   for (const { metadata } of lessons) {
     const bank = questions.filter((q) => q.topicId === metadata.id);
     assert.ok(

@@ -1,0 +1,244 @@
+[
+  {
+    "id": "hyperbolic-functions-sinh-definition",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Как определяется sinh x через экспоненты?",
+    "options": [
+      "(e^x - e^(-x))/2",
+      "(e^x + e^(-x))/2",
+      "e^x/e^(-x)",
+      "e^x - 1"
+    ],
+    "answer": "(e^x - e^(-x))/2",
+    "solution": "Гиперболический синус определяется как половина разности двух экспонент: sinh x=(e^x-e^(-x))/2. Знак минус отличает его от cosh.",
+    "hints": [
+      "Сравни sinh и cosh.",
+      "Для sinh нужна разность экспонент.",
+      "Вся разность делится на 2."
+    ],
+    "tags": [
+      "sinh",
+      "definition"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-cosh-definition",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Как определяется cosh x через экспоненты?",
+    "options": [
+      "(e^x + e^(-x))/2",
+      "(e^x - e^(-x))/2",
+      "2/(e^x-e^(-x))",
+      "e^(2x)"
+    ],
+    "answer": "(e^x + e^(-x))/2",
+    "solution": "Гиперболический косинус определяется как cosh x=(e^x+e^(-x))/2. В отличие от sinh между экспонентами стоит знак плюс.",
+    "hints": [
+      "Для cosh используется сумма.",
+      "Обе экспоненты имеют коэффициент 1.",
+      "Сумма делится на 2."
+    ],
+    "tags": [
+      "cosh",
+      "definition"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-parity",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какое утверждение о чётности верно?",
+    "options": [
+      "sinh нечётная, cosh чётная",
+      "sinh чётная, cosh нечётная",
+      "обе нечётные",
+      "обе чётные"
+    ],
+    "answer": "sinh нечётная, cosh чётная",
+    "solution": "Подстановка -x меняет местами e^x и e^(-x). Для sinh разность меняет знак: sinh(-x)=-sinh x. Для cosh сумма остаётся той же: cosh(-x)=cosh x.",
+    "hints": [
+      "Подставь -x в оба экспоненциальных определения.",
+      "В сумме перестановка слагаемых ничего не меняет.",
+      "В разности перестановка слагаемых меняет знак."
+    ],
+    "tags": [
+      "parity",
+      "sinh",
+      "cosh"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-fundamental-identity",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какое фундаментальное гиперболическое тождество верно?",
+    "options": [
+      "cosh²x - sinh²x = 1",
+      "cosh²x + sinh²x = 1",
+      "sinh²x - cosh²x = 1",
+      "cosh x - sinh x = 1"
+    ],
+    "answer": "cosh²x - sinh²x = 1",
+    "solution": "После подстановки экспоненциальных определений разность квадратов превращается в [(e^x+e^-x)^2-(e^x-e^-x)^2]/4=1.",
+    "hints": [
+      "Не переноси знак из тригонометрии автоматически.",
+      "Гиперболическая формула связана с разностью квадратов.",
+      "Слева сначала стоит cosh², затем вычитается sinh²."
+    ],
+    "tags": [
+      "hyperbolic-identity",
+      "proof"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-difference-squares",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "В доказательстве cosh²x - sinh²x = 1 удобно положить a=e^x, b=e^(-x). Чему равно (a+b)²-(a-b)²?",
+    "options": [
+      "4ab",
+      "2ab",
+      "a²-b²",
+      "4a²b²"
+    ],
+    "answer": "4ab",
+    "solution": "Раскрытие даёт a²+2ab+b²-(a²-2ab+b²)=4ab. Далее ab=e^x e^(-x)=1, поэтому после деления на 4 получается 1.",
+    "hints": [
+      "Раскрой оба квадрата отдельно.",
+      "Обрати внимание на минус перед второй скобкой.",
+      "Квадраты a² и b² сокращаются, а два средних члена складываются."
+    ],
+    "tags": [
+      "algebra",
+      "hyperbolic-identity"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-double-sinh",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какая формула двойного аргумента для sinh верна?",
+    "options": [
+      "sinh(2x)=2 sinh x cosh x",
+      "sinh(2x)=sinh²x+cosh²x",
+      "sinh(2x)=cosh²x-sinh²x",
+      "sinh(2x)=2 sinh²x"
+    ],
+    "answer": "sinh(2x)=2 sinh x cosh x",
+    "solution": "Формула сложения sinh(x+y)=sinh x cosh y+cosh x sinh y при y=x даёт два одинаковых слагаемых, то есть sinh(2x)=2 sinh x cosh x.",
+    "hints": [
+      "Возьми формулу сложения.",
+      "Подставь y=x.",
+      "Два получившихся произведения одинаковы."
+    ],
+    "tags": [
+      "double-angle",
+      "sinh"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-addition-expansion",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Какой подход соответствует требованию доказать формулу сложения sinh(x+y) через exponential definitions?",
+    "options": [
+      "Подставить определения sinh и cosh через e^t и упростить обе стороны",
+      "Сослаться на формулу сложения для sin",
+      "Проверить только x=y=0",
+      "Взять производную обеих частей без объяснения"
+    ],
+    "answer": "Подставить определения sinh и cosh через e^t и упростить обе стороны",
+    "solution": "Если требуются exponential definitions, нужно заменить sinh и cosh выражениями через e^t. После раскрытия произведений смешанные члены сокращаются, и правая часть становится (e^(x+y)-e^(-(x+y)))/2.",
+    "hints": [
+      "Смотри на формулировку метода доказательства.",
+      "Все гиперболические функции можно заменить экспонентами.",
+      "После раскрытия скобок сравни результат с определением sinh(x+y)."
+    ],
+    "tags": [
+      "addition-formula",
+      "proof-method"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-sign-error",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Студент утверждает cosh²x + sinh²x = 1 по аналогии с sin²x + cos²x = 1. В чём основная ошибка?",
+    "options": [
+      "Гиперболические функции имеют другое фундаментальное тождество с разностью",
+      "sinh и cosh не имеют определений",
+      "Экспонента e^x всегда равна 1",
+      "Тригонометрическое тождество тоже неверно"
+    ],
+    "answer": "Гиперболические функции имеют другое фундаментальное тождество с разностью",
+    "solution": "Сходство обозначений не означает одинаковых тождеств. Из экспоненциальных определений следует cosh²x-sinh²x=1. Сумма квадратов в общем случае не равна 1.",
+    "hints": [
+      "Проверь формулу подстановкой x=0.",
+      "При x=0 оба варианта случайно не различаются полностью, поэтому нужен общий вывод.",
+      "Используй экспоненциальные определения и разность квадратов."
+    ],
+    "tags": [
+      "error-analysis",
+      "identity"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-cosh-double",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Как получить cosh(2x)=cosh²x+sinh²x из формулы сложения для cosh?",
+    "options": [
+      "Положить y=x в cosh(x+y)=cosh x cosh y+sinh x sinh y",
+      "Положить y=-x в sinh(x+y)",
+      "Разделить cosh x на sinh x",
+      "Возвести cosh x в куб"
+    ],
+    "answer": "Положить y=x в cosh(x+y)=cosh x cosh y+sinh x sinh y",
+    "solution": "Подстановка y=x даёт cosh(x+x)=cosh x·cosh x+sinh x·sinh x, то есть cosh(2x)=cosh²x+sinh²x.",
+    "hints": [
+      "Двойной аргумент означает сумму x+x.",
+      "Выбери формулу сложения именно для cosh.",
+      "После y=x произведения становятся квадратами."
+    ],
+    "tags": [
+      "double-angle",
+      "cosh",
+      "proof"
+    ]
+  },
+  {
+    "id": "hyperbolic-functions-addition-cancellation",
+    "topicId": "hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "При раскрытии правой части sinh x cosh y + cosh x sinh y через экспоненты какие члены должны сократиться?",
+    "options": [
+      "Смешанные e^(x-y) и e^(-x+y)",
+      "Только e^(x+y)",
+      "Только e^(-x-y)",
+      "Никакие члены не сокращаются"
+    ],
+    "answer": "Смешанные e^(x-y) и e^(-x+y)",
+    "solution": "После раскрытия двух произведений смешанные экспоненты появляются с противоположными знаками. Они сокращаются, а e^(x+y) и -e^(-(x+y)) складываются в определение sinh(x+y).",
+    "hints": [
+      "Запиши оба произведения с общим знаменателем 4.",
+      "Проследи знаки у экспонент с разностью показателей.",
+      "Именно смешанные члены должны исчезнуть, чтобы осталась функция от x+y."
+    ],
+    "tags": [
+      "addition-formula",
+      "algebra"
+    ]
+  }
+]

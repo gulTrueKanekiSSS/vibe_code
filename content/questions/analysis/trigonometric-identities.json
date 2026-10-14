@@ -1,0 +1,247 @@
+[
+  {
+    "id": "trigonometric-identities-unit-circle-source",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какое равенство на единичной окружности непосредственно даёт тождество sin²x + cos²x = 1?",
+    "options": [
+      "X² + Y² = 1",
+      "Y = X + 1",
+      "X² - Y² = 1",
+      "XY = 1"
+    ],
+    "answer": "X² + Y² = 1",
+    "solution": "На единичной окружности координаты точки имеют вид X = cos x и Y = sin x. Подстановка этих координат в X² + Y² = 1 даёт cos²x + sin²x = 1.",
+    "hints": [
+      "Вспомни уравнение окружности радиуса 1.",
+      "Координаты точки на ней можно записать через cos x и sin x.",
+      "Подставь X = cos x и Y = sin x в уравнение окружности."
+    ],
+    "tags": [
+      "unit-circle",
+      "pythagorean-identity"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-divide-cos-square",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "На что нужно разделить sin²x + cos²x = 1, чтобы получить выражение с tan²x и sec²x?",
+    "options": [
+      "cos x",
+      "cos²x",
+      "sin x",
+      "sin²x"
+    ],
+    "answer": "cos²x",
+    "solution": "Чтобы получить tan²x = sin²x/cos²x и sec²x = 1/cos²x, нужно разделить каждый член исходного тождества именно на cos²x, при условии cos x ≠ 0.",
+    "hints": [
+      "Посмотри на определение tan x.",
+      "После возведения tan x = sin x / cos x в квадрат знаменатель тоже возводится в квадрат.",
+      "Нужный общий делитель — квадрат косинуса."
+    ],
+    "tags": [
+      "derived-identity",
+      "tan",
+      "sec"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-product-to-sum-factor",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "После сложения формул sin(x+y) и sin(x-y) получилось 2 sin x cos y. Что нужно сделать для получения product-to-sum формулы?",
+    "options": [
+      "Умножить на 2",
+      "Разделить на 2",
+      "Разделить на sin x",
+      "Прибавить cos y"
+    ],
+    "answer": "Разделить на 2",
+    "solution": "Сумма sin(x+y)+sin(x-y) равна 2 sin x cos y, потому что члены ±cos x sin y сокращаются. Поэтому обе части делят на 2.",
+    "hints": [
+      "Сначала запиши результат сложения двух формул.",
+      "Слева уже стоит нужная сумма, справа есть лишний числовой множитель.",
+      "Убери множитель 2 одинаковым действием с обеих сторон."
+    ],
+    "tags": [
+      "product-to-sum",
+      "addition-formulas"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-tan-proof-order",
+    "topicId": "trigonometric-identities",
+    "type": "STEPS",
+    "difficulty": "MEDIUM",
+    "prompt": "Расположи ключевые равенства доказательства 1 + tan²x = sec²x в правильном порядке.",
+    "options": [
+      "Шаг 1",
+      "Шаг 2",
+      "Шаг 3"
+    ],
+    "answer": [
+      "sin²x + cos²x = 1",
+      "sin²x/cos²x + cos²x/cos²x = 1/cos²x",
+      "tan²x + 1 = sec²x"
+    ],
+    "solution": "Начинаем с базового пифагорова тождества. Затем при cos x ≠ 0 делим каждый член на cos²x. После этого заменяем отношения по определениям tan x и sec x.",
+    "hints": [
+      "Нужная формула должна начинаться с уже доказанного тождества.",
+      "Средний шаг обязан содержать деление каждого члена на одну и ту же величину.",
+      "Последний шаг — только замена отношений стандартными обозначениями."
+    ],
+    "tags": [
+      "proof",
+      "derived-identity"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-cos-addition-sign",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какой знак стоит перед sin A sin B в формуле cos(A+B)?",
+    "options": [
+      "Плюс",
+      "Минус",
+      "Знак зависит от A",
+      "Знак зависит от B"
+    ],
+    "answer": "Минус",
+    "solution": "Формула сложения для косинуса имеет вид cos(A+B)=cos A cos B - sin A sin B. Для cos(A-B) знак перед произведением синусов меняется на плюс.",
+    "hints": [
+      "Сравни формулы сложения для sine и cosine.",
+      "У cosine знак в формуле суммы отличается от знака между углами.",
+      "Для суммы углов получается вычитание произведения синусов."
+    ],
+    "tags": [
+      "addition-formulas",
+      "cosine"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-cot-csc-divider",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Чтобы вывести 1 + cot²x = csc²x из sin²x + cos²x = 1, на что нужно разделить исходное тождество?",
+    "options": [
+      "sin²x",
+      "cos²x",
+      "sin x cos x",
+      "1"
+    ],
+    "answer": "sin²x",
+    "solution": "Поскольку cot²x = cos²x/sin²x, а csc²x = 1/sin²x, делим все три члена на sin²x. Это допустимо там, где sin x ≠ 0.",
+    "hints": [
+      "Смотри на знаменатель в определении cot x.",
+      "Для csc x знаменатель тот же.",
+      "Возведи знаменатель в квадрат, потому что в цели стоят квадраты функций."
+    ],
+    "tags": [
+      "derived-identity",
+      "cot",
+      "csc"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-domain-tan-sec",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Какое ограничение нужно явно учитывать в доказательстве 1 + tan²x = sec²x через деление пифагорова тождества?",
+    "options": [
+      "sin x ≠ 0",
+      "cos x ≠ 0",
+      "x > 0",
+      "x ≠ 0"
+    ],
+    "answer": "cos x ≠ 0",
+    "solution": "И tan x = sin x/cos x, и sec x = 1/cos x требуют cos x ≠ 0. Именно на cos²x мы делим исходное равенство, поэтому то же ограничение необходимо в доказательстве.",
+    "hints": [
+      "Посмотри, какая функция появляется в знаменателе.",
+      "И tan, и sec используют один и тот же знаменатель.",
+      "Нельзя делить на cos²x, если cos x = 0."
+    ],
+    "tags": [
+      "domain",
+      "proof"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-proof-error-divide-cos",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Студент написал: sin²x + cos²x = 1, затем разделил всё на cos x и заявил, что получил tan²x + 1 = sec²x. Где ошибка?",
+    "options": [
+      "Нельзя использовать sin²x + cos²x = 1",
+      "Нужно делить на cos²x, а не на cos x",
+      "Нужно сначала взять квадратный корень",
+      "sec x определяется через sin x"
+    ],
+    "answer": "Нужно делить на cos²x, а не на cos x",
+    "solution": "После деления на cos x первый член становится sin²x/cos x, а не tan²x. Чтобы получить tan²x = sin²x/cos²x, необходимо делить исходное тождество на cos²x.",
+    "hints": [
+      "Проверь первый член после указанного деления буквально.",
+      "Сравни sin²x/cos x с определением tan²x.",
+      "В tan²x знаменатель равен cos²x."
+    ],
+    "tags": [
+      "error-analysis",
+      "proof"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-product-sin-sin",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Какую комбинацию формул для cos(x-y) и cos(x+y) удобно использовать, чтобы получить выражение для sin x sin y?",
+    "options": [
+      "Сложить их",
+      "Вычесть cos(x+y) из cos(x-y)",
+      "Перемножить их",
+      "Разделить одну на другую"
+    ],
+    "answer": "Вычесть cos(x+y) из cos(x-y)",
+    "solution": "cos(x-y)=cos x cos y+sin x sin y, а cos(x+y)=cos x cos y-sin x sin y. Вычитание второй формулы из первой уничтожает cos x cos y и даёт 2 sin x sin y.",
+    "hints": [
+      "Нужно уничтожить произведение cos x cos y.",
+      "В двух формулах этот член имеет одинаковый знак.",
+      "Вычитание одинаковых членов оставляет разность синусовых произведений."
+    ],
+    "tags": [
+      "product-to-sum",
+      "proof-strategy"
+    ]
+  },
+  {
+    "id": "trigonometric-identities-reverse-planning",
+    "topicId": "trigonometric-identities",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Нужно доказать формулу sin x cos y = 1/2[sin(x+y)+sin(x-y)]. Какой план минимально использует формулы сложения?",
+    "options": [
+      "Раскрыть sin(x+y) и sin(x-y), сложить, затем разделить на 2",
+      "Раскрыть только cos(x+y)",
+      "Возвести обе части в квадрат",
+      "Разделить sin(x+y) на sin(x-y)"
+    ],
+    "answer": "Раскрыть sin(x+y) и sin(x-y), сложить, затем разделить на 2",
+    "solution": "После раскрытия двух синусов члены cos x sin y имеют противоположные знаки и сокращаются. Сумма становится 2 sin x cos y, после чего деление на 2 даёт требуемое тождество.",
+    "hints": [
+      "Цель содержит сумму двух синусов составных углов.",
+      "Раскрой обе формулы через sin x, cos x, sin y, cos y.",
+      "Выбери действие, при котором лишние смешанные члены сократятся."
+    ],
+    "tags": [
+      "product-to-sum",
+      "proof-planning"
+    ]
+  }
+]

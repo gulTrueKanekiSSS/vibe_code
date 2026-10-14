@@ -45,20 +45,20 @@ test("all expanded question records are seeded without changing their content", 
 
 test("every existing topic starts ten distinct resumable questions through both topic and custom practice", async () => {
   const { lessons, subjects } = await loadContent();
-  assert.equal(lessons.length, 64);
+  assert.ok(lessons.length > 0, "Content must contain topics to check");
   for (const subject of subjects) {
-    // One learner per subject keeps this below the unchanged 30-start/hour limit.
-    const user = await db.user.create({
-      data: {
-        telegramId: "test-minimum-" + randomUUID(),
-        firstName: "Coverage test",
-        settings: { create: {} },
-      },
-    });
-    created.push(user.id);
     for (const lesson of lessons.filter(
       (l) => l.metadata.subject === subject.id,
     )) {
+      // Isolate each topic so future packs cannot exhaust one learner's start limit.
+      const user = await db.user.create({
+        data: {
+          telegramId: "test-minimum-" + randomUUID(),
+          firstName: "Coverage test",
+          settings: { create: {} },
+        },
+      });
+      created.push(user.id);
       const topicId = lesson.metadata.id;
       const key = randomUUID();
       const options = {
@@ -141,10 +141,11 @@ test("every existing topic starts ten distinct resumable questions through both 
       assert.equal(topicItems.length, 10, topicId + " topic start");
       assert.equal(new Set(topicItems.map((i) => i.questionId)).size, 10);
       assert.ok(topicItems.every((i) => i.question.topicId === topicId));
+      assert.equal(
+        await db.practiceSession.count({ where: { userId: user.id } }),
+        2,
+        topicId + " creates only custom and topic sessions, not another on retry",
+      );
     }
-    assert.equal(
-      await db.practiceSession.count({ where: { userId: user.id } }),
-      2 * lessons.filter((l) => l.metadata.subject === subject.id).length,
-    );
   }
 });
