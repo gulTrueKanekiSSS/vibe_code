@@ -1,0 +1,28 @@
+{
+  "packId": "ma-lab-6",
+  "subjectId": "analysis",
+  "sources": [
+    "Chapter2.pdf — Functions and Their Graphs / Elementary Functions and Properties",
+    "MA_LAB 6 Questions.pdf — Lab 6: Trigonometric and Hyperbolic Proofs",
+    "MathAnalysis I (notes lectures 07.10.2026).pdf"
+  ],
+  "topicIds": [
+    "trigonometric-identities",
+    "inverse-trigonometric-functions",
+    "hyperbolic-functions",
+    "inverse-hyperbolic-functions"
+  ],
+  "lessonFiles": [
+    "lessons/trigonometric-identities.mdx",
+    "lessons/inverse-trigonometric-functions.mdx",
+    "lessons/hyperbolic-functions.mdx",
+    "lessons/inverse-hyperbolic-functions.mdx"
+  ],
+  "questionFiles": [
+    "questions/trigonometric-identities.json",
+    "questions/inverse-trigonometric-functions.json",
+    "questions/hyperbolic-functions.json",
+    "questions/inverse-hyperbolic-functions.json"
+  ],
+  "notes": "Externally curated from the supplied lecture, Lab 6 sheet and handwritten notes. Formula domains and worked solutions were checked independently; import remains file-only until reviewed and seeded."
+}

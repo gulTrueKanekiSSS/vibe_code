@@ -1,0 +1,244 @@
+[
+  {
+    "id": "inverse-trigonometric-functions-arcsin-definition",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Что означает y = arcsin x?",
+    "options": [
+      "sin y = x и y ∈ [-π/2, π/2]",
+      "sin x = y и y ∈ [0, π]",
+      "1/sin x = y",
+      "cos y = x"
+    ],
+    "answer": "sin y = x и y ∈ [-π/2, π/2]",
+    "solution": "По определению arcsin возвращает principal angle y из интервала [-π/2, π/2], для которого sin y = x. Это не reciprocal функции sine.",
+    "hints": [
+      "Вспомни, что inverse function меняет местами вход и выход.",
+      "Нужно также указать principal range.",
+      "Для arcsin выбран диапазон от -π/2 до π/2."
+    ],
+    "tags": [
+      "arcsin",
+      "definition"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-arccos-range",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какой principal range используется для y = arccos x?",
+    "options": [
+      "[-π/2, π/2]",
+      "[0, π]",
+      "(0, 2π)",
+      "(-π, π)"
+    ],
+    "answer": "[0, π]",
+    "solution": "Функцию cosine ограничивают интервалом [0, π], где она взаимно однозначна и принимает все значения от 1 до -1. Поэтому arccos x возвращает угол именно из [0, π].",
+    "hints": [
+      "Нужен интервал, где cosine one-to-one.",
+      "На нём cosine проходит от 1 до -1 без повторов.",
+      "Этот интервал начинается в 0 и заканчивается в π."
+    ],
+    "tags": [
+      "arccos",
+      "principal-range"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-inverse-vs-reciprocal",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какое утверждение верно?",
+    "options": [
+      "sin⁻¹x = 1/sin x",
+      "sin⁻¹x = arcsin x, а 1/sin x = csc x",
+      "sin⁻¹x = sec x",
+      "arcsin x = csc x"
+    ],
+    "answer": "sin⁻¹x = arcsin x, а 1/sin x = csc x",
+    "solution": "В обозначении inverse trigonometric functions запись sin⁻¹x означает arcsin x. Reciprocal функции sine называется cosecant: csc x = 1/sin x.",
+    "hints": [
+      "Раздели понятия inverse function и reciprocal.",
+      "У reciprocal sine есть отдельное стандартное имя.",
+      "Это имя — cosecant."
+    ],
+    "tags": [
+      "notation",
+      "inverse-function"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-sin-arccos",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Пусть y = arccos x и x ∈ [-1,1]. Как выражается sin y?",
+    "options": [
+      "sqrt(1-x²)",
+      "-sqrt(1-x²)",
+      "1/x",
+      "x²-1"
+    ],
+    "answer": "sqrt(1-x²)",
+    "solution": "Из cos y = x и sin²y + cos²y = 1 следует sin²y = 1-x². Поскольку y ∈ [0,π], sin y ≥ 0, значит sin y = sqrt(1-x²).",
+    "hints": [
+      "Используй пифагорово тождество.",
+      "После извлечения корня нужно выбрать знак.",
+      "На диапазоне arccos от 0 до π синус неотрицателен."
+    ],
+    "tags": [
+      "arccos",
+      "composition",
+      "domain"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-tan-arcsin",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Для |x| < 1 чему равно tan(arcsin x)?",
+    "options": [
+      "x/sqrt(1-x²)",
+      "sqrt(1-x²)/x",
+      "1/sqrt(1-x²)",
+      "x/sqrt(1+x²)"
+    ],
+    "answer": "x/sqrt(1-x²)",
+    "solution": "Пусть y = arcsin x. Тогда sin y = x и cos y = sqrt(1-x²) на principal range. Поэтому tan y = sin y/cos y = x/sqrt(1-x²).",
+    "hints": [
+      "Сначала замени arcsin x новым углом y.",
+      "Найди cos y из sin²y + cos²y = 1.",
+      "После этого используй tan y = sin y / cos y."
+    ],
+    "tags": [
+      "arcsin",
+      "composition"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-complementary",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какое тождество связывает arcsin x и arccos x для x ∈ [-1,1]?",
+    "options": [
+      "arcsin x + arccos x = π/2",
+      "arcsin x - arccos x = π/2",
+      "arcsin x + arccos x = π",
+      "arcsin x = arccos x"
+    ],
+    "answer": "arcsin x + arccos x = π/2",
+    "solution": "Если θ = arcsin x, то sin θ = x. По complementary-angle identity cos(π/2-θ)=sin θ=x, а π/2-θ лежит в range arccos. Поэтому arccos x=π/2-θ.",
+    "hints": [
+      "Вспомни связь sin θ и cos(π/2-θ).",
+      "Положи θ = arcsin x.",
+      "Вырази arccos x через π/2 и θ."
+    ],
+    "tags": [
+      "arcsin",
+      "arccos",
+      "complementary-angles"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-root-sign",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Почему в формуле cos(arcsin x)=sqrt(1-x²) выбирается положительный корень?",
+    "options": [
+      "Потому что x всегда положителен",
+      "Потому что arcsin x ∈ [-π/2,π/2], где cos неотрицателен",
+      "Потому что квадратный корень всегда равен x",
+      "Потому что sin и cos всегда положительны"
+    ],
+    "answer": "Потому что arcsin x ∈ [-π/2,π/2], где cos неотрицателен",
+    "solution": "Из тождества получается только cos²y=1-x². Знак определяется principal range y=arcsin x ∈ [-π/2,π/2], где cos y ≥ 0. Поэтому берётся неотрицательный квадратный корень.",
+    "hints": [
+      "Уравнение для квадрата само по себе не определяет знак.",
+      "Знак надо определить по диапазону угла y.",
+      "На principal range arcsin косинус неотрицателен."
+    ],
+    "tags": [
+      "principal-range",
+      "sign"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-domain-tan-composition",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Почему в tan(arcsin x)=x/sqrt(1-x²) удобно указывать |x|<1, а не только x∈[-1,1]?",
+    "options": [
+      "Потому что arcsin не определён при x=±1",
+      "Потому что при x=±1 знаменатель равен нулю и tan соответствующего угла не определён",
+      "Потому что sqrt(1-x²) отрицателен на концах",
+      "Потому что tan определён только при x>0"
+    ],
+    "answer": "Потому что при x=±1 знаменатель равен нулю и tan соответствующего угла не определён",
+    "solution": "arcsin(±1) существует и равен ±π/2, но tan(±π/2) не определён. В формуле это видно по знаменателю sqrt(1-x²)=0 при x=±1.",
+    "hints": [
+      "Раздели domain внутренней функции и domain всей композиции.",
+      "Проверь, чему равен arcsin(1).",
+      "Тангенс не определён, когда cosine соответствующего угла равен нулю."
+    ],
+    "tags": [
+      "domain",
+      "composition"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-triangle-error",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Студент строит треугольник для y=arccos x с гипотенузой 1 и прилежащим катетом x, затем пишет второй катет 1-x². Что пропущено?",
+    "options": [
+      "Нужно взять квадратный корень: sqrt(1-x²)",
+      "Нужно умножить на 2",
+      "Нужно заменить x на x²",
+      "Нужно взять логарифм"
+    ],
+    "answer": "Нужно взять квадратный корень: sqrt(1-x²)",
+    "solution": "По Пифагору длина второго катета b удовлетворяет b²=1-x², поэтому b=sqrt(1-x²) для геометрической длины. Само выражение 1-x² является квадратом длины, а не длиной.",
+    "hints": [
+      "Пифагорова теорема даёт равенство квадратов длин.",
+      "Сначала получается b² = 1 - x².",
+      "Чтобы найти саму длину b, извлеки корень."
+    ],
+    "tags": [
+      "error-analysis",
+      "triangle"
+    ]
+  },
+  {
+    "id": "inverse-trigonometric-functions-proof-plan",
+    "topicId": "inverse-trigonometric-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Какой первый шаг наиболее полезен для доказательства связи sin(arccos x)=sqrt(1-x²)?",
+    "options": [
+      "Положить y=arccos x и переписать как cos y=x",
+      "Сразу взять логарифм",
+      "Возвести arccos x в квадрат",
+      "Заменить x на tan x"
+    ],
+    "answer": "Положить y=arccos x и переписать как cos y=x",
+    "solution": "Введение y=arccos x превращает композицию inverse/trig в обычную тригонометрическую задачу. После этого применяется sin²y+cos²y=1 и диапазон y∈[0,π] для выбора знака.",
+    "hints": [
+      "Убери inverse notation с помощью новой переменной.",
+      "Определение arccos сразу даёт обычное равенство для cosine.",
+      "После этого можно использовать пифагорово тождество."
+    ],
+    "tags": [
+      "proof-planning",
+      "inverse-function"
+    ]
+  }
+]

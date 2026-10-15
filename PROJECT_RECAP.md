@@ -1,7 +1,7 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-13. Задача/ветка: `dmitrij/feature/content-ingestion`.
-Проверенная база: `origin/main a73033a` (fetch выполнен; PR #11 слит человеком).
+Обновлено: 2026-10-15. Задача/ветка: `dmitrij/feature/content-ingestion` (финализация Lab 6).
+`0127b20` — изменения Lab 6; `d9601f1` включил `origin/main 81aacc0` без конфликтов.
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
 ## Карта подсистем — искать, затем открывать
@@ -43,6 +43,22 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Текущая задача / exact next step
 
+- [Первый реальный pack — ma-lab-6](.tasks/done/content-ingestion-lab6.md): файлы и
+  локальная БД теперь 5 предметов / 68 уроков / 782 вопроса. Четыре новые analysis темы,
+  по 10 разных заданий; прежние 742 вопроса неизменны. Raw pack/receipt сохранены.
+  После review уточнены две новые лекции и два solution в одном банке (unit circle,
+  principal arcosh branch); ID/вопросы/ответы не менялись. Повтор исходного pack намеренно
+  не перезапишет reviewed-исправления; подробности в task/report.
+  Coverage tests обходят все темы без фиксированного count, integration learner на тему.
+  [QA](.tasks/qa/content-ingestion-lab6.md): validate/report, typecheck/lint, unit91/91,
+  integration48/48, db:generate/prisma validate/build PASS. Seed — только local,
+  пользовательские данные до/после совпали; DB/full-source parity PASS.
+  `tutor:index`: 68 тем / 525 chunks / 0 embeddingsCreated, внешних AI-вызовов нет.
+  [Независимое review](.tasks/qa/content-ingestion-lab6-review.md) APPROVE с закрытием
+  двух замечаний. Полная матрица проверок повторена после merge main — PASS.
+  Ветка отправлена; [PR #13](https://github.com/gulTrueKanekiSSS/vibe_code/pull/13) открыт.
+  Next: human review/merge; production seed/index отдельно, пока выполнены только локально.
+
 - [Content ingestion](.tasks/done/content-ingestion.md): добавлены компактная схема,
   DB-free validator/report, additive importer с ID/conflict/lock/rollback защитой и
   success receipt. Банк 5/64/742 не менялся; импорт не запускает seed/AI/сеть.
@@ -51,7 +67,7 @@ Tracked-файлы — основной scope; новые релевантные
   независимая проверка кода/12 тестов без blockers; final gate закрыт root после лимита агентов.
   При аварийном kill — ручное recovery по lock/journal; математику проверяет человек.
   `6709ee3` отправлен; [PR #12](https://github.com/gulTrueKanekiSSS/vibe_code/pull/12)
-  открыт в main. Next: human review/merge; публикация файлов в БД отдельно и только с разрешением.
+  слит человеком в `81aacc0`. Пайплайн готов; первая реальная партия описана выше.
 
 - [Инициализация Neon](.tasks/active/neon-initialization.md): пользователь создал Free
   production во Frankfurt и приватно добавил direct URL в ignored `.env.hosting.local`.

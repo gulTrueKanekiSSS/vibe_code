@@ -1,0 +1,242 @@
+[
+  {
+    "id": "inverse-hyperbolic-functions-start-asinh",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Если y = arsinh x, какое обычное гиперболическое равенство следует из определения inverse function?",
+    "options": [
+      "x = sinh y",
+      "x = cosh y",
+      "y = sinh x",
+      "x = e^y"
+    ],
+    "answer": "x = sinh y",
+    "solution": "По определению обратной функции y=arsinh x эквивалентно x=sinh y. Именно это равенство позволяет подставить экспоненциальное определение sinh.",
+    "hints": [
+      "Inverse function меняет местами вход и выход.",
+      "В исходной функции используется sinh.",
+      "Перепиши y=f^{-1}(x) как x=f(y)."
+    ],
+    "tags": [
+      "arsinh",
+      "inverse-function"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-positive-exp",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какое свойство обязательно используется при выборе корня квадратного уравнения для e^y?",
+    "options": [
+      "e^y > 0",
+      "e^y < 0",
+      "e^y = 0",
+      "e^y всегда целое"
+    ],
+    "answer": "e^y > 0",
+    "solution": "Экспонента e^y положительна для любого действительного y, поэтому отрицательные и нулевые кандидаты исключаются. Для arsinh остаётся один положительный корень. Для arcosh при x>1 оба корня положительны, и дополнительно нужна principal branch y≥0, то есть e^y≥1.",
+    "hints": [
+      "Вспомни range обычной экспоненты.",
+      "Экспонента никогда не равна нулю.",
+      "Тем более она не бывает отрицательной."
+    ],
+    "tags": [
+      "exponential",
+      "root-selection"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-arcosh-domain",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какой действительный domain principal arcosh x указан в лекции?",
+    "options": [
+      "x ≥ 1",
+      "x > 0",
+      "|x| < 1",
+      "все x ∈ R"
+    ],
+    "answer": "x ≥ 1",
+    "solution": "Для principal inverse cosh ограничивают ветвью y≥0, на которой cosh возрастает от 1 до бесконечности. Поэтому domain arcosh — x≥1, а range — y≥0; формула равна ln(x+sqrt(x²-1)). Само неравенство cosh y≥1 верно и для отрицательных y, поэтому оно не выбирает ветвь.",
+    "hints": [
+      "Посмотри на минимальное значение cosh.",
+      "cosh y не опускается ниже 1.",
+      "Следовательно, inverse получает аргументы начиная с 1."
+    ],
+    "tags": [
+      "arcosh",
+      "domain"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-asinh-quadratic",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "После x=(e^y-e^(-y))/2 и умножения на 2e^y какое квадратное уравнение получается для z=e^y?",
+    "options": [
+      "z² - 2xz - 1 = 0",
+      "z² + 2xz + 1 = 0",
+      "z² - 2xz + 1 = 0",
+      "2z² - x = 0"
+    ],
+    "answer": "z² - 2xz - 1 = 0",
+    "solution": "Из 2xe^y=e^(2y)-1 переносим всё в одну сторону: e^(2y)-2xe^y-1=0. После z=e^y получаем z²-2xz-1=0.",
+    "hints": [
+      "Сначала избавься от e^(-y), умножив на e^y.",
+      "Перенеси левую часть в одну сторону.",
+      "Затем замени e^y на z, а e^(2y) на z²."
+    ],
+    "tags": [
+      "arsinh",
+      "quadratic"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-asinh-root",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какой корень уравнения z²-2xz-1=0 подходит для z=e^y?",
+    "options": [
+      "x + sqrt(x²+1)",
+      "x - sqrt(x²+1)",
+      "-x - sqrt(x²+1)",
+      "только z=1"
+    ],
+    "answer": "x + sqrt(x²+1)",
+    "solution": "Корни равны x±sqrt(x²+1). Поскольку sqrt(x²+1)>|x|, выражение x-sqrt(x²+1) отрицательно, а e^y должно быть положительным. Поэтому остаётся x+sqrt(x²+1).",
+    "hints": [
+      "Реши квадратное уравнение обычной формулой.",
+      "Сравни sqrt(x²+1) с |x|.",
+      "Оставь только корень, совместимый с e^y>0."
+    ],
+    "tags": [
+      "arsinh",
+      "root-selection"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-asinh-final",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "После получения e^y = x + sqrt(x²+1) какое действие завершает вывод arsinh x?",
+    "options": [
+      "Взять натуральный логарифм обеих частей",
+      "Возвести обе части в квадрат",
+      "Умножить на e^y",
+      "Взять синус"
+    ],
+    "answer": "Взять натуральный логарифм обеих частей",
+    "solution": "Так как правая часть положительна, берём ln: y=ln(x+sqrt(x²+1)). Поскольку y=arsinh x, это и есть требуемая логарифмическая формула.",
+    "hints": [
+      "Нужно освободить y из показателя экспоненты.",
+      "Функция, обратная e^y, — натуральный логарифм.",
+      "После ln(e^y)=y подставь обратно y=arsinh x."
+    ],
+    "tags": [
+      "arsinh",
+      "logarithm"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-arcosh-quadratic",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Пусть y=arcosh x и z=e^y. Какое квадратное уравнение получается из x=(e^y+e^(-y))/2?",
+    "options": [
+      "z² - 2xz + 1 = 0",
+      "z² - 2xz - 1 = 0",
+      "z² + 2xz + 1 = 0",
+      "z² - x = 0"
+    ],
+    "answer": "z² - 2xz + 1 = 0",
+    "solution": "Умножение 2x=e^y+e^(-y) на e^y даёт 2xe^y=e^(2y)+1. После переноса: e^(2y)-2xe^y+1=0, то есть z²-2xz+1=0.",
+    "hints": [
+      "У cosh между экспонентами стоит плюс.",
+      "После умножения на e^y возникает +1.",
+      "Перенеси 2xz в одну сторону и сохрани знак постоянного члена."
+    ],
+    "tags": [
+      "arcosh",
+      "quadratic"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-asinh-wrong-root",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Почему нельзя выбрать e^y = x - sqrt(x²+1) при выводе arsinh x?",
+    "options": [
+      "Это выражение всегда отрицательно, а e^y положительно",
+      "Оно всегда больше 1",
+      "Оно равно нулю для всех x",
+      "Логарифм определён только для целых чисел"
+    ],
+    "answer": "Это выражение всегда отрицательно, а e^y положительно",
+    "solution": "Поскольку sqrt(x²+1)>|x|, имеем x-sqrt(x²+1)<0 для любого действительного x. Но e^y>0, поэтому такой корень невозможен.",
+    "hints": [
+      "Сравни sqrt(x²+1) и |x|.",
+      "Корень строго больше модуля x.",
+      "Из этого сразу следует знак разности x - sqrt(x²+1)."
+    ],
+    "tags": [
+      "root-selection",
+      "error-analysis"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-artanh-domain",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Для какого диапазона x лекция приводит действительную формулу artanh x = 1/2 ln((1+x)/(1-x))?",
+    "options": [
+      "|x| < 1",
+      "x ≥ 1",
+      "x ≠ 0",
+      "все x ∈ R"
+    ],
+    "answer": "|x| < 1",
+    "solution": "Principal inverse tanh имеет действительный аргумент x в интервале (-1,1). На этом интервале 1+x и 1-x положительны, поэтому логарифмическая формула действительна.",
+    "hints": [
+      "Вспомни range функции tanh.",
+      "Она принимает значения между -1 и 1.",
+      "Следовательно, inverse использует аргументы с модулем меньше 1."
+    ],
+    "tags": [
+      "artanh",
+      "domain"
+    ]
+  },
+  {
+    "id": "inverse-hyperbolic-functions-proof-template",
+    "topicId": "inverse-hyperbolic-functions",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Какой порядок шагов лучше всего описывает общий вывод логарифмической формулы inverse hyperbolic function?",
+    "options": [
+      "Ввести y=f⁻¹(x) → записать x=f(y) → перейти к экспонентам → решить уравнение для e^y → выбрать допустимый корень → взять ln",
+      "Взять ln(x) → возвести в квадрат → заменить x на 0",
+      "Сразу подставить готовую формулу → проверить одно значение",
+      "Взять производную → проинтегрировать без использования inverse definition"
+    ],
+    "answer": "Ввести y=f⁻¹(x) → записать x=f(y) → перейти к экспонентам → решить уравнение для e^y → выбрать допустимый корень → взять ln",
+    "solution": "Такой порядок следует из определения inverse function и экспоненциальной природы hyperbolic functions. Самый важный контрольный шаг — выбрать корень, совместимый с e^y>0 и областью определения.",
+    "hints": [
+      "Начало должно использовать определение обратной функции.",
+      "Середина должна убрать гиперболическую функцию через экспоненты.",
+      "Финал должен освободить y из e^y с помощью натурального логарифма."
+    ],
+    "tags": [
+      "proof-strategy",
+      "inverse-hyperbolic"
+    ]
+  }
+]
