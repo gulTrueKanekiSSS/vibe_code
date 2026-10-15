@@ -23,3 +23,6 @@ Originalpack replay intentionally refuses to overwrite reviewed corrections. Pro
 DB was not seeded/indexed; deployment requires an explicitly authorized production seed
 and text index update after merge. PDF fidelity not independently checked against originals.
 Human review/merge only; no automatic merge.
+
+Latest origin/main81aacc0 integrated in d9601f1 without conflicts/tree changes;
+all nine verification commands repeated successfully after synchronization.

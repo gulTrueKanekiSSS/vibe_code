@@ -75,11 +75,16 @@ The following are root-executed results, not duplicated by this verifier:
 | `npm run build` | PASS |
 | `npm run tutor:index` | PASS: 68 topics / 525 chunks / 0 embeddings created |
 
-Final publication gate: root must integrate fetched `origin/main` (`81aacc0`,
-human-merged prior PR #12), rerun affected checks and record those results. No
-claim that the still-pending sync/publication gate has passed is made here.
+At initial QA, main integration and publication were pending. The final root-run
+gate below records completed synchronization and post-sync verification.
 
 ## Limitations
+
+Final gate completed (2026-10-15 handoff): implementation0127b20, merge d9601f1
+integrated origin/main81aacc0 without conflicts or tree changes. Root repeated every
+matrix command above after merge: validate/report5/68/782, typecheck/lint,
+unit91/91, integration48/48, db:generate/prisma validate/build all PASS. Generated
+next-env.d.ts drift excluded. Seed/index were not repeated unnecessarily.
 
 No external PDF source or pedagogical live evaluation was performed. Structural
 validity and preserving existing questions do not prove every mathematical answer.

@@ -1,7 +1,8 @@
 # Independent review — Lab 6 ingestion finalization
 
-Date: 2026-10-14. Reviewer: `lab6_review` (independent of implementation/QA).
-Decision: **APPROVE, conditional on the final verification/publication gate below**.
+Date: 2026-10-14; final gate checked 2026-10-15.
+Reviewer: `lab6_review` (independent of implementation/QA).
+Decision: **APPROVE for publication and human PR review**.
 The two teaching-correctness findings below were repaired and independently re-read.
 No database commands were run by reviewer.
 
@@ -70,8 +71,22 @@ re-importing the old pack must not overwrite the corrected published content.
 
 ## Final gate
 
-No unresolved BLOCKER or MAJOR findings remain. Root must reseed/reindex corrected
-material and supply the full requested verification matrix after latest-main
-integration. Independent QA owns receipt/source/count checks. Approval here is for
-the reviewed code/content, not a claim that pending root-run checks already passed.
+No unresolved BLOCKER or MAJOR findings remain. Independently checked the final
+changed-path scope and Git integration: content commit `0127b20`, merge `d9601f1`,
+`origin/main 81aacc0` is an ancestor of HEAD. The merge introduces no tree changes
+compared with `0127b20`; no conflicts or discarded content are present.
+
+Read independent QA's pack/fingerprint/preservation evidence. Root reports the
+complete requested matrix rerun **after integration**: content validation/report
+PASS (5 subjects / 68 lessons / 782 questions, zero low-coverage topics), typecheck
+PASS, lint PASS, unit **91/91**, integration **48/48**, Prisma generate/validate
+PASS and production build PASS. These are root-run checks, not reviewer-run checks.
+Local-only seed/source parity and preservation snapshots passed; local text-only
+Tutor indexing produced **68 topics / 525 chunks / 0 embeddings created**.
+
+The only generated working-tree change at final inspection was `next-env.d.ts`
+switching dev route declaration paths to build paths. Root is excluding that known
+generated drift before the documentation/publication commit. No source-code or
+content changes are required by this review. PR publication itself remains root's
+next action; this approval does not claim a push or PR already happened.
 No automatic merge; only human review may approve merging the resulting PR.

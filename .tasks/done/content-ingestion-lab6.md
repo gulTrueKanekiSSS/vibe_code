@@ -1,6 +1,6 @@
 # Finalize content ingestion with first real Lab 6 pack
 
-Status: QA_PASSED_PENDING_SYNC
+Status: DONE (PR ready; human merge pending)
 Date: 2026-10-14
 Branch: dmitrij/feature/content-ingestion
 Base: 9359df3; fetched origin/main 81aacc0 (PR #12 human-merged).
@@ -48,4 +48,12 @@ db:generate, prisma validate, build. `tutor:index`: 68 topics /525 chunks /0 new
 no provider passed and no --embeddings flag. `.idea` ignored, no tracked editor files.
 QA/review: [QA](../qa/content-ingestion-lab6.md), [independent review](../qa/content-ingestion-lab6-review.md).
 Both mathematical review findings repaired; previous IDs and answer keys unchanged.
-Next: inspect/stage/commit, fetch+merge origin/main, rerun, push and new PR (prior #12 merged).
+Implementation commit: 0127b20. Fetched/merged origin/main81aacc0 into task branch:
+merge d9601f1, no conflicts or tree changes. All nine requested verification commands
+rerun PASS after sync: validate/report5/68/782, typecheck/lint, unit91/91,
+integration48/48, db:generate, prisma validate and production build. Build-generated
+next-env route import drift restored; no application edits included.
+Pushed feature branch; new PR #13 is open against main:
+https://github.com/gulTrueKanekiSSS/vibe_code/pull/13
+Next: human review/merge. Remote production DB/index are unchanged; after deployment,
+production seed/text-index update require explicit authorization. No automatic merge.

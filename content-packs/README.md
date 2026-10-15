@@ -70,6 +70,6 @@ The original inbox pack and imported receipt preserve the successful first impor
 (four analysis topics, 40 questions). Before publication, independent review corrected
 the published inverse-trigonometric/inverse-hyperbolic lessons and two explanation
 strings in the inverse-hyperbolic bank; IDs, prompts and answers were preserved.
-See `.tasks/active/content-ingestion-lab6.md` for evidence until task finalization.
+See [the completed task](../.tasks/done/content-ingestion-lab6.md) for evidence.
 These are explicit post-import reviewed edits, not a rewritten receipt: replaying the
 original pack must reject the differing published text rather than undo the corrections.
