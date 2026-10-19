@@ -1,6 +1,6 @@
 # Publish reviewed Lab 6 content to production Neon
 
-Status: READY_FOR_PR (production update and verification complete)
+Status: DONE (production verified; documentation PR ready for human review)
 Date: 2026-10-19 (started 2026-10-15)
 Branch: dmitrij/chore/neon-lab6-publication
 Base: origin/main c4ddcaf (PR #13 merged by human)
@@ -65,7 +65,9 @@ users, Tutor indexing or external AI requests.
 Independent pre-write safety review: neon_seed_review APPROVE after fixes (use
 installed libpq18 path; applied). Final independent documentation review:
 neon_publication_review APPROVE, no blockers; root-run DB evidence not rerun by
-reviewer. Publication pending. Main fetched and merge confirmed already up to date
+reviewer. Report committed in b300ae5 and pushed; documentation PR #14 opened:
+https://github.com/gulTrueKanekiSSS/vibe_code/pull/14
+Main fetched and merge confirmed already up to date
 at c4ddcaf; only task report and recap changed; diff whitespace check PASS.
 Temporary wrapper `/private/tmp/studyspace-neon-lab6.mjs` is not product code.
 Never rerun seed to reproduce this report; inspect state first. No restore required.

@@ -43,15 +43,16 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Текущая задача / exact next step
 
-- [Production Lab 6](.tasks/active/neon-lab6-publication.md): явно разрешённый seed
+- [Production Lab 6](.tasks/done/neon-lab6-publication.md): явно разрешённый seed
   Neon завершён. Production **5 предметов / 68 уроков / 782 вопроса**, четыре новые
   темы по 10 заданий. TLS/preflight/6 migration checksums/backup/seed/full content
   parity PASS; снимки всех user/auth/practice/progress/Tutor данных совпали до/после.
   Backup pg_dump18.6 закрыт и вне Git; путь и ограничения в task (временное хранение,
   restore не репетировался). Для backup установлен libpq18.6 с зависимостями.
   Happ direct-исключения восстановили доступ; IP могут меняться. Без app/env/schema
-  изменений, миграций, AI/index calls. Next: публикация отчёта и ручной smoke новых
-  тем на сайте; seed повторять не нужно. Tutor остаётся отключён.
+  изменений, миграций, AI/index calls. Отчёт отправлен, [PR #14](https://github.com/gulTrueKanekiSSS/vibe_code/pull/14)
+  открыт (только документация, не слит). Next: ручной smoke новых тем на сайте и
+  human review отчёта; seed повторять не нужно. Tutor остаётся отключён.
 
 - [Первый реальный pack — ma-lab-6](.tasks/done/content-ingestion-lab6.md): файлы и
   локальная БД теперь 5 предметов / 68 уроков / 782 вопроса. Четыре новые analysis темы,
