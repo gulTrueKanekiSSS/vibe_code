@@ -1,7 +1,7 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-15. Задача/ветка: `dmitrij/feature/content-ingestion` (финализация Lab 6).
-`0127b20` — изменения Lab 6; `d9601f1` включил `origin/main 81aacc0` без конфликтов.
+Обновлено: 2026-10-19. Задача/ветка: `dmitrij/chore/neon-lab6-publication` (production seed).
+База `origin/main c4ddcaf`: PR #13 слит человеком; контент совпадает с reviewed `41097bd`.
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
 ## Карта подсистем — искать, затем открывать
@@ -43,6 +43,16 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Текущая задача / exact next step
 
+- [Production Lab 6](.tasks/active/neon-lab6-publication.md): явно разрешённый seed
+  Neon завершён. Production **5 предметов / 68 уроков / 782 вопроса**, четыре новые
+  темы по 10 заданий. TLS/preflight/6 migration checksums/backup/seed/full content
+  parity PASS; снимки всех user/auth/practice/progress/Tutor данных совпали до/после.
+  Backup pg_dump18.6 закрыт и вне Git; путь и ограничения в task (временное хранение,
+  restore не репетировался). Для backup установлен libpq18.6 с зависимостями.
+  Happ direct-исключения восстановили доступ; IP могут меняться. Без app/env/schema
+  изменений, миграций, AI/index calls. Next: публикация отчёта и ручной smoke новых
+  тем на сайте; seed повторять не нужно. Tutor остаётся отключён.
+
 - [Первый реальный pack — ma-lab-6](.tasks/done/content-ingestion-lab6.md): файлы и
   локальная БД теперь 5 предметов / 68 уроков / 782 вопроса. Четыре новые analysis темы,
   по 10 разных заданий; прежние 742 вопроса неизменны. Raw pack/receipt сохранены.
@@ -56,8 +66,9 @@ Tracked-файлы — основной scope; новые релевантные
   `tutor:index`: 68 тем / 525 chunks / 0 embeddingsCreated, внешних AI-вызовов нет.
   [Независимое review](.tasks/qa/content-ingestion-lab6-review.md) APPROVE с закрытием
   двух замечаний. Полная матрица проверок повторена после merge main — PASS.
-  Ветка отправлена; [PR #13](https://github.com/gulTrueKanekiSSS/vibe_code/pull/13) открыт.
-  Next: human review/merge; production seed/index отдельно, пока выполнены только локально.
+  Ветка отправлена; [PR #13](https://github.com/gulTrueKanekiSSS/vibe_code/pull/13)
+  слит человеком в `c4ddcaf`. Production seed завершён отдельной задачей выше;
+  Tutor index выполнен только локально, Tutor остаётся отключён.
 
 - [Content ingestion](.tasks/done/content-ingestion.md): добавлены компактная схема,
   DB-free validator/report, additive importer с ID/conflict/lock/rollback защитой и
