@@ -1,0 +1,357 @@
+[
+  {
+    "id": "basis-coordinate-transformations-l5-basis-definition",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какое условие определяет базис векторного пространства?",
+    "options": [
+      "Линейная независимость и порождение всего пространства",
+      "Только линейная независимость",
+      "Только попарная ортогональность",
+      "Только наличие n ненулевых векторов"
+    ],
+    "answer": "Линейная независимость и порождение всего пространства",
+    "solution": "Базис B — линейно независимая система, порождающая V. Только одного условия недостаточно: независимый набор может не порождать V.",
+    "hints": [
+      "Вспомни два требования из определения basis.",
+      "Одно из требований запрещает нетривиальные зависимости.",
+      "Второе гарантирует представление каждого вектора через элементы набора."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-coordinate-meaning",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Если B=((1,1),(1,-1)), что означает [v]_B=(3,1)^T?",
+    "options": [
+      "v=3(1,1)+1(1,-1)",
+      "v=3(1,0)+1(0,1)",
+      "v=(3,1) в стандартных координатах",
+      "v=(1,3) в стандартных координатах"
+    ],
+    "answer": "v=3(1,1)+1(1,-1)",
+    "solution": "Координаты вектора в базисе — коэффициенты линейной комбинации базисных векторов. Поэтому v=3b₁+1b₂=(4,2).",
+    "hints": [
+      "Координаты в B не обязаны совпадать с обычными координатами.",
+      "Вспомни формулу v=c₁b₁+c₂b₂.",
+      "Подставь пару коэффициентов из [v]_B."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab1-matrix-forward",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №1(a): для B=((1,1),(1,-1)) какая матрица P_(S←B) переводит B-координаты в стандартные S-координаты?",
+    "options": [
+      "[[1,1],[1,-1]]",
+      "[[1,1],[-1,1]]",
+      "[[1,-1],[1,1]]",
+      "[[1,0],[0,1]]"
+    ],
+    "answer": "[[1,1],[1,-1]]",
+    "solution": "Столбцы P_(S←B) — базисные векторы B, записанные в стандартных координатах: b₁=(1,1)^T и b₂=(1,-1)^T. Поэтому получаем [[1,1],[1,-1]].",
+    "hints": [
+      "Смотри направление стрелки S←B.",
+      "При переходе к стандартному базису столбцы — сами векторы b₁ и b₂.",
+      "Расположи эти два столбца рядом."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab1-matrix-inverse",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №1(b): какая P_(B←S) обратна P_(S←B)=[[1,1],[1,-1]]?",
+    "options": [
+      "[[1/2,1/2],[1/2,-1/2]]",
+      "[[1,1],[1,-1]]",
+      "[[1/2,-1/2],[1/2,1/2]]",
+      "[[2,2],[2,-2]]"
+    ],
+    "answer": "[[1/2,1/2],[1/2,-1/2]]",
+    "solution": "Определитель P равен -2. По формуле обратной 2×2 получаем P⁻¹=(1/(-2))[[-1,-1],[-1,1]]=[[1/2,1/2],[1/2,-1/2]].",
+    "hints": [
+      "Матрицы двух направлений являются обратными.",
+      "Для 2×2 используй формулу через определитель.",
+      "Определитель исходной матрицы равен -2."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab1-coordinate-first",
+    "topicId": "basis-coordinate-transformations",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №1(c): B=((1,1),(1,-1)) и [v]_S=(7,-1)^T. Какова первая координата [v]_B?",
+    "options": [],
+    "answer": "3",
+    "solution": "Система c₁+c₂=7 и c₁-c₂=-1 даёт 2c₁=6, поэтому c₁=3. Вторая координата c₂=4, то есть [v]_B=(3,4)^T.",
+    "hints": [
+      "Представь (7,-1) как c₁b₁+c₂b₂.",
+      "Сложи уравнения c₁+c₂=7 и c₁-c₂=-1.",
+      "Раздели полученную сумму на 2."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab1-coordinate-second",
+    "topicId": "basis-coordinate-transformations",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №1(c): для [v]_S=(7,-1)^T и B=((1,1),(1,-1)) чему равна вторая B-координата?",
+    "options": [],
+    "answer": "4",
+    "solution": "Из c₁+c₂=7 и c₁-c₂=-1 следует 2c₂=8, так что c₂=4. Вместе с c₁=3 это даёт [v]_B=(3,4)^T.",
+    "hints": [
+      "Используй систему координат по новому базису.",
+      "Вычти второе уравнение из первого.",
+      "После вычитания остаётся 2c₂=8."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-direction-rule",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Что делает матрица P_(C←B) по определению?",
+    "options": [
+      "Переводит [v]_B в [v]_C",
+      "Переводит [v]_C в [v]_B",
+      "Меняет сам геометрический вектор v",
+      "Вычисляет длину v"
+    ],
+    "answer": "Переводит [v]_B в [v]_C",
+    "solution": "Направление C←B читается справа налево: вход — координаты относительно B, выход — координаты относительно C. Равенство [v]_C=P_(C←B)[v]_B.",
+    "hints": [
+      "Смотри на стрелку в обозначении.",
+      "Правый индекс B относится ко входу.",
+      "Левый индекс C обозначает координаты результата."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab2-first-column",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Lab 5, №2(a): B=((1,1),(1,-1)), C=((2,1),(1,2)). Какова первая колонка P_(C←B)?",
+    "options": [
+      "(1/3,1/3)^T",
+      "(1,1)^T",
+      "(1,-1)^T",
+      "(2/3,1/3)^T"
+    ],
+    "answer": "(1/3,1/3)^T",
+    "solution": "Ищем c₁,c₂ из (1,1)=c₁(2,1)+c₂(1,2). Из 2c₁+c₂=1 и c₁+2c₂=1 следует c₁=c₂=1/3.",
+    "hints": [
+      "Первая колонка — C-координаты b₁.",
+      "Реши систему 2c₁+c₂=1 и c₁+2c₂=1.",
+      "Вычитание уравнений показывает равенство коэффициентов."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab2-second-column",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Lab 5, №2(a): B=((1,1),(1,-1)), C=((2,1),(1,2)). Какова вторая колонка P_(C←B)?",
+    "options": [
+      "(1,-1)^T",
+      "(1,1)^T",
+      "(-1,1)^T",
+      "(1/3,-1/3)^T"
+    ],
+    "answer": "(1,-1)^T",
+    "solution": "Для b₂=(1,-1) решаем 2c₁+c₂=1, c₁+2c₂=-1. Получаем c₁=1, c₂=-1. Это вторая колонка матрицы перехода.",
+    "hints": [
+      "Вторая колонка представляет b₂ в C-координатах.",
+      "Составь два уравнения для вектора (1,-1).",
+      "Убедись, что (2,1)-(1,2)=(1,-1)."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab2-coordinate-c-first",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Lab 5, №2(c): если [v]_B=(2,3)^T и P_(C←B)=[[1/3,1],[1/3,-1]], чему равна первая C-координата?",
+    "options": [
+      "11/3",
+      "7/3",
+      "-7/3",
+      "5"
+    ],
+    "answer": "11/3",
+    "solution": "Первая строка матрицы перехода даёт c₁=(1/3)·2+1·3=2/3+3=11/3. Вторая координата равна 2/3-3=-7/3.",
+    "hints": [
+      "Перемножь матрицу перехода с вектором координат.",
+      "Для первой компоненты используй первую строку.",
+      "Сложи 2/3 и 3."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab2-coordinate-c-second",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Lab 5, №2(c): при [v]_B=(2,3)^T и P_(C←B)=[[1/3,1],[1/3,-1]], чему равна вторая C-координата?",
+    "options": [
+      "-7/3",
+      "11/3",
+      "7/3",
+      "-11/3"
+    ],
+    "answer": "-7/3",
+    "solution": "Вторая строка даёт c₂=(1/3)·2+(-1)·3=2/3-3=-7/3. Первая координата отдельно равна 11/3.",
+    "hints": [
+      "Используй вторую строку P_(C←B).",
+      "В ней коэффициенты 1/3 и -1.",
+      "Из 2/3 вычти 3."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab2-composition",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Lab 5, №2(b): какое равенство верно для перехода B→S→C?",
+    "options": [
+      "P_(C←B)=P_(C←S)P_(S←B)",
+      "P_(C←B)=P_(S←B)P_(C←S)",
+      "P_(C←B)=P_(B←S)P_(S←C)",
+      "P_(C←B)=P_(S←C)+P_(B←S)"
+    ],
+    "answer": "P_(C←B)=P_(C←S)P_(S←B)",
+    "solution": "Сначала [v]_S=P_(S←B)[v]_B, затем [v]_C=P_(C←S)[v]_S. Подстановка даёт [v]_C=P_(C←S)P_(S←B)[v]_B.",
+    "hints": [
+      "Проследи за координатным вектором после первого перехода.",
+      "Правая матрица в произведении применяется первой.",
+      "В промежутке должен получиться индекс S."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab2-reverse-check",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Lab 5, №2(d): чему равно P_(B←C)·P_(C←B) для двух базисов одного пространства?",
+    "options": [
+      "I",
+      "0",
+      "P_(C←B)",
+      "2I"
+    ],
+    "answer": "I",
+    "solution": "Переход C←B, а затем B←C возвращает исходные B-координаты. Матрицы взаимно обратны, поэтому их произведение равно единичной матрице I.",
+    "hints": [
+      "Выполни мысленно переход туда и обратно.",
+      "Обратная матрица отменяет исходное преобразование.",
+      "Запиши формулу A⁻¹A."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-basis-coordinate-consistency",
+    "topicId": "basis-coordinate-transformations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Для B=((1,1),(1,-1)) и C=((2,1),(1,2)), известно [v]_B=(2,3)^T. Каковы стандартные координаты [v]_S?",
+    "options": [
+      "(5,-1)^T",
+      "(2,3)^T",
+      "(11/3,-7/3)^T",
+      "(5,1)^T"
+    ],
+    "answer": "(5,-1)^T",
+    "solution": "Пересчёт через B даёт v=2(1,1)+3(1,-1)=(5,-1). Через C, используя [v]_C=(11/3,-7/3), получаем тот же вектор.",
+    "hints": [
+      "Геометрический вектор не меняется при смене базиса.",
+      "В стандартных координатах сложи 2b₁ и 3b₂.",
+      "Покомпонентно получи (2+3,2-3)."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "basis-coordinate-transformations-l5-lab2-proof-plan",
+    "topicId": "basis-coordinate-transformations",
+    "type": "STEPS",
+    "difficulty": "CHALLENGE",
+    "prompt": "Lab 5, №2(a): расположи шаги прямого построения P_(C←B) в правильном порядке.",
+    "options": [
+      "Шаг 1",
+      "Шаг 2",
+      "Шаг 3",
+      "Шаг 4"
+    ],
+    "answer": [
+      "Записать базисы B и C в стандартных координатах",
+      "Решить b₁=u₁c₁+u₂c₂",
+      "Решить b₂=v₁c₁+v₂c₂",
+      "Поставить [b₁]_C и [b₂]_C столбцами в P_(C←B)"
+    ],
+    "solution": "По определению колонки P_(C←B) — C-координаты векторов исходного базиса B. Поэтому сначала известны базисы, затем последовательно определяются координаты каждого bᵢ в C и собирается матрица перехода.",
+    "hints": [
+      "Определение change-of-basis matrix связано с координатами исходного базиса.",
+      "Каждому bᵢ соответствует ровно один столбец.",
+      "Матрицу можно собрать только после вычисления всех столбцов."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  }
+]

@@ -1,0 +1,413 @@
+[
+  {
+    "id": "column-rank-nullity-l5-col-space-definition",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Для A∈ℝ^(m×n) что представляет собой Col(A)?",
+    "options": [
+      "Все линейные комбинации столбцов A",
+      "Только строки, содержащие pivot",
+      "Все решения Ax=0",
+      "Множество всех квадратных матриц"
+    ],
+    "answer": "Все линейные комбинации столбцов A",
+    "solution": "Column space — это span множества столбцов A, эквивалентно множество всех векторов Ax при x∈ℝ^n. Оно является подпространством ℝ^m.",
+    "hints": [
+      "В названии указаны столбцы.",
+      "Вспомни понятие span.",
+      "Выбери описание множества Ax."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-col-ambient-dimension",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Если A — матрица 3×4, в каком пространстве лежит Col(A)?",
+    "options": [
+      "ℝ³",
+      "ℝ⁴",
+      "ℝ⁷",
+      "ℝ²"
+    ],
+    "answer": "ℝ³",
+    "solution": "Каждый столбец матрицы 3×4 содержит три координаты, поэтому столбцы и любые их линейные комбинации лежат в ℝ³. Таким образом Col(A)⊆ℝ³.",
+    "hints": [
+      "Размер каждого столбца задаёт внешнее пространство.",
+      "Число строк равно длине столбца.",
+      "У матрицы 3×4 столбец имеет три компоненты."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-null-space-definition",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Как определяется Null(A) для A∈ℝ^(m×n)?",
+    "options": [
+      "{x∈ℝⁿ : Ax=0}",
+      "{Ax : x∈ℝⁿ}",
+      "Все строки A",
+      "Все собственные значения A"
+    ],
+    "answer": "{x∈ℝⁿ : Ax=0}",
+    "solution": "Null space — множество всех векторов входного пространства ℝ^n, которые матрица A отправляет в нулевой вектор ℝ^m. Это множество решений однородной системы Ax=0.",
+    "hints": [
+      "Null связано с однородной системой.",
+      "Смотрим, какие входы переходят в нулевой вектор.",
+      "Подставь равенство Ax=0 в определение."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-rank-upper-bound",
+    "topicId": "column-rank-nullity",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Какой наибольший ранг может иметь матрица размера 3×4?",
+    "options": [],
+    "answer": "3",
+    "solution": "Общий предел: rank(A)≤min(m,n). Для m=3,n=4 это min(3,4)=3. Матрица 3×4 не может иметь более трёх независимых строк.",
+    "hints": [
+      "Ранг ограничен обоими размерами матрицы.",
+      "Применяй rank≤min(m,n).",
+      "Минимум чисел 3 и 4 равен 3."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab3-rank",
+    "topicId": "column-rank-nullity",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №3(a): ранг A=[[1,2,3],[2,4,6],[1,1,1]] равен?",
+    "options": [],
+    "answer": "2",
+    "solution": "Вторая строка равна удвоенной первой, поэтому rank≤2. Первая и третья строки независимы: (1,2,3) и (1,1,1) не пропорциональны. Следовательно, rank=2.",
+    "hints": [
+      "Сначала найди зависимую строку.",
+      "Вторая строка равна 2R₁.",
+      "Проверь, что R₁ и R₃ не пропорциональны."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab3-pivots",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №3(b): какие столбцы ИСХОДНОЙ A=[[1,2,3],[2,4,6],[1,1,1]] образуют базис Col(A)?",
+    "options": [
+      "Первый и второй столбцы",
+      "Первый и третий столбцы",
+      "Второй и третий столбцы",
+      "Все три столбца"
+    ],
+    "answer": "Первый и второй столбцы",
+    "solution": "Рядовое приведение даёт pivots в столбцах 1 и 2. Базис Col(A) составляем из соответствующих столбцов исходной матрицы: (1,2,1)^T и (2,4,1)^T.",
+    "hints": [
+      "Нужны pivot columns исходной матрицы.",
+      "Из REF pivots стоят в первой и второй колонках.",
+      "Не заменяй исходные столбцы столбцами REF."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab3-nullspace-basis",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Lab 5, №3(c): какой вектор образует базис Null(A) для A=[[1,2,3],[2,4,6],[1,1,1]]?",
+    "options": [
+      "(1,-2,1)^T",
+      "(1,2,1)^T",
+      "(1,-1,1)^T",
+      "(2,-1,1)^T"
+    ],
+    "answer": "(1,-2,1)^T",
+    "solution": "Из REF следуют x+2y+3z=0 и y+2z=0. Пусть z=t; тогда y=-2t, x=t. Поэтому Null(A)=span{(1,-2,1)^T}.",
+    "hints": [
+      "Реши однородную систему Ax=0.",
+      "Положи свободную переменную z=t.",
+      "Второе уравнение даёт y=-2t, затем первое — x=t."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab3-nullity",
+    "topicId": "column-rank-nullity",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №3(c): nullity матрицы A размера 3×3 и ранга 2 равна?",
+    "options": [],
+    "answer": "1",
+    "solution": "По теореме rank–nullity: rank(A)+nullity(A)=n=3. Значит nullity=3-2=1. Это соответствует одной свободной переменной в Ax=0.",
+    "hints": [
+      "Используй число столбцов, а не строк.",
+      "Примени rank+nullity=n.",
+      "Вычти ранг 2 из n=3."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab3-rank-nullity-check",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №3(d): какая сумма проверяет теорему rank–nullity для матрицы 3×3 с rank=2?",
+    "options": [
+      "2+1=3",
+      "2+2=4",
+      "3+1=4",
+      "1+1=2"
+    ],
+    "answer": "2+1=3",
+    "solution": "Для A размера 3×3 мы нашли rank(A)=2 и nullity(A)=1. Их сумма равна 3, то есть числу столбцов исходной матрицы.",
+    "hints": [
+      "Правая часть равна n — числу столбцов.",
+      "Уже известно, что rank=2.",
+      "Добавь nullity=1."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab4-relation",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Lab 5, №4(a): какое отношение между столбцами D=[[1,2,3],[4,5,6],[7,8,9]] доказывает зависимость?",
+    "options": [
+      "C₁−2C₂+C₃=0",
+      "C₁+C₂+C₃=0",
+      "C₁=C₂",
+      "3C₁−C₃=0"
+    ],
+    "answer": "C₁−2C₂+C₃=0",
+    "solution": "Для каждого ряда D выполняется a₁-2a₂+a₃=0: например, 1-4+3=0. Значит C₁-2C₂+C₃=0 — нетривиальная линейная зависимость столбцов.",
+    "hints": [
+      "Посмотри на соседние столбцы.",
+      "Средний столбец — среднее арифметическое крайних.",
+      "Перенеси равенство 2C₂=C₁+C₃ в одну часть."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab4-rank",
+    "topicId": "column-rank-nullity",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №4(a): чему равен rank(D) для D=[[1,2,3],[4,5,6],[7,8,9]]?",
+    "options": [],
+    "answer": "2",
+    "solution": "Столбцы линейно зависимы из-за C₁−2C₂+C₃=0, поэтому rank(D)<3. Первый и второй столбцы не пропорциональны, значит rank(D)≥2. Итого rank=2.",
+    "hints": [
+      "Найди зависимость между тремя колонками.",
+      "Две из колонок независимы.",
+      "Соедини оценки rank<3 и rank≥2."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab4-b-singularity",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №4(b): почему B=[[1,2],[2,4]] является singular?",
+    "options": [
+      "Второй столбец равен двум первым",
+      "Её определитель равен 2",
+      "Она не является квадратной",
+      "У неё rank=2"
+    ],
+    "answer": "Второй столбец равен двум первым",
+    "solution": "Столбцы (1,2)^T и (2,4)^T линейно зависимы: C₂=2C₁. Rank(B)=1<2, det(B)=0, поэтому обратной матрицы нет.",
+    "hints": [
+      "Проверь пропорциональность столбцов.",
+      "Сравни (1,2) и (2,4).",
+      "Зависимые столбцы квадратной матрицы означают det=0."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab4-d-nullity",
+    "topicId": "column-rank-nullity",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Lab 5, №4(d): какова nullity квадратной матрицы D размера 3×3 с rank(D)=2?",
+    "options": [],
+    "answer": "1",
+    "solution": "По rank–nullity: nullity(D)=3-rank(D)=3-2=1. Один независимый вектор составляет базис её ядра.",
+    "hints": [
+      "В теореме справа стоит число столбцов.",
+      "Используй nullity=n-rank.",
+      "Вычисли 3-2."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-invertibility-test",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Для квадратной A размера n×n какое условие эквивалентно существованию A⁻¹?",
+    "options": [
+      "rank(A)=n",
+      "rank(A)=n−1",
+      "nullity(A)>0",
+      "det(A)=0"
+    ],
+    "answer": "rank(A)=n",
+    "solution": "Для квадратной матрицы обратимость эквивалентна полному рангу n, det(A)≠0 и отсутствию ненулевых решений Ax=0. Промежуточный ранг делает матрицу singular.",
+    "hints": [
+      "Это набор equivalent conditions.",
+      "Нужны n линейно независимых столбцов.",
+      "Поэтому ранг должен достигать максимума n."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-rank-product-bound",
+    "topicId": "column-rank-nullity",
+    "type": "NUMERIC",
+    "difficulty": "CHALLENGE",
+    "prompt": "Если A размера 3×4, B размера 4×2, какое наибольшее значение может иметь rank(AB)?",
+    "options": [],
+    "answer": "2",
+    "solution": "Матрица AB имеет размер 3×2. По общей оценке rank(AB)≤min(rank(A),rank(B))≤min(3,2)=2. Поэтому максимально возможно 2.",
+    "hints": [
+      "Сначала определись с размером AB.",
+      "У произведения три строки и два столбца.",
+      "Применяй rank(AB)≤min(rank(A),rank(B))."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-subspace-reason",
+    "topicId": "column-rank-nullity",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Почему множество Col(A) всегда замкнуто относительно сложения?",
+    "options": [
+      "Ax+Ay=A(x+y)",
+      "Ax+Ay=A(xy)",
+      "Ax+Ay=0 всегда",
+      "Col(A) состоит только из нуля"
+    ],
+    "answer": "Ax+Ay=A(x+y)",
+    "solution": "Если u=Ax, v=Ay — произвольные элементы Col(A), то u+v=Ax+Ay=A(x+y). Поскольку x+y является допустимым входом, сумма снова лежит в Col(A).",
+    "hints": [
+      "Представь оба элемента как результаты матричного умножения.",
+      "Используй линейность A.",
+      "Сгруппируй Ax+Ay в A(x+y)."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-lab3-nullspace-plan",
+    "topicId": "column-rank-nullity",
+    "type": "STEPS",
+    "difficulty": "HARD",
+    "prompt": "Lab 5, №3(c): расставь этапы нахождения базиса Null(A) в правильном порядке.",
+    "options": [
+      "Шаг 1",
+      "Шаг 2",
+      "Шаг 3",
+      "Шаг 4"
+    ],
+    "answer": [
+      "Составить однородную систему Ax=0",
+      "Привести её матрицу к REF/RREF",
+      "Выразить pivot-переменные через свободные",
+      "Записать параметрическое решение и векторный базис ядра"
+    ],
+    "solution": "Базис null space ищут из решения Ax=0. Путём исключения находят pivots и свободные переменные, выражают общий вектор решения как линейную комбинацию независимых направлений и получают basis of Null(A).",
+    "hints": [
+      "Null space определяется однородной системой.",
+      "Row reduction позволяет определить свободные переменные.",
+      "Базис состоит из векторов при свободных параметрах."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "column-rank-nullity-l5-invertibility-equivalent-multiselect",
+    "topicId": "column-rank-nullity",
+    "type": "MULTI_SELECT",
+    "difficulty": "CHALLENGE",
+    "prompt": "Выбери ВСЕ утверждения, эквивалентные обратимости квадратной n×n матрицы A.",
+    "options": [
+      "det(A)≠0",
+      "rank(A)=n",
+      "Null(A)={0}",
+      "rank(A)<n"
+    ],
+    "answer": [
+      "det(A)≠0",
+      "rank(A)=n",
+      "Null(A)={0}"
+    ],
+    "solution": "Для квадратной матрицы обратимость равносильна det(A)≠0, полному рангу n и тривиальному ядру. Условие rank(A)<n означало бы наличие ненулевого решения Ax=0 и необратимость.",
+    "hints": [
+      "Сравни условия из теоремы equivalent conditions.",
+      "Проверь determinant, rank и nullity.",
+      "Не включай утверждения, допускающие зависимые столбцы."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  }
+]

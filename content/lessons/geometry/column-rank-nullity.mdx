@@ -1,0 +1,54 @@
+---
+{
+  "id": "column-rank-nullity",
+  "title": "Пространства столбцов и ядро. Ранг",
+  "english": "Column Space, Null Space, Rank–Nullity",
+  "subject": "geometry",
+  "module": "Матрицы и пространство",
+  "order": 51,
+  "difficulty": "HARD",
+  "estimatedMinutes": 45,
+  "prerequisites": [
+    "basis-coordinate-transformations"
+  ],
+  "keywords": [
+    "column space",
+    "row space",
+    "null space",
+    "rank",
+    "nullity"
+  ],
+  "quizAnswer": ""
+}
+---
+
+## Что это?
+Пространство столбцов (column space) матрицы $A\in\mathbb{R}^{m\times n}$ — все линейные комбинации её столбцов, то есть $\operatorname{Col}(A)=\{Ax:x\in\mathbb{R}^n\}\subseteq\mathbb{R}^m$. Пространство строк (row space) лежит в $\mathbb{R}^n$, а ядро (null space) состоит из решений $Ax=0$ и тоже лежит в $\mathbb{R}^n$. Ранг измеряет размерность пространства столбцов (и строк); дефект, nullity, измеряет размерность ядра.
+
+## Формула и её смысл
+$$
+\operatorname{rank}(A)=\dim\operatorname{Col}(A)=\dim\operatorname{Row}(A),\qquad
+\operatorname{rank}(A)+\operatorname{nullity}(A)=n.
+$$
+Для матрицы $m\times n$ выполняется $\operatorname{rank}(A)\le\min(m,n)$. В квадратном случае $n\times n$ обратимость эквивалентна рангу $n$, ненулевому определителю, независимости столбцов и тривиальному ядру $\{0\}$.
+
+## Разберём на примере
+В Lab 5 дана матрица
+$$
+A=\begin{bmatrix}1&2&3\\2&4&6\\1&1&1\end{bmatrix}.
+$$
+Вычтем $2R_1$ из $R_2$, затем вычтем $R_1$ из $R_3$ и нормируем вторую ненулевую строку:
+$$
+A\sim\begin{bmatrix}1&2&3\\0&1&2\\0&0&0\end{bmatrix}.
+$$
+Два pivots дают $\operatorname{rank}(A)=2$. Pivot columns — первая и вторая; для **базиса исходного column space** берём именно исходные столбцы $(1,2,1)^T$ и $(2,4,1)^T$, не столбцы преобразованной матрицы.
+
+Система $Ax=0$ после приведения имеет вид $x+2y+3z=0$, $y+2z=0$. При $z=t$ получаем $y=-2t$, $x=t$. Значит $\operatorname{Null}(A)=\operatorname{span}\{(1,-2,1)^T\}$, nullity $=1$, а $2+1=3$ — число столбцов.
+
+Для $D=\begin{bmatrix}1&2&3\\4&5&6\\7&8&9\end{bmatrix}$ выполнено $C_1-2C_2+C_3=0$. Поэтому столбцы зависимы; первые два независимы, так что rank $=2$ и nullity $=1$.
+
+## Почему пространства являются подпространствами
+Например, если $u=Ax$ и $v=Ay$, то $u+v=A(x+y)$, а $\lambda u=A(\lambda x)$. Нулевой вектор имеет вид $A0$. Это доказывает замкнутость column space; аналогичные рассуждения применимы к null space.
+
+## Частая ошибка
+Элементарные преобразования строк сохраняют ранг и множество решений $Ax=0$, но в общем случае **не сохраняют само пространство столбцов** исходной матрицы. Поэтому базис $\operatorname{Col}(A)$ составляют из pivot-столбцов **исходной** матрицы. В формуле rank–nullity справа стоит число **столбцов**, а не число строк.

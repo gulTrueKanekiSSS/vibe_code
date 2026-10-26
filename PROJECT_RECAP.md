@@ -1,7 +1,7 @@
 # StudySpace — navigation cache
 
-Обновлено: 2026-10-19. Задача/ветка: `dmitrij/chore/neon-lab6-publication` (production seed).
-База `origin/main c4ddcaf`: PR #13 слит человеком; контент совпадает с reviewed `41097bd`.
+Обновлено: 2026-10-26. Задача/ветка: `dmitrij/content/agla-lecture-5-lab-5`.
+База `origin/main c7a2f2a`; PR #14 (Neon Lab 6 publication) уже слит человеком.
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
 
 ## Карта подсистем — искать, затем открывать
@@ -42,6 +42,16 @@ Tracked-файлы — основной scope; новые релевантные
 - Прежние app-проверки находятся в связанных QA/task отчётах; они не означают, что текущий worktree прошёл новые проверки. История рекапа — Git / PR #3 (`6a92406`), не копировать её сюда.
 
 ## Текущая задача / exact next step
+
+- [AGLA Lecture 5 / Lab 5](.tasks/active/agla-lecture-5-lab-5.md): prepared content
+  imported under geometry / `Матрицы и пространство`; +5 lessons / +69 questions.
+  Source inbox and receipt preserved. On fresh `origin/main c7a2f2a`, validate/report
+  PASS (5 subjects / 73 lessons / 851 questions; no low coverage topics), unit91/91;
+  seed source uses upsert only. Current next step: PR to documented production branch
+  `main`; commit `7ac1afa` pushed. PR creation needs GitHub web UI:
+  [open PR form](https://github.com/gulTrueKanekiSSS/vibe_code/pull/new/dmitrij/content/agla-lecture-5-lab-5).
+  Local Vercel project/auth unavailable, so deployment/Neon identity and backup are
+  unverified. No DB/index/live-site operations until Ready Production is confirmed.
 
 - [Production Lab 6](.tasks/done/neon-lab6-publication.md): явно разрешённый seed
   Neon завершён. Production **5 предметов / 68 уроков / 782 вопроса**, четыре новые
