@@ -1,0 +1,50 @@
+{
+  "packId": "ca-week3-theory-exam",
+  "subjectId": "architecture",
+  "sources": [
+    "Lecture Week 3 Part I (Von Neumman and Harvard Architectures) (1).pdf",
+    "Lecture Week 3 Part II (Performance Metrics) (1).pdf",
+    "Lecture Week 3 Part III (Logic Gates) (1).pdf",
+    "Lab Week 3 (Universal logic gates) (1).pdf"
+  ],
+  "topicIds": [
+    "ca-w3-architectures",
+    "ca-w3-program-performance",
+    "ca-w3-cpu-clock",
+    "ca-w3-memory-io",
+    "ca-w3-gpu-amdahl",
+    "ca-w3-boolean-gates",
+    "ca-w3-transistors-ic",
+    "ca-w3-nand",
+    "ca-w3-nor",
+    "ca-w3-logic-proof-timing",
+    "ca-w3-fpga-universal-lab"
+  ],
+  "lessonFiles": [
+    "lessons/ca-w3-architectures.mdx",
+    "lessons/ca-w3-program-performance.mdx",
+    "lessons/ca-w3-cpu-clock.mdx",
+    "lessons/ca-w3-memory-io.mdx",
+    "lessons/ca-w3-gpu-amdahl.mdx",
+    "lessons/ca-w3-boolean-gates.mdx",
+    "lessons/ca-w3-transistors-ic.mdx",
+    "lessons/ca-w3-nand.mdx",
+    "lessons/ca-w3-nor.mdx",
+    "lessons/ca-w3-logic-proof-timing.mdx",
+    "lessons/ca-w3-fpga-universal-lab.mdx"
+  ],
+  "questionFiles": [
+    "questions/ca-w3-architectures.json",
+    "questions/ca-w3-program-performance.json",
+    "questions/ca-w3-cpu-clock.json",
+    "questions/ca-w3-memory-io.json",
+    "questions/ca-w3-gpu-amdahl.json",
+    "questions/ca-w3-boolean-gates.json",
+    "questions/ca-w3-transistors-ic.json",
+    "questions/ca-w3-nand.json",
+    "questions/ca-w3-nor.json",
+    "questions/ca-w3-logic-proof-timing.json",
+    "questions/ca-w3-fpga-universal-lab.json"
+  ],
+  "notes": "Week 3 lecture+lab curriculum; Russian teaching notes, English terminology, exam theory and verified circuit/numeric questions. Slot 1 LED overlap explicitly documented. No subject registry change, no existing topic edits, no DB writes."
+}

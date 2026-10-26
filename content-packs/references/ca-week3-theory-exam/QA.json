@@ -1,0 +1,42 @@
+{
+  "packId": "ca-week3-theory-exam",
+  "sources": [
+    "Lecture Week 3 Part I (Von Neumman and Harvard Architectures) (1).pdf",
+    "Lecture Week 3 Part II (Performance Metrics) (1).pdf",
+    "Lecture Week 3 Part III (Logic Gates) (1).pdf",
+    "Lab Week 3 (Universal logic gates) (1).pdf"
+  ],
+  "topics": {
+    "ca-w3-architectures": 28,
+    "ca-w3-program-performance": 31,
+    "ca-w3-cpu-clock": 38,
+    "ca-w3-memory-io": 22,
+    "ca-w3-gpu-amdahl": 42,
+    "ca-w3-boolean-gates": 45,
+    "ca-w3-transistors-ic": 15,
+    "ca-w3-nand": 32,
+    "ca-w3-nor": 31,
+    "ca-w3-logic-proof-timing": 63,
+    "ca-w3-fpga-universal-lab": 78
+  },
+  "questionTotal": 425,
+  "types": {
+    "MULTIPLE_CHOICE": 210,
+    "TRUE_FALSE": 37,
+    "NUMERIC": 178
+  },
+  "difficulties": {
+    "MEDIUM": 337,
+    "HARD": 76,
+    "EASY": 12
+  },
+  "structuralCheck": "passed against locally available CONTENT_SCHEMA.md rules",
+  "caveats": [
+    "Final validation by repo npm run content:import and content:validate is necessary.",
+    "No live repo state or duplicate-existing question IDs checked.",
+    "Course slides use special meanings of response time, bandwidth, throughput; lessons flag lecture-specific definitions.",
+    "Lab Time Slot 1 has overlapping requirements on input 111; lesson/question explicitly qualify priority interpretation.",
+    "Hardware characteristic tables are illustrative and not universal specifications.",
+    "No deployment or DB seed has been run."
+  ]
+}

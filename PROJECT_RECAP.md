@@ -1,5 +1,16 @@
 # StudySpace — navigation cache
 
+2026-10-26 CA Week3 import: `dmitrij/content/ca-week3-theory-exam`, base/current
+origin/main `b87b526`; isolated `/private/tmp/studyspace-ca-week3`. +11 architecture
+lessons/+425 authored questions (210 MC,178 numeric,37 true/false). No collisions;
+ZIP/lesson/question parity PASS; prior content unchanged. Validator/report PASS:
+5 subjects/84 lessons/1276 questions; architecture23/569; low coverage empty;
+unit91/91 PASS. Source README/QA preserved under content-packs/references because
+importer rejects auxiliary inbox entries. No app/schema/DB/production operations.
+[Task](.tasks/active/ca-week3-theory-exam.md). Independent review APPROVE; local
+content commit prepared, no push/PR. Next: human review; deployment/production seed
+require separate authorization.
+
 Обновлено: 2026-10-26. Задача/ветка: `dmitrij/content/agla-lecture-5-lab-5`.
 База `origin/main c7a2f2a`; PR #14 (Neon Lab 6 publication) уже слит человеком.
 Использовать для выбора путей, затем сверять Git и исходники; это не доказательство актуальности проверок.
