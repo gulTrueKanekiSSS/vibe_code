@@ -46,5 +46,6 @@ educational answer against original lecture PDFs; no PDF regeneration requested.
 Independent review: ca_import_review APPROVE, no blockers; verified collisions,
 ZIP/published payload parity, existing-content preservation, receipt/report/unit
 evidence and source-specific caveats. No lecture-PDF correctness claim.
-Handoff: reviewable local content commit on the branch above; no push/PR created.
+Handoff: content commit `14da887` pushed to origin on the branch above following
+the user's request. PR not created; [open PR form](https://github.com/gulTrueKanekiSSS/vibe_code/pull/new/dmitrij/content/ca-week3-theory-exam).
 Next: human review. Production publication requires separate authorization.

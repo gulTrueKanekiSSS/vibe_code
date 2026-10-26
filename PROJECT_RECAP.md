@@ -8,7 +8,8 @@ ZIP/lesson/question parity PASS; prior content unchanged. Validator/report PASS:
 unit91/91 PASS. Source README/QA preserved under content-packs/references because
 importer rejects auxiliary inbox entries. No app/schema/DB/production operations.
 [Task](.tasks/active/ca-week3-theory-exam.md). Independent review APPROVE; local
-content commit prepared, no push/PR. Next: human review; deployment/production seed
+content commit `14da887` pushed to origin by user request; PR not created.
+Next: human review; deployment/production seed
 require separate authorization.
 
 Обновлено: 2026-10-26. Задача/ветка: `dmitrij/content/agla-lecture-5-lab-5`.
