@@ -1,0 +1,32 @@
+{
+  "packId": "agla-lecture-5-lab-5",
+  "subjectId": "geometry",
+  "sources": [
+    "Agla_I_Lecture_5_Part_I.pdf — Lecture 5 Part I: Change of basis",
+    "Agla_I_Lecture_5_Part_II.pdf — Lecture 5 Part II: Column space, Rank, Elimination and Orthogonal matrices",
+    "Lab_5.pdf — Lab 5: Change of Basis, Column space and matrix rank",
+    "Lab 5 (solution).pdf — Analytical Geometry and Linear Algebra I, Lecture 5: Solutions"
+  ],
+  "topicIds": [
+    "basis-coordinate-transformations",
+    "column-rank-nullity",
+    "linear-systems-row-reduction",
+    "gauss-jordan-matrix-inverse",
+    "orthogonal-matrix-properties"
+  ],
+  "lessonFiles": [
+    "lessons/basis-coordinate-transformations.mdx",
+    "lessons/column-rank-nullity.mdx",
+    "lessons/linear-systems-row-reduction.mdx",
+    "lessons/gauss-jordan-matrix-inverse.mdx",
+    "lessons/orthogonal-matrix-properties.mdx"
+  ],
+  "questionFiles": [
+    "questions/basis-coordinate-transformations.json",
+    "questions/column-rank-nullity.json",
+    "questions/linear-systems-row-reduction.json",
+    "questions/gauss-jordan-matrix-inverse.json",
+    "questions/orthogonal-matrix-properties.json"
+  ],
+  "notes": "University Lecture 5/Lab 5 based Russian teaching pack. Mathematical checks on Lab 5 #1–#5. A mismatched later lecture example about an augmented system was not copied as a correct solution."
+}

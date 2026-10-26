@@ -1,0 +1,44 @@
+---
+{
+  "id": "orthogonal-matrix-properties",
+  "title": "Ортогональные матрицы",
+  "english": "Orthogonal Matrices and Orthonormal Bases",
+  "subject": "geometry",
+  "module": "Матрицы и пространство",
+  "order": 54,
+  "difficulty": "MEDIUM",
+  "estimatedMinutes": 30,
+  "prerequisites": [
+    "basis-coordinate-transformations"
+  ],
+  "keywords": [
+    "orthogonal matrix",
+    "transpose",
+    "rotation",
+    "reflection",
+    "orthonormal"
+  ],
+  "quizAnswer": ""
+}
+---
+
+## Что это?
+Ортогональная матрица (orthogonal matrix) — квадратная действительная матрица $Q$, столбцы которой образуют ортонормированный базис: каждый столбец имеет длину 1, а разные столбцы перпендикулярны. Такие матрицы описывают, например, повороты и отражения, сохраняя расстояния и скалярные произведения.
+
+## Формула и её смысл
+$$
+Q^TQ=I\quad\Longleftrightarrow\quad Q^{-1}=Q^T.
+$$
+Для столбцов $q_i$ это означает $q_i^Tq_j=\delta_{ij}$, то есть 1 при $i=j$ и 0 иначе. Отсюда также $\|Qv\|^2=v^TQ^TQv=\|v\|^2$.
+
+## Разберём на примере
+В лекции приведена матрица поворота плоскости:
+$$
+R_\theta=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}.
+$$
+Её столбцы имеют длину 1, а их скалярное произведение равно $-\cos\theta\sin\theta+\sin\theta\cos\theta=0$. Поэтому $R_\theta^TR_\theta=I$ и обратный поворот задаётся $R_\theta^T=R_{-\theta}$.
+
+Матрица отражения $F=\begin{bmatrix}1&0\\0&-1\end{bmatrix}$ тоже ортогональна: $F^TF=I$ и $F^{-1}=F$. Единичная матрица ортогональна по той же причине.
+
+## Частая ошибка
+Не каждая матрица с перпендикулярными столбцами ортогональна: столбцы обязаны также иметь единичные длины. Нельзя заменять условие $Q^TQ=I$ на $Q^2=I$ вообще: равенство $Q^2=I$ верно для некоторых отражений, но не для произвольного поворота.

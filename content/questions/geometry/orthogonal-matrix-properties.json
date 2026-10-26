@@ -1,0 +1,232 @@
+[
+  {
+    "id": "orthogonal-matrix-properties-l5-orthogonal-definition",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какая формула характеризует действительную orthogonal matrix Q?",
+    "options": [
+      "Q^TQ=I",
+      "Q^TQ=0",
+      "Q^T=Q обязательно",
+      "Q²=I обязательно"
+    ],
+    "answer": "Q^TQ=I",
+    "solution": "По определению действительная квадратная Q ортогональна, если её transpose является inverse: Q^TQ=I, эквивалентно Q⁻¹=Q^T.",
+    "hints": [
+      "Условие связано с transpose.",
+      "Столбцы Q образуют orthonormal basis.",
+      "Их матрица скалярных произведений должна быть I."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-inverse-transpose",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Если Q — orthogonal matrix, чему равна Q⁻¹?",
+    "options": [
+      "Q^T",
+      "-Q",
+      "Q²",
+      "0"
+    ],
+    "answer": "Q^T",
+    "solution": "Из определения Q^TQ=I следует, что транспонированная матрица Q^T является обратной к Q. Это удобное свойство всех действительных ортогональных матриц.",
+    "hints": [
+      "Ортогональная матрица обратима.",
+      "Её inverse можно получить без Gaussian elimination.",
+      "Используй эквивалентность Q^TQ=I."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-dot-distinct-columns",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Если q₁ и q₂ — разные столбцы ортогональной Q, чему равно q₁^Tq₂?",
+    "options": [],
+    "answer": "0",
+    "solution": "Столбцы Q ортонормированы. Скалярное произведение разных столбцов равно нулю, что выражает их ортогональность.",
+    "hints": [
+      "Различные столбцы перпендикулярны.",
+      "Скалярное произведение ортогональных векторов равно 0.",
+      "Применяй qᵢ^Tqⱼ=δᵢⱼ."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-dot-same-column",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Если q₁ — столбец ортогональной Q, чему равно q₁^Tq₁?",
+    "options": [],
+    "answer": "1",
+    "solution": "Каждый столбец Q имеет единичную длину, поэтому q₁^Tq₁=‖q₁‖²=1. Это диагональный элемент равенства Q^TQ=I.",
+    "hints": [
+      "Этот скалярный квадрат задаёт квадрат длины.",
+      "Столбцы orthonormal basis имеют norm 1.",
+      "Возведи длину столбца в квадрат."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-reflection",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Для F=[[1,0],[0,-1]] чему равно F^T F?",
+    "options": [
+      "I",
+      "0",
+      "F",
+      "-I"
+    ],
+    "answer": "I",
+    "solution": "Матрица F диагональная и симметричная, так что F^T=F. Кроме того F²=diag(1,1)=I, поэтому она ортогональна.",
+    "hints": [
+      "Транспонирование диагональную F не меняет.",
+      "Умножь F на F.",
+      "Каждый диагональный знак возводится в квадрат."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-rotation-at-pi-half",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Для R(θ)=[[cosθ,-sinθ],[sinθ,cosθ]] чему равна R(π/2)?",
+    "options": [
+      "[[0,-1],[1,0]]",
+      "[[0,1],[-1,0]]",
+      "[[1,0],[0,1]]",
+      "[[-1,0],[0,-1]]"
+    ],
+    "answer": "[[0,-1],[1,0]]",
+    "solution": "При θ=π/2 косинус равен 0, а синус — 1. Подставляем в матрицу поворота: [[0,-1],[1,0]].",
+    "hints": [
+      "Нужны значения sin и cos при прямом угле.",
+      "cos(π/2)=0 и sin(π/2)=1.",
+      "Подставь значения в каждый элемент R."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-rotation-inverse",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Для R(θ)=[[cosθ,-sinθ],[sinθ,cosθ]] какая матрица является R(θ)⁻¹?",
+    "options": [
+      "R(-θ)",
+      "R(θ)",
+      "-R(θ)",
+      "R(2θ)"
+    ],
+    "answer": "R(-θ)",
+    "solution": "Матрица поворота ортогональна, поэтому R(θ)⁻¹=R(θ)^T. С учётом cos(-θ)=cosθ и sin(-θ)=-sinθ это R(-θ): поворот на противоположный угол.",
+    "hints": [
+      "Inverse должна отменять поворот.",
+      "У orthogonal matrix inverse равна transpose.",
+      "Transpose меняет местами внедиагональные элементы."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-norm-preservation",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Если Q ортогональна и v∈ℝⁿ, что верно для длины вектора?",
+    "options": [
+      "‖Qv‖=‖v‖",
+      "‖Qv‖=2‖v‖",
+      "‖Qv‖=0 для всех v",
+      "‖Qv‖ всегда больше ‖v‖"
+    ],
+    "answer": "‖Qv‖=‖v‖",
+    "solution": "Квадрат длины преобразованного вектора равен (Qv)^T(Qv)=v^TQ^TQv=v^TIv=‖v‖². Значит ортогональные преобразования сохраняют длины.",
+    "hints": [
+      "Вычисли квадрат длины через dot product.",
+      "В середине выражения появится Q^TQ.",
+      "Замени Q^TQ на I."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-orthogonal-counterexample",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Почему M=[[2,0],[0,3]] не является orthogonal matrix?",
+    "options": [
+      "Длины её столбцов не равны 1",
+      "Её столбцы не перпендикулярны",
+      "Матрица не квадратная",
+      "Она имеет отрицательный определитель"
+    ],
+    "answer": "Длины её столбцов не равны 1",
+    "solution": "Столбцы (2,0)^T и (0,3)^T перпендикулярны, но их нормы равны 2 и 3. Следовательно они не ортонормированы, а M^TM=diag(4,9)≠I.",
+    "hints": [
+      "Ортогональность разных столбцов — лишь часть условия.",
+      "Требуется ещё единичная длина каждого столбца.",
+      "Найди нормы (2,0) и (0,3)."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  },
+  {
+    "id": "orthogonal-matrix-properties-l5-orthogonal-composition",
+    "topicId": "orthogonal-matrix-properties",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "CHALLENGE",
+    "prompt": "Если U и V — ортогональные квадратные матрицы одного размера, что можно сказать о UV?",
+    "options": [
+      "UV также ортогональна",
+      "UV всегда является нулевой матрицей",
+      "UV всегда симметрична",
+      "UV обязательно равна I"
+    ],
+    "answer": "UV также ортогональна",
+    "solution": "Используем (UV)^T(UV)=V^TU^TUV=V^TIV=I. Поэтому произведение двух ортогональных матриц того же размера снова ортогонально.",
+    "hints": [
+      "Проверь определение для произведения.",
+      "При transpose порядок множителей меняется.",
+      "Сократи U^TU и затем V^TV."
+    ],
+    "tags": [
+      "agla-lecture-5",
+      "agla-lab-5"
+    ]
+  }
+]
