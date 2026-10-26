@@ -48,8 +48,10 @@ Tracked-файлы — основной scope; новые релевантные
   Source inbox and receipt preserved. On fresh `origin/main c7a2f2a`, validate/report
   PASS (5 subjects / 73 lessons / 851 questions; no low coverage topics), unit91/91;
   seed source uses upsert only. Current next step: PR to documented production branch
-  `main`; local Vercel project/auth unavailable, so deployment/Neon identity and backup
-  are unverified. No DB/index/live-site operations until Ready Production is confirmed.
+  `main`; commit `7ac1afa` pushed. PR creation needs GitHub web UI:
+  [open PR form](https://github.com/gulTrueKanekiSSS/vibe_code/pull/new/dmitrij/content/agla-lecture-5-lab-5).
+  Local Vercel project/auth unavailable, so deployment/Neon identity and backup are
+  unverified. No DB/index/live-site operations until Ready Production is confirmed.
 
 - [Production Lab 6](.tasks/done/neon-lab6-publication.md): явно разрешённый seed
   Neon завершён. Production **5 предметов / 68 уроков / 782 вопроса**, четыре новые

@@ -21,7 +21,7 @@ auth, or practice logic changes.
 - [x] `npm test` PASS: 91/91.
 - [x] Inspect seed behavior: subjects, modules, topics, formulas, and questions upsert;
   no delete/reset paths.
-- [ ] Commit and push a dedicated feature branch; prepare PR to documented production
+- [x] Commit and push a dedicated feature branch; prepare PR handoff to documented production
   branch `main`, without merging.
 - [ ] Wait for Ready production deployment before any Neon production writes.
 - [ ] Verify Neon backup/identity, seed safely, verify rows read-only, and confirm live
@@ -51,7 +51,31 @@ deployment evidence.
 
 ## Result
 
-Commit: pending
-PR: pending
+Commit: `7ac1afa` (`content: add AGLA lecture 5 and lab 5 pack`)
+PR: not created; GitHub's authenticated PR tool/`gh` CLI is unavailable. Push response
+provided https://github.com/gulTrueKanekiSSS/vibe_code/pull/new/dmitrij/content/agla-lecture-5-lab-5
+Target base: `main` per `docs/HOSTING.md`; actual Vercel branch setting remains unverified.
 Manual action: create/review/merge PR only after CI; then provide/confirm Ready Production
 deployment and Neon production identity/backup before production seed can proceed.
+
+Suggested PR title: `content: publish AGLA Lecture 5 and Lab 5`
+
+Suggested PR body:
+
+```md
+## Summary
+- Add five pre-authored geometry lessons and 69 questions for `Матрицы и пространство`.
+- Include the original prepared inbox pack and its successful import receipt.
+- Preserve all existing user data; no schema, auth, scoring, or practice logic changes.
+
+## Verification
+- `npm run content:validate` — PASS (5 subjects / 73 lessons / 851 questions)
+- `npm run content:report` — PASS (no low-coverage topics)
+- `npm test` — PASS (91/91)
+- Seed code inspection — upserts only; no delete/reset operations.
+
+## Deployment
+- Production seed and live Tutor indexing were not run.
+- Wait for a Ready Production deployment of this commit before any production DB write.
+- Confirm Neon project/branch and recent backup before the seed; preserve all user data.
+```
