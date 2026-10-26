@@ -1,0 +1,1624 @@
+[
+  {
+    "id": "ca-w3-fpga-universal-lab-q001",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какой редактор проекта и среда FPGA указаны в Lab Week 3?",
+    "options": [
+      "Novabench GPU editor",
+      "Quartus Prime",
+      "Microsoft Excel",
+      "MATLAB Simulink только"
+    ],
+    "answer": "Quartus Prime",
+    "solution": "Лабораторное задание требует реализовать все логические схемы в одном проекте Quartus Prime и привязать выводы платы.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q002",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какие элементы разрешены в задании на LED0 Lab Week 3?",
+    "options": [
+      "Только RAM блоки",
+      "Любые AND и OR без ограничений",
+      "Только XOR2",
+      "Только NAND2"
+    ],
+    "answer": "Только NAND2",
+    "solution": "Для первой части лабораторной предписаны только двухвходовые NAND2; остальные операции нужно выразить через этот базис.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q003",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какие элементы разрешены для второй группы LED в лабораторной?",
+    "options": [
+      "Только NOT1 без NOR",
+      "Только AND2",
+      "Только NOR2",
+      "Только XNOR3"
+    ],
+    "answer": "Только NOR2",
+    "solution": "Вторая группа упражнений требует универсального базиса NOR2, что проверяет способность реализовывать сложную функцию только из NOR.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q004",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какова логическая идея управления LED0?",
+    "options": [
+      "PB0 должен быть обязательно отпущен",
+      "Достаточно включения только SW0",
+      "SW0 и SW1 включены, а PB0 нажата",
+      "LED0 всегда включён независимо от кнопки"
+    ],
+    "answer": "SW0 и SW1 включены, а PB0 нажата",
+    "solution": "По тексту задания LED0 загорается при одновременном включении Switches 0,1 и нажатии Push Button 0; логическая функция — тройное AND при активной единице.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q005",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Что надо учесть для CYCLONE IV из специального примечания лабораторной?",
+    "options": [
+      "Запрет назначать pins",
+      "Обязательную замену всех NAND на XOR",
+      "Инверсию логики на входных и выходных пинах",
+      "Отсутствие физических кнопок"
+    ],
+    "answer": "Инверсию логики на входных и выходных пинах",
+    "solution": "На слайде указано, что Cyclone IV использует inverted logic; соответствующие электрические сигналы GPIO нужно корректно интерпретировать.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q006",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Как предлагается находить номера пинов CYCLONE IV?",
+    "options": [
+      "По результату CPU benchmark",
+      "По коду MIPS",
+      "Только по номеру файла PDF",
+      "На надписях с P на плате или в печатной таблице"
+    ],
+    "answer": "На надписях с P на плате или в печатной таблице",
+    "solution": "Лабораторная указывает, что номера выводов начинаются с P и напечатаны на плате или в соответствующей таблице.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q007",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Где смотреть номера пинов MAX 10 по условию лабораторной?",
+    "options": [
+      "В таблице законов Де Моргана",
+      "В результате Novabench",
+      "На этикетке SSD",
+      "В user manual"
+    ],
+    "answer": "В user manual",
+    "solution": "Для MAX 10 слайды отсылают к user manual, который содержит необходимую привязку физических pins.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q008",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Чем различаются Time Slot 1 и Time Slot 2 для NOR-части?",
+    "options": [
+      "Во втором слоте нет LED2",
+      "Отличается только заголовок PDF",
+      "Условия зажигания LED1/LED2 задают разные наборы переключателей",
+      "Для обоих требуется только NAND"
+    ],
+    "answer": "Условия зажигания LED1/LED2 задают разные наборы переключателей",
+    "solution": "Слайды 8 и 9 содержат разные логические требования: нельзя использовать таблицу истинности первого слота для второго.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q009",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Что включает LED1 в Time Slot 2?",
+    "options": [
+      "Все три SW2, SW3, SW4 активированы",
+      "Включён только SW0",
+      "Хотя бы один из SW2..SW4 выключен",
+      "Ни один из SW2..SW4 не активирован"
+    ],
+    "answer": "Все три SW2, SW3, SW4 активированы",
+    "solution": "Time Slot 2 (page 9) прямо требует включить LED1 при одновременной активации всех трёх переключателей.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q010",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Что включает LED2 в Time Slot 2?",
+    "options": [
+      "Нажата только PB0",
+      "Все три SW2, SW3, SW4 выключены",
+      "Включён только SW3",
+      "Все три SW2, SW3, SW4 включены"
+    ],
+    "answer": "Все три SW2, SW3, SW4 выключены",
+    "solution": "Time Slot 2 (page 9) требует LED2 при 000 на трёх переключателях, при других смешанных комбинациях оба LED выключены.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q011",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Что должно происходить в Time Slot 2 при комбинации SW2SW3SW4=101?",
+    "options": [
+      "Оба горят",
+      "Только LED2 горит",
+      "Только LED1 горит",
+      "Оба LED1 и LED2 выключены"
+    ],
+    "answer": "Оба LED1 и LED2 выключены",
+    "solution": "101 — ни «все активны», ни «все выключены», поэтому для Time Slot 2 оба LED не активируются.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q012",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "В чём логическая неоднозначность Time Slot 1 на странице 8?",
+    "options": [
+      "Требуется дополнительная память RAM",
+      "В задаче запрещён NOR2",
+      "Случай 111 одновременно удовлетворяет «хотя бы один» и «все три»",
+      "Случай 000 одновременно означает «один активен» и «все активны»"
+    ],
+    "answer": "Случай 111 одновременно удовлетворяет «хотя бы один» и «все три»",
+    "solution": "В Time Slot 1 LED1 включается при at least one, LED2 при all three, но при 111 оба условия истинны и требуют противоположных состояний; нужен явный приоритет/уточнение.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q013",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какой приоритет делает Time Slot 1 логически выполнимым при 111?",
+    "options": [
+      "Заменить 111 на 000 в документации без объяснений",
+      "Всегда включать оба LED",
+      "Отдать случаю «все три» приоритет LED2",
+      "Не использовать 111 никогда"
+    ],
+    "answer": "Отдать случаю «все три» приоритет LED2",
+    "solution": "Приоритет full-match ведёт к LED2=1, LED1=0 при 111, а LED1 активируется на остальных ненулевых наборах. Это *предлагаемое* разрешение конфликта, не написанное в слайдах.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q014",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какое свойство optional task с SW0,SW1,SW2 должно соблюдаться?",
+    "options": [
+      "Если включён SW1, LED2 всегда горит",
+      "Горят все LED активных switches",
+      "Горит не более одного LED — соответствующий активному switch с максимальным индексом",
+      "Всегда горит LED0"
+    ],
+    "answer": "Горит не более одного LED — соответствующий активному switch с максимальным индексом",
+    "solution": "Дополнительная задача требует реализовать приоритетный выбор максимального номера активного переключателя, не просто независимую индикацию.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q015",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Если в optional task активны SW0 и SW2, какой LED должен гореть?",
+    "options": [
+      "LED0 и LED2 одновременно",
+      "Ни один LED",
+      "Только LED0",
+      "Только LED2"
+    ],
+    "answer": "Только LED2",
+    "solution": "Старший активный индекс — 2, поэтому горит LED2 и остальные выключены, как в явном примере страницы 10.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q016",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Если в optional task активны SW0 и SW1, а SW2=0, какой LED должен гореть?",
+    "options": [
+      "Только LED2",
+      "Все LED",
+      "Только LED0",
+      "Только LED1"
+    ],
+    "answer": "Только LED1",
+    "solution": "Из активных переключателей 0 и 1 больший индекс имеет SW1; схема выдаёт one-hot сигнал на LED1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q017",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какую ошибку вызывает игнорирование active-low сигналов CYCLONE IV?",
+    "options": [
+      "Компилятор автоматически заменит NOR на GPU",
+      "Схема гарантированно ускорится вдвое",
+      "Физические LED и кнопки могут вести себя противоположно логической модели",
+      "Изменится математическая таблица NAND без причины"
+    ],
+    "answer": "Физические LED и кнопки могут вести себя противоположно логической модели",
+    "solution": "При инверсной физической логике высокий/низкий уровень не совпадает напрямую с «включено/нажато». Нужна корректная полярность входов и выходов.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q018",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Почему необходимо проверять NAND2-only и NOR2-only схемы по таблице истинности до pin assignment?",
+    "options": [
+      "Так можно отделить логические ошибки от физических проблем подключения",
+      "Это всегда заменяет проверку реальной платы",
+      "Truth table зависит от модели SSD",
+      "Физические GPIO игнорируют булеву функцию"
+    ],
+    "answer": "Так можно отделить логические ошибки от физических проблем подключения",
+    "solution": "Логическая симуляция выявляет ошибки построения функции; после неё остаются аппаратные аспекты полярности и назначения выводов.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q019",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=000. Чему равен LED1 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED1 зажигается только когда все три переключателя равны 1, то есть для 111. Набор 000 даёт LED1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q020",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=000. Чему равен LED2 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "1",
+    "solution": "В Time Slot 2 LED2 зажигается только когда все три переключателя выключены (000). Набор 000 даёт LED2=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q021",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=001. Чему равен LED1 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED1 зажигается только когда все три переключателя равны 1, то есть для 111. Набор 001 даёт LED1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q022",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=001. Чему равен LED2 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED2 зажигается только когда все три переключателя выключены (000). Набор 001 даёт LED2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q023",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=010. Чему равен LED1 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED1 зажигается только когда все три переключателя равны 1, то есть для 111. Набор 010 даёт LED1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q024",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=010. Чему равен LED2 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED2 зажигается только когда все три переключателя выключены (000). Набор 010 даёт LED2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q025",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=011. Чему равен LED1 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED1 зажигается только когда все три переключателя равны 1, то есть для 111. Набор 011 даёт LED1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q026",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=011. Чему равен LED2 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED2 зажигается только когда все три переключателя выключены (000). Набор 011 даёт LED2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q027",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=100. Чему равен LED1 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED1 зажигается только когда все три переключателя равны 1, то есть для 111. Набор 100 даёт LED1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q028",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=100. Чему равен LED2 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED2 зажигается только когда все три переключателя выключены (000). Набор 100 даёт LED2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q029",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=101. Чему равен LED1 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED1 зажигается только когда все три переключателя равны 1, то есть для 111. Набор 101 даёт LED1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q030",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=101. Чему равен LED2 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED2 зажигается только когда все три переключателя выключены (000). Набор 101 даёт LED2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q031",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=110. Чему равен LED1 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED1 зажигается только когда все три переключателя равны 1, то есть для 111. Набор 110 даёт LED1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q032",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=110. Чему равен LED2 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED2 зажигается только когда все три переключателя выключены (000). Набор 110 даёт LED2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q033",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=111. Чему равен LED1 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "1",
+    "solution": "В Time Slot 2 LED1 зажигается только когда все три переключателя равны 1, то есть для 111. Набор 111 даёт LED1=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q034",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Time Slot 2: SW2SW3SW4=111. Чему равен LED2 (логическое состояние 0/1 при активной единице)?",
+    "options": [],
+    "answer": "0",
+    "solution": "В Time Slot 2 LED2 зажигается только когда все три переключателя выключены (000). Набор 111 даёт LED2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-2",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q035",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=000. Чему равен led0 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 000: нет. Выбирается максимальный активный индекс -1; следовательно led0=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led0"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q036",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=000. Чему равен led1 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 000: нет. Выбирается максимальный активный индекс -1; следовательно led1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q037",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=000. Чему равен led2 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 000: нет. Выбирается максимальный активный индекс -1; следовательно led2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q038",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=001. Чему равен led0 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 001: [2]. Выбирается максимальный активный индекс 2; следовательно led0=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led0"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q039",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=001. Чему равен led1 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 001: [2]. Выбирается максимальный активный индекс 2; следовательно led1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q040",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=001. Чему равен led2 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "1",
+    "solution": "Активные индексы в 001: [2]. Выбирается максимальный активный индекс 2; следовательно led2=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q041",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=010. Чему равен led0 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 010: [1]. Выбирается максимальный активный индекс 1; следовательно led0=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led0"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q042",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=010. Чему равен led1 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "1",
+    "solution": "Активные индексы в 010: [1]. Выбирается максимальный активный индекс 1; следовательно led1=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q043",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=010. Чему равен led2 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 010: [1]. Выбирается максимальный активный индекс 1; следовательно led2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q044",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=011. Чему равен led0 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 011: [1, 2]. Выбирается максимальный активный индекс 2; следовательно led0=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led0"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q045",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=011. Чему равен led1 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 011: [1, 2]. Выбирается максимальный активный индекс 2; следовательно led1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q046",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=011. Чему равен led2 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "1",
+    "solution": "Активные индексы в 011: [1, 2]. Выбирается максимальный активный индекс 2; следовательно led2=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q047",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=100. Чему равен led0 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "1",
+    "solution": "Активные индексы в 100: [0]. Выбирается максимальный активный индекс 0; следовательно led0=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led0"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q048",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=100. Чему равен led1 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 100: [0]. Выбирается максимальный активный индекс 0; следовательно led1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q049",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=100. Чему равен led2 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 100: [0]. Выбирается максимальный активный индекс 0; следовательно led2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q050",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=101. Чему равен led0 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 101: [0, 2]. Выбирается максимальный активный индекс 2; следовательно led0=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led0"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q051",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=101. Чему равен led1 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 101: [0, 2]. Выбирается максимальный активный индекс 2; следовательно led1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q052",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=101. Чему равен led2 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "1",
+    "solution": "Активные индексы в 101: [0, 2]. Выбирается максимальный активный индекс 2; следовательно led2=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q053",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=110. Чему равен led0 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 110: [0, 1]. Выбирается максимальный активный индекс 1; следовательно led0=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led0"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q054",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=110. Чему равен led1 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "1",
+    "solution": "Активные индексы в 110: [0, 1]. Выбирается максимальный активный индекс 1; следовательно led1=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q055",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=110. Чему равен led2 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 110: [0, 1]. Выбирается максимальный активный индекс 1; следовательно led2=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q056",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=111. Чему равен led0 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 111: [0, 1, 2]. Выбирается максимальный активный индекс 2; следовательно led0=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led0"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q057",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=111. Чему равен led1 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "0",
+    "solution": "Активные индексы в 111: [0, 1, 2]. Выбирается максимальный активный индекс 2; следовательно led1=0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led1"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q058",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Optional priority task: sw0sw1sw2=111. Чему равен led2 (логическое состояние 0/1)?",
+    "options": [],
+    "answer": "1",
+    "solution": "Активные индексы в 111: [0, 1, 2]. Выбирается максимальный активный индекс 2; следовательно led2=1.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "priority-encoder",
+      "led2"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q059",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "TRUE_FALSE",
+    "difficulty": "MEDIUM",
+    "prompt": "Оцени утверждение (Week 3): «Time Slot 1 на странице 8 имеет пересечение условий LED1 и LED2 при входе 111.»",
+    "options": [
+      "Верно",
+      "Неверно"
+    ],
+    "answer": "Верно",
+    "solution": "Условие «хотя бы один» включает 111, как и «все три», поэтому без приоритета требования противоречивы.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "exam-misconception"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q060",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "TRUE_FALSE",
+    "difficulty": "MEDIUM",
+    "prompt": "Оцени утверждение (Week 3): «В Time Slot 2 комбинация SW2SW3SW4=111 должна зажигать LED2.»",
+    "options": [
+      "Верно",
+      "Неверно"
+    ],
+    "answer": "Неверно",
+    "solution": "На странице 9 LED1 — для 111, LED2 — для 000; это разные случаи.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "exam-misconception"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q061",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "TRUE_FALSE",
+    "difficulty": "MEDIUM",
+    "prompt": "Оцени утверждение (Week 3): «В optional task при активных sw0 и sw2 должен гореть только led2.»",
+    "options": [
+      "Верно",
+      "Неверно"
+    ],
+    "answer": "Верно",
+    "solution": "Указан выбор максимального индекса активного переключателя; led2 приоритетнее led0.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "exam-misconception"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q062",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "TRUE_FALSE",
+    "difficulty": "MEDIUM",
+    "prompt": "Оцени утверждение (Week 3): «В лабораторной разрешено без ограничений заменить все NAND2 на AND2 для LED0.»",
+    "options": [
+      "Верно",
+      "Неверно"
+    ],
+    "answer": "Неверно",
+    "solution": "Задание требует использовать только NAND2, поэтому AND реализуется через NAND-only конструкцию.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "exam-misconception"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q063",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "LED0 (совместная трактовка пунктов a,b и active-high): SW0SW1PB0=000. Чему равно логическое состояние LED0?",
+    "options": [],
+    "answer": "0",
+    "solution": "При выбранной в вопросе совместной трактовке LED0 включается только когда SW0=1, SW1=1 и PB0=1. Оригинальные пункты допускают и альтернативную трактовку. Для комбинации 000 произведение 0 AND 0 AND 0=0; физическая active-low полярность рассматривается отдельно.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "led0",
+      "nand-only"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q064",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Time Slot 1 (явно предполагаем приоритет all-three для LED2): SW2SW3SW4=000. Чему равен LED1?",
+    "options": [],
+    "answer": "0",
+    "solution": "В исходном Time Slot 1 условия пересекаются при 111. При указанном приоритете LED1=OR(SW2,SW3,SW4) AND NOT(AND всех трёх). Для 000 получаем 0; LED2 имеет приоритет на 111.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-1",
+      "priority-clarification"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q065",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "LED0 (совместная трактовка пунктов a,b и active-high): SW0SW1PB0=001. Чему равно логическое состояние LED0?",
+    "options": [],
+    "answer": "0",
+    "solution": "При выбранной в вопросе совместной трактовке LED0 включается только когда SW0=1, SW1=1 и PB0=1. Оригинальные пункты допускают и альтернативную трактовку. Для комбинации 001 произведение 0 AND 0 AND 1=0; физическая active-low полярность рассматривается отдельно.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "led0",
+      "nand-only"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q066",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Time Slot 1 (явно предполагаем приоритет all-three для LED2): SW2SW3SW4=001. Чему равен LED1?",
+    "options": [],
+    "answer": "1",
+    "solution": "В исходном Time Slot 1 условия пересекаются при 111. При указанном приоритете LED1=OR(SW2,SW3,SW4) AND NOT(AND всех трёх). Для 001 получаем 1; LED2 имеет приоритет на 111.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-1",
+      "priority-clarification"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q067",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "LED0 (совместная трактовка пунктов a,b и active-high): SW0SW1PB0=010. Чему равно логическое состояние LED0?",
+    "options": [],
+    "answer": "0",
+    "solution": "При выбранной в вопросе совместной трактовке LED0 включается только когда SW0=1, SW1=1 и PB0=1. Оригинальные пункты допускают и альтернативную трактовку. Для комбинации 010 произведение 0 AND 1 AND 0=0; физическая active-low полярность рассматривается отдельно.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "led0",
+      "nand-only"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q068",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Time Slot 1 (явно предполагаем приоритет all-three для LED2): SW2SW3SW4=010. Чему равен LED1?",
+    "options": [],
+    "answer": "1",
+    "solution": "В исходном Time Slot 1 условия пересекаются при 111. При указанном приоритете LED1=OR(SW2,SW3,SW4) AND NOT(AND всех трёх). Для 010 получаем 1; LED2 имеет приоритет на 111.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-1",
+      "priority-clarification"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q069",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "LED0 (совместная трактовка пунктов a,b и active-high): SW0SW1PB0=011. Чему равно логическое состояние LED0?",
+    "options": [],
+    "answer": "0",
+    "solution": "При выбранной в вопросе совместной трактовке LED0 включается только когда SW0=1, SW1=1 и PB0=1. Оригинальные пункты допускают и альтернативную трактовку. Для комбинации 011 произведение 0 AND 1 AND 1=0; физическая active-low полярность рассматривается отдельно.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "led0",
+      "nand-only"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q070",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Time Slot 1 (явно предполагаем приоритет all-three для LED2): SW2SW3SW4=011. Чему равен LED1?",
+    "options": [],
+    "answer": "1",
+    "solution": "В исходном Time Slot 1 условия пересекаются при 111. При указанном приоритете LED1=OR(SW2,SW3,SW4) AND NOT(AND всех трёх). Для 011 получаем 1; LED2 имеет приоритет на 111.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-1",
+      "priority-clarification"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q071",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "LED0 (совместная трактовка пунктов a,b и active-high): SW0SW1PB0=100. Чему равно логическое состояние LED0?",
+    "options": [],
+    "answer": "0",
+    "solution": "При выбранной в вопросе совместной трактовке LED0 включается только когда SW0=1, SW1=1 и PB0=1. Оригинальные пункты допускают и альтернативную трактовку. Для комбинации 100 произведение 1 AND 0 AND 0=0; физическая active-low полярность рассматривается отдельно.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "led0",
+      "nand-only"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q072",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Time Slot 1 (явно предполагаем приоритет all-three для LED2): SW2SW3SW4=100. Чему равен LED1?",
+    "options": [],
+    "answer": "1",
+    "solution": "В исходном Time Slot 1 условия пересекаются при 111. При указанном приоритете LED1=OR(SW2,SW3,SW4) AND NOT(AND всех трёх). Для 100 получаем 1; LED2 имеет приоритет на 111.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-1",
+      "priority-clarification"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q073",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "LED0 (совместная трактовка пунктов a,b и active-high): SW0SW1PB0=101. Чему равно логическое состояние LED0?",
+    "options": [],
+    "answer": "0",
+    "solution": "При выбранной в вопросе совместной трактовке LED0 включается только когда SW0=1, SW1=1 и PB0=1. Оригинальные пункты допускают и альтернативную трактовку. Для комбинации 101 произведение 1 AND 0 AND 1=0; физическая active-low полярность рассматривается отдельно.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "led0",
+      "nand-only"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q074",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Time Slot 1 (явно предполагаем приоритет all-three для LED2): SW2SW3SW4=101. Чему равен LED1?",
+    "options": [],
+    "answer": "1",
+    "solution": "В исходном Time Slot 1 условия пересекаются при 111. При указанном приоритете LED1=OR(SW2,SW3,SW4) AND NOT(AND всех трёх). Для 101 получаем 1; LED2 имеет приоритет на 111.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-1",
+      "priority-clarification"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q075",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "LED0 (совместная трактовка пунктов a,b и active-high): SW0SW1PB0=110. Чему равно логическое состояние LED0?",
+    "options": [],
+    "answer": "0",
+    "solution": "При выбранной в вопросе совместной трактовке LED0 включается только когда SW0=1, SW1=1 и PB0=1. Оригинальные пункты допускают и альтернативную трактовку. Для комбинации 110 произведение 1 AND 1 AND 0=0; физическая active-low полярность рассматривается отдельно.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "led0",
+      "nand-only"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q076",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Time Slot 1 (явно предполагаем приоритет all-three для LED2): SW2SW3SW4=110. Чему равен LED1?",
+    "options": [],
+    "answer": "1",
+    "solution": "В исходном Time Slot 1 условия пересекаются при 111. При указанном приоритете LED1=OR(SW2,SW3,SW4) AND NOT(AND всех трёх). Для 110 получаем 1; LED2 имеет приоритет на 111.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-1",
+      "priority-clarification"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q077",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "LED0 (совместная трактовка пунктов a,b и active-high): SW0SW1PB0=111. Чему равно логическое состояние LED0?",
+    "options": [],
+    "answer": "1",
+    "solution": "При выбранной в вопросе совместной трактовке LED0 включается только когда SW0=1, SW1=1 и PB0=1. Оригинальные пункты допускают и альтернативную трактовку. Для комбинации 111 произведение 1 AND 1 AND 1=1; физическая active-low полярность рассматривается отдельно.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "led0",
+      "nand-only"
+    ]
+  },
+  {
+    "id": "ca-w3-fpga-universal-lab-q078",
+    "topicId": "ca-w3-fpga-universal-lab",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Time Slot 1 (явно предполагаем приоритет all-three для LED2): SW2SW3SW4=111. Чему равен LED1?",
+    "options": [],
+    "answer": "0",
+    "solution": "В исходном Time Slot 1 условия пересекаются при 111. При указанном приоритете LED1=OR(SW2,SW3,SW4) AND NOT(AND всех трёх). Для 111 получаем 0; LED2 имеет приоритет на 111.",
+    "hints": [
+      "Вначале определи Time Slot и требуемый базис логических элементов.",
+      "Составь truth table и учти физическую инверсию Cyclone IV.",
+      "Сопоставь каждый вариант с определениями и примером, описанными в лекции."
+    ],
+    "tags": [
+      "fpga-universal-lab",
+      "time-slot-1",
+      "priority-clarification"
+    ]
+  }
+]
