@@ -1,0 +1,43 @@
+{
+  "packId": "discrete-lab7-lecture8-expansion",
+  "subjectId": "discrete",
+  "sources": [
+    "Logic & Discrete Mathematics — Lab Week 7 (9 pages)",
+    "Logic & Discrete Mathematics — Lecture Week 8 (43 pages)",
+    "Logic & Discrete Mathematics — Lab Week 8 (9 pages)"
+  ],
+  "topicIds": [
+    "counting-principles",
+    "permutations-combinations",
+    "binomial-multinomial",
+    "counting-constraints",
+    "sequences-series-discrete",
+    "first-order-recurrences",
+    "characteristic-recurrences",
+    "recurrence-counting-models",
+    "coupled-recurrences"
+  ],
+  "lessonFiles": [
+    "lessons/counting-principles.mdx",
+    "lessons/permutations-combinations.mdx",
+    "lessons/binomial-multinomial.mdx",
+    "lessons/counting-constraints.mdx",
+    "lessons/sequences-series-discrete.mdx",
+    "lessons/first-order-recurrences.mdx",
+    "lessons/characteristic-recurrences.mdx",
+    "lessons/recurrence-counting-models.mdx",
+    "lessons/coupled-recurrences.mdx"
+  ],
+  "questionFiles": [
+    "questions/counting-principles.json",
+    "questions/permutations-combinations.json",
+    "questions/binomial-multinomial.json",
+    "questions/counting-constraints.json",
+    "questions/sequences-series-discrete.json",
+    "questions/first-order-recurrences.json",
+    "questions/characteristic-recurrences.json",
+    "questions/recurrence-counting-models.json",
+    "questions/coupled-recurrences.json"
+  ],
+  "notes": "Original university-grounded analogues; do not copy exercises verbatim. Uses existing module Язык математики because subject registry edits require separate review."
+}

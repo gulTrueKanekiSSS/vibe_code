@@ -1,0 +1,212 @@
+[
+  {
+    "id": "sequences-series-discrete-arithnth",
+    "topicId": "sequences-series-discrete",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Арифметическая прогрессия задана a₀=7, d=−3. Найди a₅.",
+    "options": [],
+    "answer": "-8",
+    "solution": "Явная формула a_n=a₀+nd. Подставляем a₅=7+5·(−3)=−8.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "Используй a₅=a₀+5d."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-geonth",
+    "topicId": "sequences-series-discrete",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Геометрическая прогрессия задана b₀=2 и q=3. Найди b₄.",
+    "options": [],
+    "answer": "162",
+    "solution": "По формуле b_n=b₀q^n получаем b₄=2·3⁴=2·81=162.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "Вычисли 2·3⁴."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-sum",
+    "topicId": "sequences-series-discrete",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Найди сумму 2+5+8+11+14.",
+    "options": [],
+    "answer": "40",
+    "solution": "Пять членов арифметической прогрессии, первый 2, последний 14. Среднее 8, сумма 5·8=40.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "Умножь среднее арифметическое крайних членов на 5."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-geomseries",
+    "topicId": "sequences-series-discrete",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Найди сумму 3+6+12+24+48.",
+    "options": [],
+    "answer": "93",
+    "solution": "Это 5 членов геометрической прогрессии q=2. Сумма 3(2⁵−1)/(2−1)=3·31=93.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "Используй 3(2⁵−1)."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-partial",
+    "topicId": "sequences-series-discrete",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Пусть S(n)=Σ от i=2 до n величин (2i+1). Чему равно S(4)?",
+    "options": [],
+    "answer": "21",
+    "solution": "При i=2,3,4 получаем 5,7,9. Сумма 5+7+9=21.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "Выпиши слагаемые при i=2,3,4."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-initial",
+    "topicId": "sequences-series-discrete",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Если S(n)=Σ от i=3 до n величин i², чему равно S(3)?",
+    "options": [],
+    "answer": "9",
+    "solution": "Для верхнего и нижнего пределов, равных 3, есть ровно один член: 3²=9.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "При n=3 суммируется один член."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-update",
+    "topicId": "sequences-series-discrete",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Как записать S(n+1) через S(n), если S(n)=Σ от i=1 до n величин (4i−1)?",
+    "options": [
+      "S(n)+4(n+1)−1",
+      "S(n)+4n−1",
+      "S(n)+4(n+1)",
+      "S(n)·(4n−1)"
+    ],
+    "answer": "S(n)+4(n+1)−1",
+    "solution": "При увеличении верхнего предела добавляется только новый член с индексом n+1, равный 4(n+1)−1.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "Новый член имеет индекс n+1."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-product",
+    "topicId": "sequences-series-discrete",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Вычисли произведение Π от i=1 до 4 величин i.",
+    "options": [],
+    "answer": "24",
+    "solution": "Произведение четырёх последовательных натуральных чисел 1·2·3·4 равно 24; по определению факториала это также 4!.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "Умножь четыре последовательных целых."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-qone",
+    "topicId": "sequences-series-discrete",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Чему равна сумма Σ от i=0 до 6 величин 5·1^i?",
+    "options": [],
+    "answer": "35",
+    "solution": "Каждый член равен 5, а индексы 0,…,6 дают семь слагаемых. Сумма 7·5=35.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "При q=1 все семь членов одинаковы."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "sequences-series-discrete-indices",
+    "topicId": "sequences-series-discrete",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Как правильно изменить верхний предел произведения P(n)=Π от i=2 до n величин aᵢ?",
+    "options": [
+      "P(n+1)=P(n)·aₙ₊₁",
+      "P(n+1)=P(n)+aₙ₊₁",
+      "P(n+1)=P(n)·aₙ",
+      "P(n+1)=aₙ₊₁"
+    ],
+    "answer": "P(n+1)=P(n)·aₙ₊₁",
+    "solution": "Произведение до n+1 содержит все прежние множители и один новый, a_{n+1}. Поэтому новый шаг умножает, а не складывает.",
+    "hints": [
+      "Проверь начальный индекс и закон изменения членов.",
+      "Используй explicit formula, сумму прогрессии или добавление нового члена.",
+      "Для произведения используется умножение нового члена."
+    ],
+    "tags": [
+      "sequences-series-discrete",
+      "university-exam",
+      "original-analogue"
+    ]
+  }
+]

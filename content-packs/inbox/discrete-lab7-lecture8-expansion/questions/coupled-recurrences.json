@@ -1,0 +1,237 @@
+[
+  {
+    "id": "coupled-recurrences-first",
+    "topicId": "coupled-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "a₀=2,b₀=1; aₙ₊₁=aₙ+bₙ, bₙ₊₁=aₙ−bₙ. Найди a₁.",
+    "options": [],
+    "answer": "3",
+    "solution": "Первое уравнение при n=0: a₁=a₀+b₀=2+1=3.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Используй первое уравнение и оба начальных значения."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-second",
+    "topicId": "coupled-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "a₀=2,b₀=1; aₙ₊₁=aₙ+bₙ, bₙ₊₁=aₙ−bₙ. Найди b₁.",
+    "options": [],
+    "answer": "1",
+    "solution": "По второму уравнению b₁=a₀−b₀=2−1=1.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Подставь n=0 во второе соотношение."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-twostep",
+    "topicId": "coupled-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "a₀=2,b₀=1; aₙ₊₁=aₙ+bₙ, bₙ₊₁=aₙ−bₙ. Найди a₂.",
+    "options": [],
+    "answer": "4",
+    "solution": "Сначала a₁=3,b₁=1. Затем a₂=a₁+b₁=3+1=4. Также a₂=2a₀=4 по исключению b_n.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Найди a₁ и b₁, потом a₂."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-trace",
+    "topicId": "coupled-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Для M=[[2,1],[3,−1]] найди trace(M).",
+    "options": [],
+    "answer": "1",
+    "solution": "След — сумма диагональных элементов 2+(−1)=1. Именно он является коэффициентом при λ в характеристическом многочлене со знаком минус.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Сложи диагональные элементы 2 и −1."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-det",
+    "topicId": "coupled-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Для M=[[2,1],[3,−1]] найди determinant(M).",
+    "options": [],
+    "answer": "-5",
+    "solution": "Определитель матрицы 2×2 вычисляется как ad−bc. Здесь det(M)=2·(−1)−1·3=−2−3=−5.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Примени ad−bc к матрице 2×2."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-char",
+    "topicId": "coupled-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Какое характеристическое уравнение соответствует матрице перехода M=[[2,1],[3,−1]]?",
+    "options": [
+      "λ²−λ−5=0",
+      "λ²+λ−5=0",
+      "λ²−λ+5=0",
+      "λ²−5λ−1=0"
+    ],
+    "answer": "λ²−λ−5=0",
+    "solution": "Trace M=1, determinant M=−5, значит χ(λ)=λ²−(trace M)λ+det M=λ²−λ−5.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Используй χ=λ²−trace·λ+det."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-eliminate",
+    "topicId": "coupled-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Если aₙ₊₁=aₙ+bₙ и bₙ₊₁=aₙ−bₙ, чему равна aₙ₊₂?",
+    "options": [
+      "2aₙ",
+      "2aₙ₊₁",
+      "aₙ+bₙ",
+      "aₙ−bₙ"
+    ],
+    "answer": "2aₙ",
+    "solution": "a_{n+2}=a_{n+1}+b_{n+1}=(a_n+b_n)+(a_n−b_n)=2a_n.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Подставь обе формулы шага n в сумму a_{n+1}+b_{n+1}."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-diagonal",
+    "topicId": "coupled-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "a₀=1,b₀=2; aₙ₊₁=2aₙ, bₙ₊₁=3bₙ. Найди a₃+b₂.",
+    "options": [],
+    "answer": "26",
+    "solution": "a₃=1·2³=8. b₂=2·3²=18. Сумма 8+18=26.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Вычисли отдельно две геометрические последовательности."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-constant",
+    "topicId": "coupled-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "a₀=1,b₀=2; aₙ₊₁=aₙ+2bₙ, bₙ₊₁=3bₙ. Найди a₂.",
+    "options": [],
+    "answer": "17",
+    "solution": "a₁=1+2·2=5, b₁=3·2=6; затем a₂=5+2·6=17.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Вычисли сначала a₁ и b₁."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-matrix",
+    "topicId": "coupled-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какая матрица переводит (aₙ,bₙ)ᵀ в (aₙ₊₁,bₙ₊₁)ᵀ при aₙ₊₁=3aₙ+2bₙ и bₙ₊₁=−aₙ+4bₙ?",
+    "options": [
+      "[[3,2],[−1,4]]",
+      "[[3,−1],[2,4]]",
+      "[[3,2],[1,4]]",
+      "[[2,3],[4,−1]]"
+    ],
+    "answer": "[[3,2],[−1,4]]",
+    "solution": "Первая строка содержит коэффициенты у a_n,b_n в первом уравнении, вторая — во втором. Значит M=[[3,2],[−1,4]].",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Считай коэффициенты из каждого уравнения по строкам."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "coupled-recurrences-fourth-step",
+    "topicId": "coupled-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "CHALLENGE",
+    "prompt": "a₀=2,b₀=3; aₙ₊₁=2aₙ+bₙ, bₙ₊₁=aₙ+bₙ. Найди a₄, исключив bₙ.",
+    "options": [],
+    "answer": "131",
+    "solution": "Матрица M=[[2,1],[1,1]], trace(M)=3, det(M)=1. По Cayley–Hamilton a_{n+2}=3a_{n+1}−a_n. Из a₀=2, b₀=3 получаем a₁=7. Тогда a₂=19, a₃=50, a₄=131. Проверка прямыми шагами системы совпадает.",
+    "hints": [
+      "Используй обе координаты состояния, не рассматривай последовательности независимо.",
+      "Вычисли переход матрицей или исключи вторую последовательность.",
+      "Найди a₁=7 и используй характеристическое уравнение λ²−3λ+1=0."
+    ],
+    "tags": [
+      "coupled-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  }
+]

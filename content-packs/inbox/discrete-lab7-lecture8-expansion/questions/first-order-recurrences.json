@@ -1,0 +1,215 @@
+[
+  {
+    "id": "first-order-recurrences-subtract",
+    "topicId": "first-order-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Задано a₀=12, aₙ₊₁=aₙ−5. Найди a₄.",
+    "options": [],
+    "answer": "-8",
+    "solution": "a_n=12−5n, поэтому a₄=12−20=−8. Проверка: 12,7,2,−3,−8.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Четырежды вычти 5 из начального 12."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-geometric",
+    "topicId": "first-order-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Задано a₀=3, aₙ₊₁=−2aₙ. Чему равно a₅?",
+    "options": [],
+    "answer": "-96",
+    "solution": "Явная формула a_n=3(−2)^n. Подставляем n=5: 3·(−32)=−96.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Используй 3(−2)^5."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-affine",
+    "topicId": "first-order-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Задано a₀=0, aₙ₊₁=2aₙ+1. Чему равно a₄?",
+    "options": [],
+    "answer": "15",
+    "solution": "Последовательно a₁=1, a₂=3, a₃=7, a₄=15. Явная формула a_n=2^n−1 подтверждает результат.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Начни с 0 и выполни четыре шага «умножить на 2, прибавить 1»."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-fixed",
+    "topicId": "first-order-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Для aₙ₊₁=(aₙ+6)/3 найди fixed point L (реши L=(L+6)/3).",
+    "options": [],
+    "answer": "3",
+    "solution": "Уравнение 3L=L+6 даёт 2L=6 и L=3. Это равновесие для рекурсии; если |1/3|<1, последовательность сходится к нему.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Умножь равенство для L на 3."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-limittrap",
+    "topicId": "first-order-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "HARD",
+    "prompt": "Почему равенство L=2L+1 само по себе не доказывает, что aₙ₊₁=2aₙ+1 сходится к L?",
+    "options": [
+      "Fixed point не гарантирует сходимость",
+      "Потому что 2L+1 всегда ноль",
+      "Потому что уравнение не имеет решения",
+      "Потому что рекурсия первого порядка не определяет последовательность"
+    ],
+    "answer": "Fixed point не гарантирует сходимость",
+    "solution": "Фиксированная точка −1 существует, но при a₀≠−1 отклонение удваивается каждый шаг, и последовательность расходится.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Рассмотри множитель отклонения от равновесия."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-explicit",
+    "topicId": "first-order-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какова явная формула при a₀=5, aₙ₊₁=3aₙ?",
+    "options": [
+      "5·3ⁿ",
+      "5+3n",
+      "3·5ⁿ",
+      "5·n³"
+    ],
+    "answer": "5·3ⁿ",
+    "solution": "Каждый шаг умножает предыдущий член на 3, поэтому после n шагов a_n=a₀3^n=5·3^n.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "После n шагов накопится множитель 3^n."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-shift",
+    "topicId": "first-order-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Для рекурсии aₙ₊₁=4aₙ−9 найди равновесное значение L.",
+    "options": [],
+    "answer": "3",
+    "solution": "Ищем L=4L−9, откуда −3L=−9, L=3. При коэффициенте 4 равновесие не обязано быть пределом.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Реши L=4L−9."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-qzero",
+    "topicId": "first-order-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "a₀=8, aₙ₊₁=0·aₙ+4. Найди a₇.",
+    "options": [],
+    "answer": "4",
+    "solution": "Начиная с a₁ каждый следующий член равен 4 независимо от предыдущего; поэтому a₇=4.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Все члены после a₀ равны постоянному добавочному члену."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-negative",
+    "topicId": "first-order-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "a₀=−2, aₙ₊₁=aₙ+7. Найди a₃.",
+    "options": [],
+    "answer": "19",
+    "solution": "Прибавляем 7 трижды: −2→5→12→19. Явная формула a_n=−2+7n.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Вычисли −2+3·7."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "first-order-recurrences-unit",
+    "topicId": "first-order-recurrences",
+    "type": "TRUE_FALSE",
+    "difficulty": "EASY",
+    "prompt": "Если a₀=5 и aₙ₊₁=−aₙ, последовательность сходится в R.",
+    "options": [
+      "Верно",
+      "Неверно"
+    ],
+    "answer": "Неверно",
+    "solution": "Члены поочерёдно равны 5 и −5. Две подпоследовательности имеют разные постоянные значения, поэтому общего предела нет.",
+    "hints": [
+      "Выпиши начальное значение и правило одного шага.",
+      "Для постоянной разности используй a₀+nd; для множителя — a₀qⁿ, либо найди fixed point.",
+      "Выпиши первые четыре члена и проверь чередование."
+    ],
+    "tags": [
+      "first-order-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  }
+]

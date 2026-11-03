@@ -1,0 +1,235 @@
+[
+  {
+    "id": "binomial-multinomial-binomialbasic",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Найди коэффициент при x³y² в (x+y)^5.",
+    "options": [],
+    "answer": "10",
+    "solution": "Выбираем y из двух множителей из пяти: C(5,2)=10. Оставшиеся три дают x³.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Определи C(5,2)."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-sign",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Чему равен коэффициент при x²y³ в (2x−y)^5?",
+    "options": [],
+    "answer": "-40",
+    "solution": "Комбинаторный множитель C(5,3)=10, числовой множитель 2²·(−1)³=−4. Итог −40.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Вычисли C(5,3)·2²·(−1)³."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-trinomial",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Найди коэффициент при x²yz в (x+2y−z)^4.",
+    "options": [],
+    "answer": "-24",
+    "solution": "Мультиномиальный коэффициент 4!/(2!1!1!)=12. Веса: 1²·2·(−1)=−2. Коэффициент −24.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Умножь 4!/(2!1!1!) на 2·(−1)."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-missingdegree",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Каков коэффициент при x²y² в однородном многочлене (x+y)^5?",
+    "options": [],
+    "answer": "0",
+    "solution": "Каждый член разложения имеет суммарную степень 5. Моном x²y² имеет степень 4, поэтому его нет и коэффициент 0.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Сложи показатели искомого монома."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-multiformula",
+    "topicId": "binomial-multinomial",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какой коэффициент учитывает выбор x три раза, y два раза и z один раз из 6 скобок (x+y+z)^6?",
+    "options": [
+      "6!/(3!2!1!)",
+      "6!/(3!2!)·6!",
+      "3!2!1!",
+      "6!/3!"
+    ],
+    "answer": "6!/(3!2!1!)",
+    "solution": "Мультиномиальный коэффициент считает перестановки выбранных трёх x, двух y и одного z: 6!/(3!2!1!).",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Раздели 6! на факториалы повторяющихся выборов."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-four",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Найди коэффициент при a²bc в (a−2b+3c)^4.",
+    "options": [],
+    "answer": "-72",
+    "solution": "Число способов выбора =4!/(2!1!1!)=12. Числовой коэффициент 1²·(−2)·3=−6. Итог −72.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Вычисли 12·(−2)·3."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-triple",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Чему равен коэффициент при x²y²z² в (x+y+z)^6?",
+    "options": [],
+    "answer": "90",
+    "solution": "Каждый символ выбирается дважды. Комбинаторный коэффициент 6!/(2!2!2!)=720/8=90.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Подставь 2,2,2 в мультиномиальную формулу."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-constant",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Найди постоянный член при раскрытии (1+3x)^4.",
+    "options": [],
+    "answer": "1",
+    "solution": "Постоянный член получается, только когда из всех четырёх скобок выбирают 1. Это C(4,0)·1⁴=1.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Выбери 1 из каждой скобки."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-oddpower",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Найди коэффициент при x³ в (1−x)^6.",
+    "options": [],
+    "answer": "-20",
+    "solution": "Из шести скобок выбирают −x три раза. Коэффициент C(6,3)(−1)³=20·(−1)=−20.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Посчитай C(6,3) и знак при нечётной степени."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-steps",
+    "topicId": "binomial-multinomial",
+    "type": "STEPS",
+    "difficulty": "MEDIUM",
+    "prompt": "Для коэффициента при x²yz в (3x−y+2z)^4 введи по порядку: число выборов x, y и z (три поля).",
+    "options": [
+      "Количество x",
+      "Количество y",
+      "Количество z"
+    ],
+    "answer": [
+      "2",
+      "1",
+      "1"
+    ],
+    "solution": "Сумма степеней 2+1+1=4, значит из четырёх скобок выбирают 3x дважды, −y один раз и 2z один раз. Это показатели в мультиномиальной формуле.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Последовательно выпиши показатели x, y и z."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "binomial-multinomial-weighted-seven",
+    "topicId": "binomial-multinomial",
+    "type": "NUMERIC",
+    "difficulty": "CHALLENGE",
+    "prompt": "Найди коэффициент при x²y³z² в (3x−2y+z)^7.",
+    "options": [],
+    "answer": "-15120",
+    "solution": "Показатели 2+3+2=7. Мультиномиальный коэффициент 7!/(2!3!2!)=210. Числовой вес 3²·(−2)³·1²=−72. Полный коэффициент 210·(−72)=−15120.",
+    "hints": [
+      "Отметь, сколько раз выбирается каждое слагаемое из раскрываемых скобок.",
+      "Используй факториальный коэффициент и отдельно учти числовые множители.",
+      "Отдельно вычисли 210 возможных выборов и произведение 3²·(−2)³."
+    ],
+    "tags": [
+      "binomial-multinomial",
+      "university-exam",
+      "original-analogue"
+    ]
+  }
+]

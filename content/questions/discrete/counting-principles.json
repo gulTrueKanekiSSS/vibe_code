@@ -1,0 +1,212 @@
+[
+  {
+    "id": "counting-principles-sum",
+    "topicId": "counting-principles",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Студент выбирает ровно одно занятие: 7 курсов по математике или 5 по программированию. Категории не пересекаются. Сколько вариантов?",
+    "options": [],
+    "answer": "12",
+    "solution": "Случаи взаимоисключающие: выбран либо один из 7 математических курсов, либо один из 5 курсов программирования. Sum Rule даёт 7+5=12.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "Сложи число вариантов из двух непересекающихся категорий."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-product",
+    "topicId": "counting-principles",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Для пропуска выбирают одну из 4 эмблем и одну из 6 букв. Сколько различных пропусков получится?",
+    "options": [],
+    "answer": "24",
+    "solution": "Выбор эмблемы и буквы — два последовательных независимых решения. Для каждой из 4 эмблем доступно 6 букв: 4·6=24.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "Перемножь варианты первого и второго шага."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-repeat",
+    "topicId": "counting-principles",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Сколько PIN-кодов длины 4 из цифр 0–9 существует, если ведущий ноль допустим и повторения разрешены?",
+    "options": [],
+    "answer": "10000",
+    "solution": "Каждая из четырёх позиций независимо принимает 10 значений. Product Rule: 10^4=10000.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "Начальный ноль разрешён, значит у первой позиции также 10 вариантов."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-nonzero",
+    "topicId": "counting-principles",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Сколько трёхзначных десятичных чисел можно записать, если повторение цифр разрешено?",
+    "options": [],
+    "answer": "900",
+    "solution": "Первая цифра имеет 9 вариантов (1–9), вторая и третья — по 10. Получаем 9·10·10=900.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "У первой позиции 9 вариантов; у двух остальных — по 10."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-complement",
+    "topicId": "counting-principles",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Из алфавита {A,B,C,D} составляют строки длины 3 с повторениями. Сколько строк содержат хотя бы одну A?",
+    "options": [],
+    "answer": "37",
+    "solution": "Всего 4^3=64 строк. Без A на каждой позиции 3 варианта, то есть 3^3=27. По Complement Rule: 64−27=37.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "Посчитай все строки и вычти строки только из B,C,D."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-overlap",
+    "topicId": "counting-principles",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "В группе 18 изучают Python, 14 изучают Java, 6 изучают оба. Сколько изучают хотя бы один из языков?",
+    "options": [],
+    "answer": "26",
+    "solution": "Множества пересекаются. Inclusion–Exclusion: |P∪J|=18+14−6=26; без вычитания пересечение учитывалось бы дважды.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "Вычти общих студентов после сложения двух групп."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-either",
+    "topicId": "counting-principles",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Когда простое правило суммы |A∪B|=|A|+|B| применимо без поправок?",
+    "options": [
+      "Когда A и B не пересекаются",
+      "Когда A и B имеют одинаковый размер",
+      "Когда A и B непусты",
+      "Когда A содержится в B"
+    ],
+    "answer": "Когда A и B не пересекаются",
+    "solution": "Правило суммы без вычета пересечения верно только при A∩B=∅. Иначе общие исходы учитываются дважды.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "Проверь, может ли один исход относиться к обоим классам."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-ordered",
+    "topicId": "counting-principles",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Для станции выбирают 2 различных режима последовательно из 5 доступных режимов без возвращения. Сколько упорядоченных пар существует?",
+    "options": [],
+    "answer": "20",
+    "solution": "Первый режим выбирается 5 способами, второй после него — 4; порядок важен. По Product Rule получаем 5·4=20.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "После первого выбора остаётся 4 режима."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-atleast",
+    "topicId": "counting-principles",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "При броске двух различимых честных кубиков сколько исходов содержат хотя бы одну шестёрку?",
+    "options": [],
+    "answer": "11",
+    "solution": "Всего 6^2=36 упорядоченных исходов. Без шестёрки 5^2=25. Значит 36−25=11. Вероятности не требуются.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "Вычти варианты без шестёрки из 36 исходов."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-principles-logicalerror",
+    "topicId": "counting-principles",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Почему неверно считать число людей, изучающих хотя бы один из двух предметов, простым сложением посещаемости двух пересекающихся курсов?",
+    "options": [
+      "Студенты на обоих курсах учитываются дважды",
+      "Нужно перемножить размеры групп",
+      "У объединения всегда ноль элементов",
+      "Для суммы обязательно нужно равенство размеров"
+    ],
+    "answer": "Студенты на обоих курсах учитываются дважды",
+    "solution": "Для объединения двух пересекающихся множеств надо вычесть количество элементов их пересечения. Иначе каждый участник обоих курсов учитывается дважды.",
+    "hints": [
+      "Определи, какие исходы считаются различными и исключают ли они друг друга.",
+      "Выбери Sum Rule, Product Rule либо Complement/Inclusion–Exclusion.",
+      "Подумай, кто попадает в обе суммы одновременно."
+    ],
+    "tags": [
+      "counting-principles",
+      "university-exam",
+      "original-analogue"
+    ]
+  }
+]
