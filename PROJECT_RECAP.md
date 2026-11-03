@@ -167,7 +167,7 @@ Tracked-файлы — основной scope; новые релевантные
 
 ## Groq Tutor integration — 2026-11-03
 
-- Branch `dmitrij/feature/tutor-groq`, base/latest `origin/main ebfddac`; [task](.tasks/active/tutor-groq.md). Optional server-side Groq strict chat adapter (gpt-oss-120b), lexical retrieval, atomic global PostgreSQL budget1/minute50/UTCday; existing policy/providers/deterministic practice retained.
+- Branch `dmitrij/feature/tutor-groq`, base/latest `origin/main ebfddac`; [task](.tasks/done/tutor-groq.md). Optional server-side Groq strict chat adapter (gpt-oss-120b), lexical retrieval, atomic global PostgreSQL budget1/minute50/UTCday; existing policy/providers/deterministic practice retained.
 - New additive `20261103160000_tutor_provider_usage`: local disposable DB only. Final generate/validate/migrate/status/schema diff, typecheck/lint/build PASS; unit101/101, integration56/56, Tutor E2E9/9 PASS. Independent review APPROVE after isolated-suite runner fix. [QA](.tasks/qa/tutor-groq.md), [review](.tasks/qa/tutor-groq-review.md).
 - No production/Vercel/Neon/env writes, production migrations/seeds/indexing or live AI calls. Disabled by default, no paid fallback/embeddings. Future enablement needs human-reviewed migration + private server config; live teaching quality/token quotas unverified.
-- Next: commit/push/PR for human review; never auto-merge/deploy.
+- Implementation `dc21d67` pushed; [PR #19](https://github.com/gulTrueKanekiSSS/vibe_code/pull/19) open. Next: human review/merge; no deployment or live enablement authorized.
