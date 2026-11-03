@@ -1,6 +1,6 @@
 # Discrete Lab 7 / Lecture 8 prepared content import
 
-Status: READY_FOR_PR
+Status: DONE
 Branch: dmitrij/content/discrete-lab7-lecture8
 Owner: root; independent QA/reviewer: content_review
 Date: 2026-11-03
@@ -40,6 +40,6 @@ No application checks/build or DB suites needed for data-only import; DB operati
 
 ## Review / sync / result
 Independent review APPROVE after actual prompt correction; archive parity confirmed. KaTeX rendering PASS for all 122 lesson math spans.
-Final fetch + merge origin/main: already up to date at ddfad75. Next: commit/push and PR. Nothing published to database/site.
+Final fetch + merge origin/main: already up to date at ddfad75. Implementation commit: 29edb9d (pushed). PR: https://github.com/gulTrueKanekiSSS/vibe_code/pull/17 (open, not merged). Next: human review/merge. Nothing published to database/site.
 
 Diff check note: two trailing-whitespace notices at counting-principles.mdx:27 (raw inbox and identical published lesson). Preserved supplied bytes; no functional/rendering impact.

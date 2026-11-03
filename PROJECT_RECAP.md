@@ -161,6 +161,6 @@ Tracked-файлы — основной scope; новые релевантные
 ## Discrete Lab 7 / Lecture 8 — 2026-11-03
 
 - Branch `dmitrij/content/discrete-lab7-lecture8`, base/latest `origin/main ddfad75`; isolated worktree preserves unrelated original workspace changes.
-- [Task](.tasks/active/discrete-lab7-lecture8.md): raw pack + receipt, nine new Discrete lesson/bank pairs, +96 questions; prior content/registry unchanged. One reviewed published-only prompt clarification removes ambiguous state MC choice; source archive unchanged.
+- [Task](.tasks/done/discrete-lab7-lecture8.md): raw pack + receipt, nine new Discrete lesson/bank pairs, +96 questions; prior content/registry unchanged. One reviewed published-only prompt clarification removes ambiguous state MC choice; source archive unchanged.
 - Final validate PASS 5 subjects / 93 lessons / 1372 questions; report/check PASS, lowCoverageTopics empty; unit91/91 PASS; independent review APPROVE, 122 math spans render. No DB/seed/integration/deployment/AI calls.
-- Next: commit/push/PR for human merge; content is not published to the site.
+- Implementation `29edb9d` pushed; [PR #17](https://github.com/gulTrueKanekiSSS/vibe_code/pull/17) open. Next: human review/merge; content is not published to the site.
