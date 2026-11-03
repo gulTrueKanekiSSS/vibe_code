@@ -1,0 +1,227 @@
+[
+  {
+    "id": "counting-constraints-evenodd",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Из 1,…,20 выбирают 2 разных числа без порядка. Сколько пар содержат хотя бы одно чётное число?",
+    "options": [],
+    "answer": "145",
+    "solution": "Всего C(20,2)=190. Обе нечётные — C(10,2)=45. Следовательно 190−45=145.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Вычти пары из двух нечётных."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-adjacent",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Сколькими способами переставить буквы слова AABC, чтобы два символа A не стояли рядом?",
+    "options": [],
+    "answer": "6",
+    "solution": "Всего 4!/2!=12. Если AA считать блоком, перестановок блока, B и C ровно 3!=6. Не соседние: 12−6=6.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Сначала посчитай все перестановки и вычти соседние AA."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-path",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "От (0,0) до (4,3) можно идти только вправо и вверх по единичной решётке. Сколько кратчайших маршрутов?",
+    "options": [],
+    "answer": "35",
+    "solution": "Каждый кратчайший маршрут — слово из четырёх R и трёх U. Расположение четырёх R среди 7 шагов: C(7,4)=35.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Выбери позиции четырёх шагов вправо среди семи."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-committee",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Есть 7 математиков и 6 физиков. Выбирают комитет из 4 человек, математиков должно быть больше физиков, и хотя бы один физик обязателен. Сколько комитетов?",
+    "options": [],
+    "answer": "210",
+    "solution": "Из 4 членов строго больше математиков и минимум один физик возможен только состав 3 математика + 1 физик. Число выборов C(7,3)C(6,1)=35·6=210.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Единственный допустимый состав — 3 математика и 1 физик."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-stars",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Сколько решений в неотрицательных целых имеет x₁+x₂+x₃=7?",
+    "options": [],
+    "answer": "36",
+    "solution": "Stars and Bars: 7 одинаковых единиц распределяются по трём переменным; два разделителя среди 9 мест дают C(9,2)=36.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Примени C(7+3−1,3−1)."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-positive",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Сколько положительных целочисленных решений имеет x₁+x₂+x₃=8?",
+    "options": [],
+    "answer": "21",
+    "solution": "Пусть y_i=x_i−1≥0. Тогда y₁+y₂+y₃=5. Stars and Bars даёт C(5+3−1,2)=C(7,2)=21.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Отними по единице у каждой переменной."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-subset",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Сколько 3-элементных подмножеств {1,…,12} содержат хотя бы одно число, кратное 3?",
+    "options": [],
+    "answer": "164",
+    "solution": "Всего C(12,3)=220. Без кратных 3 выбирают из восьми остальных: C(8,3)=56. Итог 220−56=164.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Вычти выборы только из 8 не кратных трём чисел."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-flags",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Флаг имеет три упорядоченные горизонтальные полосы и 5 цветов. Средняя полоса отличается от верхней и нижней; крайние могут совпадать. Сколько флагов?",
+    "options": [],
+    "answer": "80",
+    "solution": "Цвет средней выбирают 5 способами, верхней — 4, нижней — 4, так как она обязана отличаться лишь от средней. Итог 5·4·4=80.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Крайние полосы не обязаны различаться между собой."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-groupcases",
+    "topicId": "counting-constraints",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Почему для комитета из 7 человек с числом математиков строго больше числа физиков нужно суммировать несколько возможных составов?",
+    "options": [
+      "Разные допустимые численности групп образуют непересекающиеся случаи",
+      "Нужно всегда делить на 7!",
+      "Количество математиков обязательно равно числу физиков",
+      "Все комитеты имеют один состав"
+    ],
+    "answer": "Разные допустимые численности групп образуют непересекающиеся случаи",
+    "solution": "Комитеты с различным числом математиков не совпадают, поэтому число вариантов суммируется по всем разрешённым составам. В каждом случае произведение сочетаний.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Выпиши допустимые пары численностей и используй правило суммы."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-palindrome",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Сколько палиндромов длины 7 над алфавитом из 3 символов?",
+    "options": [],
+    "answer": "81",
+    "solution": "Палиндром полностью задаётся первыми четырьмя символами; остальные зеркально определены. Итого 3^4=81.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Свободно выбираются первые четыре позиции."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "counting-constraints-committee-many-cases",
+    "topicId": "counting-constraints",
+    "type": "NUMERIC",
+    "difficulty": "CHALLENGE",
+    "prompt": "В группе 10 математиков и 12 физиков выбирают 8 человек: математиков строго больше физиков, но нужен хотя бы один физик. Сколько комитетов?",
+    "options": [],
+    "answer": "70740",
+    "solution": "Допустимы непересекающиеся составы (математики, физики): (5,3),(6,2),(7,1). Число вариантов C(10,5)C(12,3)+C(10,6)C(12,2)+C(10,7)C(12,1)=252·220+210·66+120·12=55440+13860+1440=70740.",
+    "hints": [
+      "Раздели допустимые объекты по непересекающимся случаям или считай дополнение.",
+      "Применяй сочетания, Stars and Bars, Inclusion–Exclusion или размещение шагов.",
+      "Выпиши три допустимых состава 5+3, 6+2 и 7+1, затем просуммируй произведения сочетаний."
+    ],
+    "tags": [
+      "counting-constraints",
+      "university-exam",
+      "original-analogue"
+    ]
+  }
+]

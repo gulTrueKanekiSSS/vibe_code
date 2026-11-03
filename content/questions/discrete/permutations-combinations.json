@@ -1,0 +1,232 @@
+[
+  {
+    "id": "permutations-combinations-arrangement",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Из 8 участников назначают президента, секретаря и казначея; каждый занимает не более одной должности. Сколько вариантов?",
+    "options": [],
+    "answer": "336",
+    "solution": "Роли различаются, порядок важен: P(8,3)=8·7·6=336. Делить на 3! нельзя, так как перестановка должностей меняет назначение.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Перемножь 8, 7 и 6 доступных кандидатов."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-committee",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Сколькими способами можно выбрать комитет из 3 студентов среди 9, если роли внутри комитета не различаются?",
+    "options": [],
+    "answer": "84",
+    "solution": "Комитет — неупорядоченное подмножество: C(9,3)=9·8·7/(3·2·1)=84.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Используй C(9,3), а не P(9,3)."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-with-replacement",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "В магазине 5 вкусов мороженого. Сколько упорядоченных заказов из 4 шариков возможно, если вкусы могут повторяться?",
+    "options": [],
+    "answer": "625",
+    "solution": "У каждого из четырёх упорядоченных шариков 5 независимых вариантов: 5^4=625.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Поскольку шарики различаются по позиции, применяй 5^4."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-multisets",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Сколько способов купить 4 одинаково неразличимых булочки, выбирая из 3 начинок, если одна начинка может повторяться?",
+    "options": [],
+    "answer": "15",
+    "solution": "Неупорядоченный выбор с повторением: C(3+4−1,4)=C(6,4)=15.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Примени Stars and Bars с тремя видами и четырьмя покупками."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-repeatedword",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "Сколько различных перестановок букв слова LEVEL?",
+    "options": [],
+    "answer": "30",
+    "solution": "LEVEL содержит 5 букв: L дважды и E дважды. Различимых слов 5!/(2!2!)=120/4=30.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Раздели 5! на 2! за L и 2! за E."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-president",
+    "topicId": "permutations-combinations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какой формулой считать назначение 2 различных ролей среди n кандидатов без повторений?",
+    "options": [
+      "n(n−1)",
+      "n(n−1)/2",
+      "n²/2",
+      "2n"
+    ],
+    "answer": "n(n−1)",
+    "solution": "Первая роль имеет n кандидатов, вторая — n−1. Это P(n,2)=n(n−1), не C(n,2), поскольку роли различны.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Замена двух назначенных людей местами меняет результат."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-zero",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Сколько способов выбрать пустую команду из 12 кандидатов?",
+    "options": [],
+    "answer": "1",
+    "solution": "Пустое подмножество единственно. C(12,0)=12!/(0!12!)=1, где 0!=1.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Используй C(12,0)=1."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-split",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "MEDIUM",
+    "prompt": "Сколькими способами разбить 10 разных участников на две группы размера 4 и 6 с названиями A и B?",
+    "options": [],
+    "answer": "210",
+    "solution": "Достаточно выбрать 4 участников группы A: C(10,4)=210; остальные шесть автоматически образуют B. Названия групп фиксированы.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Выбери только состав группы A."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-seats",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Сколько способов рассадить 5 разных человек по 5 пронумерованным местам?",
+    "options": [],
+    "answer": "120",
+    "solution": "Для пяти различных людей и пяти различных мест число биекций равно 5!=120.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Рассади последовательно: 5,4,3,2,1 возможностей."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-distinguish",
+    "topicId": "permutations-combinations",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "Какой признак отличает combinations от arrangements без повторений?",
+    "options": [
+      "В combinations порядок выбранных объектов неважен",
+      "В combinations всегда разрешены повторы",
+      "Arrangements запрещают выбор больше одного объекта",
+      "Обе формулы всегда равны"
+    ],
+    "answer": "В combinations порядок выбранных объектов неважен",
+    "solution": "В сочетаниях одинаковые наборы в разном порядке считаются одним вариантом. В размещениях порядок имеет значение.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Представь, что поменял местами двух выбранных."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "permutations-combinations-balloon-separation",
+    "topicId": "permutations-combinations",
+    "type": "NUMERIC",
+    "difficulty": "CHALLENGE",
+    "prompt": "Сколько разных перестановок букв слова BALLOON имеют две буквы O не рядом?",
+    "options": [],
+    "answer": "900",
+    "solution": "Всего у BALLOON семь букв, L повторяется дважды и O повторяется дважды: 7!/(2!2!)=1260. Если OO стоят вместе, считаем их одним блоком: остаются шесть объектов, две L повторяются, значит 6!/2!=360. Допустимых 1260−360=900.",
+    "hints": [
+      "Определи, важен ли порядок и допускается ли повторение.",
+      "Подставь параметры в permutations, combinations или выбор с повторениями.",
+      "Вычти перестановки с одним блоком OO из всех перестановок слова."
+    ],
+    "tags": [
+      "permutations-combinations",
+      "university-exam",
+      "original-analogue"
+    ]
+  }
+]

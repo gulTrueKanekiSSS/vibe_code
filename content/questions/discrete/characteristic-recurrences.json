@@ -1,0 +1,245 @@
+[
+  {
+    "id": "characteristic-recurrences-chi",
+    "topicId": "characteristic-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Каков characteristic polynomial для aₙ₊₂=5aₙ₊₁−6aₙ?",
+    "options": [
+      "λ²−5λ+6",
+      "λ²+5λ−6",
+      "λ²−5λ−6",
+      "λ²+6λ−5"
+    ],
+    "answer": "λ²−5λ+6",
+    "solution": "Переносим всё влево: a_{n+2}−5a_{n+1}+6a_n=0. Замена a_{n+j}→λ^j даёт λ²−5λ+6.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Перенеси все члены влево и замени сдвиги степенями λ."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-roots",
+    "topicId": "characteristic-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "Сколько различных действительных корней у χ(λ)=λ²−6λ+9?",
+    "options": [],
+    "answer": "1",
+    "solution": "χ(λ)=(λ−3)², то есть есть ровно один различный действительный корень λ=3 кратности два.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Разложи квадратный трёхчлен как полный квадрат."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-next",
+    "topicId": "characteristic-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "EASY",
+    "prompt": "a₀=1, a₁=4, aₙ₊₂=3aₙ₊₁−2aₙ. Найди a₂.",
+    "options": [],
+    "answer": "10",
+    "solution": "Для шага n=0 формула даёт a₂=3a₁−2a₀. Подставляем данные a₁=4 и a₀=1: 3·4−2·1=10.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Подставь a₀ и a₁ в формулу для a₂."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-distinct",
+    "topicId": "characteristic-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Как выглядит общее решение при двух различных корнях p=2, q=3 линейной однородной рекурсии второго порядка?",
+    "options": [
+      "A·2ⁿ+B·3ⁿ",
+      "(A+Bn)·2ⁿ",
+      "A·(2+3)ⁿ",
+      "A·2ⁿ+B·2ⁿ"
+    ],
+    "answer": "A·2ⁿ+B·3ⁿ",
+    "solution": "Каждый корень даёт независимое решение p^n, а линейность позволяет сложить их. При различных корнях получаем A2^n+B3^n.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Используй сумму двух геометрических решений."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-repeated",
+    "topicId": "characteristic-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "MEDIUM",
+    "prompt": "Какая форма общего решения при двойном ненулевом корне p=4?",
+    "options": [
+      "(A+Bn)·4ⁿ",
+      "A·4ⁿ+B·4ⁿ",
+      "A·4ⁿ+B·5ⁿ",
+      "A+Bn"
+    ],
+    "answer": "(A+Bn)·4ⁿ",
+    "solution": "При кратном корне второе независимое решение — n·p^n, поэтому общее решение (A+Bn)p^n.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Включи множитель n при втором независимом компоненте."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-solve",
+    "topicId": "characteristic-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "a₀=2, a₁=5, aₙ₊₂=3aₙ₊₁−2aₙ. Найди a₃.",
+    "options": [],
+    "answer": "23",
+    "solution": "a₂=3·5−2·2=11, затем a₃=3·11−2·5=23.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Сначала вычисли a₂=11, затем a₃."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-rootcoeff",
+    "topicId": "characteristic-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "a₀=4, a₁=7, aₙ₊₂=3aₙ₊₁−2aₙ. Пусть aₙ=A+B·2ⁿ. Найди B.",
+    "options": [],
+    "answer": "3",
+    "solution": "Корни characteristic polynomial равны 1 и 2. Из a₀=A+B=4 и a₁=A+2B=7 получаем B=7−4=3.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Вычти уравнение при n=0 из уравнения при n=1."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-repeatconst",
+    "topicId": "characteristic-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "HARD",
+    "prompt": "a₀=2, a₁=8, aₙ₊₂=4aₙ₊₁−4aₙ. В форме aₙ=(A+Bn)2ⁿ найди B.",
+    "options": [],
+    "answer": "2",
+    "solution": "Двойной корень p=2. При n=0 A=2. При n=1 (2+B)·2=8, откуда B=2.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Поставь n=0 и n=1 в (A+Bn)2^n."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-coeffsign",
+    "topicId": "characteristic-recurrences",
+    "type": "MULTIPLE_CHOICE",
+    "difficulty": "EASY",
+    "prompt": "В aₙ₊₂=t₁aₙ₊₁+t₂aₙ какой коэффициент при λ⁰ в χ(λ)?",
+    "options": [
+      "−t₂",
+      "t₂",
+      "t₁",
+      "−t₁"
+    ],
+    "answer": "−t₂",
+    "solution": "Переносим рекурсию в нулевую форму: a_{n+2}−t₁a_{n+1}−t₂a_n=0. Тогда χ(λ)=λ²−t₁λ−t₂.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Всё переносится в левую часть с противоположным знаком."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-eigen",
+    "topicId": "characteristic-recurrences",
+    "type": "TRUE_FALSE",
+    "difficulty": "EASY",
+    "prompt": "Для характеристического многочлена χ(λ)=λ²−λ−1 число λ=2 является корнем.",
+    "options": [
+      "Верно",
+      "Неверно"
+    ],
+    "answer": "Неверно",
+    "solution": "Подставляем λ=2: 2²−2−1=1, не 0. Значит 2 не является корнем χ; соответствующая геометрическая последовательность не является решением этой рекурсии.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Вычисли χ(2)."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  },
+  {
+    "id": "characteristic-recurrences-repeated-n6",
+    "topicId": "characteristic-recurrences",
+    "type": "NUMERIC",
+    "difficulty": "CHALLENGE",
+    "prompt": "Задано a₀=1, a₁=6, aₙ₊₂=4aₙ₊₁−4aₙ. Найди a₆ через общее решение с кратным корнем.",
+    "options": [],
+    "answer": "832",
+    "solution": "Характеристический многочлен λ²−4λ+4=(λ−2)². Поэтому a_n=(A+Bn)2^n. Из a₀=1 имеем A=1; a₁=6 даёт 2(1+B)=6, то есть B=2. Тогда a₆=(1+2·6)2⁶=13·64=832.",
+    "hints": [
+      "Проверь порядок рекурсии и запиши её с нулём справа.",
+      "Построй characteristic polynomial и различай простые и кратные корни.",
+      "Найди двойной корень 2 и коэффициенты A,B из двух начальных условий."
+    ],
+    "tags": [
+      "characteristic-recurrences",
+      "university-exam",
+      "original-analogue"
+    ]
+  }
+]

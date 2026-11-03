@@ -157,3 +157,10 @@ Tracked-файлы — основной scope; новые релевантные
 Ранее отмечен unrelated favicon 404; актуальность процесса dev-сервера надо проверять перед запуском, не считать его живым по этой сводке.
 Чужая untracked `.idea/` не относится к задаче; не stage/удалять. Neon migration/seed выполнены по явному запросу, remote site deployment ещё нет.
 Локальные AI credentials заданы приватно; live генерация заблокирована HTTP403, embeddings и педагогическое качество не проверены. Tutor отложен; в hosting env отключён. История bounded (12 сообщений/9 KB контекста), не долговременная модель знаний; свободное объяснение доступно в уроках и после разрешённого раскрытия решения.
+
+## Discrete Lab 7 / Lecture 8 — 2026-11-03
+
+- Branch `dmitrij/content/discrete-lab7-lecture8`, base/latest `origin/main ddfad75`; isolated worktree preserves unrelated original workspace changes.
+- [Task](.tasks/done/discrete-lab7-lecture8.md): raw pack + receipt, nine new Discrete lesson/bank pairs, +96 questions; prior content/registry unchanged. One reviewed published-only prompt clarification removes ambiguous state MC choice; source archive unchanged.
+- Final validate PASS 5 subjects / 93 lessons / 1372 questions; report/check PASS, lowCoverageTopics empty; unit91/91 PASS; independent review APPROVE, 122 math spans render. No DB/seed/integration/deployment/AI calls.
+- Implementation `29edb9d` pushed; [PR #17](https://github.com/gulTrueKanekiSSS/vibe_code/pull/17) open. Next: human review/merge; content is not published to the site.
