@@ -189,6 +189,13 @@ model TutorUsage {
   dayStart DateTime
   dayCount Int @default(0)
 }
+model TutorProviderUsage {
+  provider String @id
+  minuteStart DateTime
+  minuteCount Int
+  dayStart DateTime
+  dayCount Int
+}
 model LectureChunk {
   id String @id
   topicId String

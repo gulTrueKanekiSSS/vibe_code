@@ -11,7 +11,7 @@ import {
   type TutorContextInput,
   type ResolvedTutorContext,
 } from "./tutor-context";
-import { getTutorProvider } from "./tutor/provider";
+import { getTutorProvider, TutorProviderError } from "./tutor/provider";
 import { retrieveCourseContext } from "./tutor/retrieval";
 import {
   boundedHistory,
@@ -368,8 +368,10 @@ export async function sendTutorMessage(
             await provider!.generateTutorResponse(admission.input),
             admission.input,
           );
-  } catch {
+  } catch (error) {
     failed = true;
+    if (error instanceof TutorProviderError && error.code === "rate_limited")
+      reply = { content: error.message, sources: [] };
   }
 
   return serial(userId, async (tx) => {

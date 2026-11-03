@@ -164,3 +164,10 @@ Tracked-файлы — основной scope; новые релевантные
 - [Task](.tasks/done/discrete-lab7-lecture8.md): raw pack + receipt, nine new Discrete lesson/bank pairs, +96 questions; prior content/registry unchanged. One reviewed published-only prompt clarification removes ambiguous state MC choice; source archive unchanged.
 - Final validate PASS 5 subjects / 93 lessons / 1372 questions; report/check PASS, lowCoverageTopics empty; unit91/91 PASS; independent review APPROVE, 122 math spans render. No DB/seed/integration/deployment/AI calls.
 - Implementation `29edb9d` pushed; [PR #17](https://github.com/gulTrueKanekiSSS/vibe_code/pull/17) open. Next: human review/merge; content is not published to the site.
+
+## Groq Tutor integration — 2026-11-03
+
+- Branch `dmitrij/feature/tutor-groq`, base/latest `origin/main ebfddac`; [task](.tasks/active/tutor-groq.md). Optional server-side Groq strict chat adapter (gpt-oss-120b), lexical retrieval, atomic global PostgreSQL budget1/minute50/UTCday; existing policy/providers/deterministic practice retained.
+- New additive `20261103160000_tutor_provider_usage`: local disposable DB only. Final generate/validate/migrate/status/schema diff, typecheck/lint/build PASS; unit101/101, integration56/56, Tutor E2E9/9 PASS. Independent review APPROVE after isolated-suite runner fix. [QA](.tasks/qa/tutor-groq.md), [review](.tasks/qa/tutor-groq-review.md).
+- No production/Vercel/Neon/env writes, production migrations/seeds/indexing or live AI calls. Disabled by default, no paid fallback/embeddings. Future enablement needs human-reviewed migration + private server config; live teaching quality/token quotas unverified.
+- Next: commit/push/PR for human review; never auto-merge/deploy.

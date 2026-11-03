@@ -10,6 +10,7 @@ import {
   validateVectors,
 } from "./provider-common";
 import { createYandexTutorProvider } from "./yandex-provider";
+import { createGroqTutorProvider } from "./groq-provider";
 import type { TutorProvider } from "./types";
 
 export { TutorProviderError } from "./provider-common";
@@ -96,6 +97,32 @@ export function createOpenAiTutorProvider(
 
 export function getTutorProvider(): TutorProvider | null {
   const provider = env.TUTOR_PROVIDER?.trim() || "openai";
+  if (provider === "groq") {
+    const apiKey = env.GROQ_API_KEY?.trim();
+    const model = env.GROQ_TUTOR_MODEL?.trim() || "openai/gpt-oss-120b";
+    const integer = (
+      value: string | undefined,
+      fallback: number,
+      max: number,
+    ) => {
+      if (value === undefined) return fallback;
+      return /^\d+$/.test(value.trim()) && Number(value) <= max
+        ? Number(value)
+        : NaN;
+    };
+    const budget = {
+      perMinute: integer(env.GROQ_TUTOR_REQUESTS_PER_MINUTE, 1, 30),
+      perDay: integer(env.GROQ_TUTOR_REQUESTS_PER_DAY, 50, 1000),
+    };
+    if (
+      !apiKey ||
+      !/^[a-zA-Z0-9][a-zA-Z0-9_.-]*\/[a-zA-Z0-9][a-zA-Z0-9_.-]*$/.test(model) ||
+      !Number.isFinite(budget.perMinute) ||
+      !Number.isFinite(budget.perDay)
+    )
+      return null;
+    return createGroqTutorProvider({ apiKey, model, budget });
+  }
   if (provider === "yandex") {
     const apiKey = env.YANDEX_API_KEY?.trim();
     const folderId = env.YANDEX_FOLDER_ID?.trim();

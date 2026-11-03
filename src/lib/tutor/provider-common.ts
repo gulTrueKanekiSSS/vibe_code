@@ -3,12 +3,15 @@ import type { TutorGenerationInput } from "./types";
 
 export class TutorProviderError extends Error {
   constructor(
-    public readonly code: "timeout" | "unavailable" | "invalid_response",
+    public readonly code:
+      "timeout" | "unavailable" | "invalid_response" | "rate_limited",
   ) {
     super(
-      code === "timeout"
-        ? "Tutor не успел ответить. Попробуй ещё раз."
-        : "Сервис Tutor временно недоступен. Попробуй позже.",
+      code === "rate_limited"
+        ? "Бесплатный лимит Tutor временно исчерпан. Попробуй позже. Уроки, обычные подсказки и практика доступны."
+        : code === "timeout"
+          ? "Tutor не успел ответить. Попробуй ещё раз."
+          : "Сервис Tutor временно недоступен. Попробуй позже.",
     );
     this.name = "TutorProviderError";
   }
@@ -43,6 +46,7 @@ export async function requestProviderJson(
   payload: unknown,
   fetcher: typeof fetch,
   timeoutMs: number,
+  reportRateLimit = false,
 ): Promise<unknown> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -57,7 +61,11 @@ export async function requestProviderJson(
     });
     if (!response.ok) {
       await response.body?.cancel();
-      throw new TutorProviderError("unavailable");
+      throw new TutorProviderError(
+        reportRateLimit && response.status === 429
+          ? "rate_limited"
+          : "unavailable",
+      );
     }
     return await readBoundedJson(response);
   } catch (error) {
