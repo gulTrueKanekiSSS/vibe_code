@@ -58,6 +58,7 @@ export async function retrieveCourseContext(
   });
   let queryEmbedding: number[] | undefined;
   if (
+    provider.embeddingModel &&
     chunks.some(
       (c) => c.embeddingModel === provider.embeddingModel && c.embedding.length,
     )
