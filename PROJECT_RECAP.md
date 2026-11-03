@@ -163,11 +163,11 @@ Tracked-файлы — основной scope; новые релевантные
 - Branch `dmitrij/content/discrete-lab7-lecture8`, base/latest `origin/main ddfad75`; isolated worktree preserves unrelated original workspace changes.
 - [Task](.tasks/done/discrete-lab7-lecture8.md): raw pack + receipt, nine new Discrete lesson/bank pairs, +96 questions; prior content/registry unchanged. One reviewed published-only prompt clarification removes ambiguous state MC choice; source archive unchanged.
 - Final validate PASS 5 subjects / 93 lessons / 1372 questions; report/check PASS, lowCoverageTopics empty; unit91/91 PASS; independent review APPROVE, 122 math spans render. No DB/seed/integration/deployment/AI calls.
-- Implementation `29edb9d` pushed; [PR #17](https://github.com/gulTrueKanekiSSS/vibe_code/pull/17) open. Next: human review/merge; content is not published to the site.
+- [PR #17](https://github.com/gulTrueKanekiSSS/vibe_code/pull/17) merged by human in `ebfddac`; production publication verified below.
 
 ## Discrete production publication — 2026-11-03
 
-- Branch `dmitrij/chore/discrete-production-publication`, base/latest `origin/main ebfddac`; [operations task](.tasks/active/discrete-production-publication.md). User authorized production publication after PR17 merge.
+- Branch `dmitrij/chore/discrete-production-publication`, base/latest `origin/main ebfddac`; [operations task](.tasks/done/discrete-production-publication.md). User authorized production publication after PR17 merge.
 - Vercel auto production deployment READY at ebfddac: https://studyspace-dcoder.vercel.app; login HTTP200, available error/fatal groups empty. No redeploy/config changes.
 - Production snapshot `snap-noisy-tooth-ba9auiip` verified before writes. Local PostgreSQL SSL remains blocked; used Neon connector and reviewed atomic INSERT-only transaction with migration/content/protected-state guards. Added9 topics/9 formulas/96 questions; complete DB/source parity PASS5 subjects/93 topics/1372 questions;12 protected tables unchanged. Source validate PASS, independent safety review APPROVE. No seed/migrations/reset/AI calls.
-- Next: documentation PR/human review; authenticated Telegram lesson/practice smoke remains manual. Snapshot retained; restoration not rehearsed.
+- Documentation `4a7d33f` pushed; [PR #18](https://github.com/gulTrueKanekiSSS/vibe_code/pull/18) open for human review/merge. Authenticated Telegram lesson/practice smoke remains manual. Snapshot retained; restoration not rehearsed.

@@ -1,6 +1,6 @@
 # Publish Discrete Lab 7 / Lecture 8 to the site
 
-Status: READY_FOR_PR (production operation complete)
+Status: DONE (production verified; documentation PR open)
 Date: 2026-11-03
 Branch: dmitrij/chore/discrete-production-publication
 Base/latest: origin/main ebfddac (human merged PR17)
@@ -40,6 +40,6 @@ Neon run_sql returned success; independent post-write read confirms full expecte
 
 ## QA / review / limitations
 Source content:validate PASS5 subjects/93 lessons/1372 questions on deployment commit. Source import task previously ran unit91/91 and independent content/math review; these tests are historical import evidence, not rerun during publication. No app build/unit/integration/E2E repeated for operations/documentation-only changes; production integration tests prohibited. Source and post-write DB parity/migration guards passed. Final independent documentation QA/review APPROVE. Final login HTTP200; anonymous /subjects/discrete HTTP307 to authentication, no fake session. Available production error/fatal log groups empty after publication.
-Latest main fetched before publication remains ebfddac; no content differences. Human owns all PR merges. Operation is complete and content is in production; documentation PR does not gate existing live data. Next: documentation commit/push/PR and human authenticated lesson/practice smoke.
+Latest main fetched before publication remains ebfddac; no content differences. Human owns all PR merges. Operation is complete and content is in production; documentation PR does not gate existing live data. Documentation commit4a7d33f pushed; PR18 open: https://github.com/gulTrueKanekiSSS/vibe_code/pull/18. Next: human documentation review/merge and authenticated lesson/practice smoke.
 
 Executed atomic SQL SHA256: `d4ebd8f92a539322eacd01ab1a531bebe2e6db0fb67b2a8375d01dad0dfc7291`. Temporary SQL contains reviewed public educational rows only; no credentials/user records.
